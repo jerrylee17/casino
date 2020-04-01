@@ -9,18 +9,17 @@ class Landing extends Component {
   state = {
     showSignIn: false,
     showSignUp: false,
-    test: []
   };
 
   render() {
     const toggleSignInModal = () => {
       this.setState({
-        showSignIn: !this.state.showSignIn
+        showSignIn: !this.state.showSignIn,
       });
     };
     const toggleSignUpModal = () => {
       this.setState({
-        showSignUp: !this.state.showSignUp
+        showSignUp: !this.state.showSignUp,
       });
     };
     return (
