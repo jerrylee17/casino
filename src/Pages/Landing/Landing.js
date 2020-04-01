@@ -8,7 +8,8 @@ import RegisterModal from "../../Components/Auth/RegisterModal";
 class Landing extends Component {
   state = {
     showSignIn: false,
-    showSignUp: false
+    showSignUp: false,
+    test: []
   };
 
   render() {
@@ -16,7 +17,6 @@ class Landing extends Component {
       this.setState({
         showSignIn: !this.state.showSignIn
       });
-      console.log(this.state.showSignIn);
     };
     const toggleSignUpModal = () => {
       this.setState({
