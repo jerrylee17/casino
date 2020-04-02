@@ -16,6 +16,10 @@ This is a casino!!!
 
 `npm install`
 
+**Start backend and frontend**
+In one tab run `npm run server`
+In another tab run `npm run frontend`
+
 **Create your own branch and edit there**
 
 `git checkout -b [YOUR BRANCH NAME]`
@@ -41,3 +45,47 @@ This is a casino!!!
 `git push origin [YOUR BRANCH NAME]`
 
 **Open a pull request to merge into master (request review from members)**
+
+## Frontend/Backend Tutorial
+
+Note: Make sure to import jQuery
+
+`import $ from 'jquery';`
+
+**Send data from Node.js to React.js**
+
+```
+Node.js
+app.get("/api/test", (req, res) => {
+  const test = [
+    { id: 1, name: "Name1" },
+    { id: 2, name: "Name2" }
+  ];
+  res.json(test);
+});
+```
+
+```
+React.js
+$.get("http://localhost:5000/api/test", function(data) {
+    console.log(data);
+});
+```
+
+**Send data from React.js to Node.js**
+
+```
+Node.js
+app.post("/api/login", function(req, res) {
+  console.log(req.body);
+  res.send("response");
+});
+```
+
+```
+React.js
+$.post("http://localhost:5000/api/login", {
+    user: "testUser",
+    password: "hashedPassword"
+});
+```
