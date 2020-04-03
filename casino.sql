@@ -1,0 +1,84 @@
+use master
+GO
+if exists (select * from master.sys.databases where name = 'casino')
+  drop database casino
+GO
+create database casino
+GO
+use casino
+GO
+
+create table new_user(
+username varchar(10) not null,
+email varchar(20) not null,
+password varchar(18) not null,
+primary key(username, email),
+UNIQUE(username, email)
+);
+
+create table player(
+player_id varchar(10) not null,
+primary key(player_id),
+--foreign key(player_id) REFERENCES new_user(username)
+--on delete cascade
+);
+
+create table invited_by(
+awarded_chips int not null
+); -- saw that awarded_chips is 500, but not sure how to do that lmao
+-- also stuck on this relationship
+
+
+create table user_admin(
+admin_id varchar(10) not null,
+primary key(admin_id),
+--foreign key(admin_id) REFERENCES new_user(username)
+--on delete cascade
+);
+
+create table user_profile(
+user_id varchar(10) not null,
+no_of_chips int,
+primary key(user_id),
+--foreign key(user_id) REFERENCES new_user(username)
+--on delete cascade
+);
+
+create table plays(
+bet_chips int not null,
+player_id varchar(10) not null,
+game_id varchar(10) not null,
+primary key(player_id, game_id),
+-- foreign key(player_id) REFERENCES new_user(username),
+-- foreign key(game_id) REFERENCES game(game_no)
+); --relationship between new_user and game
+
+create table players_list(
+game varchar(9),
+max_capacity int not null,
+-- foreign key(game) REFERENCES game(type)
+); --tried adding some stuff
+
+create table game(
+game_no varchar(10) not null,
+status varchar(10)
+	check (status in ('Open', 'In Progress', 'Finished')),
+wager_amt int not null,
+type varchar (9)
+	check(type in ('Blackjack', 'Coin Flip', 'Slots')),
+primary key(game_no),
+UNIQUE(game_no)
+);
+
+create table shop(
+shop_no int not null,
+primary key(shop_no)
+); -- did not do badges attribute yet
+
+create table use_chips(
+no_of_chips int not null
+); -- relationship between shop and user, don't know how to do derived attributes
+
+create table badges(
+total int
+); -- not sure on details for badges
