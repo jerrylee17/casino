@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from "react";
 
-export default function Profile() {
-  return (
-    <>
+class Profile extends Component {
+  render() {
+    return (
       <div>
         <h1>Profile</h1>
       </div>
-    </>
-  );
+    );
+  }
 }
+
+export default Profile;

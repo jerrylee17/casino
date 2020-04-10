@@ -11,13 +11,18 @@ import {
   UncontrolledDropdown,
   DropdownMenu,
   DropdownItem,
-  DropdownToggle
+  DropdownToggle,
 } from "reactstrap";
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+
+  let handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt-expire");
+    window.location.reload(false);
+  };
 
   return (
     <div id="navbar">
@@ -30,17 +35,17 @@ function NavBar({ component: Component }) {
               <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/Games">Games</NavLink>
+              <NavLink href="/games">Games</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                My settings
+                My Settings
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem href="/settings">User Settings</DropdownItem>
                 <DropdownItem href="/profile">Profile</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Log out</DropdownItem>
+                <DropdownItem onClick={handleLogOut}>Log out</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

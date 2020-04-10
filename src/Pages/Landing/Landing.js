@@ -4,23 +4,24 @@ import "./landing.css";
 import icon from "../../Images/icon-white.png";
 import LoginModal from "../../Components/Auth/LoginModal";
 import RegisterModal from "../../Components/Auth/RegisterModal";
+import $ from "jquery";
 
 class Landing extends Component {
   state = {
     showSignIn: false,
     showSignUp: false,
-    test: []
+    test: [],
   };
 
   render() {
     const toggleSignInModal = () => {
       this.setState({
-        showSignIn: !this.state.showSignIn
+        showSignIn: !this.state.showSignIn,
       });
     };
     const toggleSignUpModal = () => {
       this.setState({
-        showSignUp: !this.state.showSignUp
+        showSignUp: !this.state.showSignUp,
       });
     };
     return (
