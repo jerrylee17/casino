@@ -9,7 +9,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 import $ from "jquery";
 import "./register.css";
@@ -17,20 +17,20 @@ import "./register.css";
 class RegisterModal extends Component {
   state = {
     passwordEqual: true,
-    passwordLength: true
+    passwordLength: true,
   };
   render() {
     // checks if both the passwords are the same
     let validatePassword = (p1, p2) => {
       if (p1.length < 6 || p2.length < 6) {
         this.setState({
-          passwordLength: false
+          passwordLength: false,
         });
         return false;
       }
       if (p1 !== p2) {
         this.setState({
-          passwordEqual: false
+          passwordEqual: false,
         });
         return false;
       }
@@ -38,11 +38,11 @@ class RegisterModal extends Component {
     };
 
     // Function listens to register form and signs up a user
-    let handleRegister = e => {
+    let handleRegister = (e) => {
       e.preventDefault();
       this.setState({
         passwordEqual: true,
-        passwordLength: true
+        passwordLength: true,
       });
       let data = $("#register-form").serializeArray();
       // If both passwords are valid and equal... then sign up
@@ -50,6 +50,17 @@ class RegisterModal extends Component {
         let username = data[0].value;
         let email = data[1].value;
         let password = data[2].value;
+        $.post(
+          "http://localhost:5000/api/register",
+          {
+            username: username,
+            email: email,
+            password: password,
+          },
+          (data) => {
+            console.log(data);
+          }
+        );
       }
     };
     return (

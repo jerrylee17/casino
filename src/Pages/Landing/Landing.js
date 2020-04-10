@@ -4,6 +4,7 @@ import "./landing.css";
 import icon from "../../Images/icon-white.png";
 import LoginModal from "../../Components/Auth/LoginModal";
 import RegisterModal from "../../Components/Auth/RegisterModal";
+import $ from "jquery";
 
 class Landing extends Component {
   state = {
