@@ -9,19 +9,37 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 import $ from "jquery";
+import { isAuthenticated } from "../../APIFunctions/user";
 import "./login.css";
 
 class LoginModal extends Component {
+  state = {
+    error: false,
+  };
   render() {
     // Function listens to login form and logs in if user is valid
-    let handleLogin = e => {
+    let handleLogin = (e) => {
       e.preventDefault();
       let data = $("#login-form").serializeArray();
       let username = data[0].value;
       let password = data[1].value;
+      $.post("http://localhost:5000/api/login", {
+        username: username,
+        password: password,
+      }).then((result) => {
+        if (result.token) {
+          localStorage.setItem("jwt", result.token);
+          localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
+          window.location.reload(false);
+        } else {
+          this.setState({
+            error: true,
+          });
+        }
+      });
     };
 
     return (
@@ -51,6 +69,7 @@ class LoginModal extends Component {
                 required
               />
             </FormGroup>
+            {this.state.error ? <p>Error!</p> : <></>}
           </ModalBody>
           <ModalFooter>
             <Button variant="primary" type="submit">

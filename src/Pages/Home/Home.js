@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Component } from "react";
+import { currentUser } from "../../APIFunctions/user";
 
-export default function Home() {
-  return (
-    <>
+class Home extends Component {
+  state = {
+    user: "",
+  };
+  componentDidMount() {
+    this.setState({
+      user: currentUser(),
+    });
+  }
+  render() {
+    return (
       <div>
-        <h1>Home</h1>
+        <h1>Hello {this.state.user}</h1>
       </div>
-    </>
-  );
+    );
+  }
 }
+
+export default Home;
