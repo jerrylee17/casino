@@ -3,7 +3,6 @@ import {
   Button,
   Form,
   FormGroup,
-  FormText,
   Label,
   Input,
   Modal,
@@ -12,17 +11,22 @@ import {
   ModalFooter,
 } from "reactstrap";
 import $ from "jquery";
-import { isAuthenticated } from "../../APIFunctions/user";
+// import { isAuthenticated } from "../../APIFunctions/user";
 import "./login.css";
 
 class LoginModal extends Component {
   state = {
-    error: false,
+    usernameError: false,
+    passwordError: false
   };
   render() {
     // Function listens to login form and logs in if user is valid
     let handleLogin = (e) => {
       e.preventDefault();
+      this.setState({
+        usernameError: false,
+        passwordError: false
+      })
       let data = $("#login-form").serializeArray();
       let username = data[0].value;
       let password = data[1].value;
@@ -34,9 +38,13 @@ class LoginModal extends Component {
           localStorage.setItem("jwt", result.token);
           localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
           window.location.reload(false);
+        } else if (result.error) {
+          this.setState({
+            passwordError: true,
+          });
         } else {
           this.setState({
-            error: true,
+            usernameError: true,
           });
         }
       });
@@ -69,7 +77,8 @@ class LoginModal extends Component {
                 required
               />
             </FormGroup>
-            {this.state.error ? <p>Error!</p> : <></>}
+            {this.state.usernameError ? <p>User not found!</p> : <></>}
+            {this.state.passwordError ? <p>Password incorrect!</p> : <></>}
           </ModalBody>
           <ModalFooter>
             <Button variant="primary" type="submit">

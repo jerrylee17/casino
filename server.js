@@ -1,9 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-var db = require("./backend/test");
 const app = express();
 app.use(cors());
 // support parsing of application/json type post data

@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 export function isAuthenticated() {
   let token;
   if (window.localStorage) {

@@ -12,6 +12,12 @@ class Landing extends Component {
     showSignUp: false,
   };
 
+  componentDidMount() {
+    $.get("http://localhost:5000/users", function (data) {
+      console.log(data);
+    });
+  }
+
   render() {
     const toggleSignInModal = () => {
       this.setState({
