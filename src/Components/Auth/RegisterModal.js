@@ -18,6 +18,8 @@ class RegisterModal extends Component {
   state = {
     passwordEqual: true,
     passwordLength: true,
+    usernameError: false,
+    emailError: false
   };
   render() {
     // checks if both the passwords are the same
@@ -43,6 +45,8 @@ class RegisterModal extends Component {
       this.setState({
         passwordEqual: true,
         passwordLength: true,
+        usernameError: false,
+        emailError: false
       });
       let data = $("#register-form").serializeArray();
       // If both passwords are valid and equal... then sign up
@@ -60,7 +64,23 @@ class RegisterModal extends Component {
           (data) => {
             console.log(data);
           }
-        );
+        ).then((result) => {
+          if (result.token) {
+            localStorage.setItem("jwt", result.token);
+            localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
+            window.location.reload(false);
+          }
+          else if (result.usernameError) {
+            this.setState({
+              usernameError: true
+            });
+          }
+          else if (result.emailError) {
+            this.setState({
+              emailError: true
+            });
+          }
+        });
       }
     };
     return (
@@ -104,17 +124,17 @@ class RegisterModal extends Component {
               {this.state.passwordEqual ? (
                 ""
               ) : (
-                <small className="password-error">
-                  Passwords do not match.{" "}
-                </small>
-              )}
+                  <small className="password-error">
+                    Passwords do not match.{" "}
+                  </small>
+                )}
               {this.state.passwordLength ? (
                 ""
               ) : (
-                <small className="password-error">
-                  Passwords must be at least 6 characters.{" "}
-                </small>
-              )}
+                  <small className="password-error">
+                    Passwords must be at least 6 characters.{" "}
+                  </small>
+                )}
             </FormGroup>
             <FormGroup>
               <Label>Confirm Password</Label>
@@ -127,18 +147,20 @@ class RegisterModal extends Component {
               {this.state.passwordEqual ? (
                 ""
               ) : (
-                <small className="password-error">
-                  Passwords do not match.{" "}
-                </small>
-              )}
+                  <small className="password-error">
+                    Passwords do not match.{" "}
+                  </small>
+                )}
               {this.state.passwordLength ? (
                 ""
               ) : (
-                <small className="password-error">
-                  Passwords must be at least 6 characters.{" "}
-                </small>
-              )}
+                  <small className="password-error">
+                    Passwords must be at least 6 characters.{" "}
+                  </small>
+                )}
             </FormGroup>
+            {this.state.usernameError ? <p>Username already exists!</p> : <></>}
+            {this.state.emailError ? <p>Email already exists!</p> : <></>}
           </ModalBody>
           <ModalFooter>
             <Button variant="primary" type="submit">
