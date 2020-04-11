@@ -6,10 +6,9 @@ import Home from "./Pages/Home/Home.js";
 import Games from "./Pages/Games/Games.js";
 import Profile from "./Pages/Profile/Profile.js";
 import Settings from "./Pages/Settings/Settings.js";
-import NavBar from "./Components/Navbar/Navbar.js";
+import Errors from "./Pages/Error/Errors.js";
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
-import { Navbar } from "reactstrap";
 const browserHistory = createBrowserHistory();
 
 export default function Routing() {
@@ -66,6 +65,7 @@ export default function Routing() {
                 />
               );
             })}
+            <Route path="/*" component={Errors} />
           </Switch>
         </Router>
       </div>

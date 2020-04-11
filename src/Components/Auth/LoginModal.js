@@ -3,7 +3,6 @@ import {
   Button,
   Form,
   FormGroup,
-  FormText,
   Label,
   Input,
   Modal,
@@ -12,7 +11,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 import $ from "jquery";
-import { isAuthenticated } from "../../APIFunctions/user";
+// import { isAuthenticated } from "../../APIFunctions/user";
 import "./login.css";
 
 class LoginModal extends Component {

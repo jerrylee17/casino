@@ -51,9 +51,8 @@ app.post("/api/login", function (req, res) {
 });
 
 app.post("/api/register", function (req, res) {
-  let username = req.body.username;
   let email = req.body.email;
-  let user = { username };
+  let user = { username: req.body.username };
   const saltRounds = 10;
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.password, salt, function (err, hashedPassword) {
@@ -63,7 +62,7 @@ app.post("/api/register", function (req, res) {
         let usernameError = false;
         let emailError = false;
         // Check if username or email exists
-        userQuery.checkValidUser(username, exists => {
+        userQuery.checkValidUser(user.username, exists => {
           if (exists.length) {
             usernameError = true;
             res.json({
@@ -81,7 +80,7 @@ app.post("/api/register", function (req, res) {
             }
             if (!usernameError && !emailError) {
               // Store new user in DB w/ password hash
-              userQuery.registerUser(username, email, hashedPassword, (result) => {
+              userQuery.registerUser(user.username, email, hashedPassword, (result) => {
                 // automatically logs in the user
                 if (result) {
                   jwt.sign({ user }, "secretkey", (err, token) => {
