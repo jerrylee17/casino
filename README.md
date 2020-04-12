@@ -16,6 +16,25 @@ This is a casino!!!
 
 `npm install`
 
+**Set up MySQL Server**
+Create a new connection with the following information (development only):
+
+`
+username: root
+
+password: password
+
+database: blits
+`
+
+Run the script file in the workbench `blits.sql`
+
+Run the following to allow MySQL workbench server to connect to our application
+- `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
+- `flush privileges;`
+
+Lastly, connect to the database named 'blits'
+
 **Start backend and frontend**
 In one tab run `npm run server`
 In another tab run `npm run frontend`
