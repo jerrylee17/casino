@@ -1,0 +1,21 @@
+#games-page {
+    background-color: #2c2f33;
+}
+
+.jumbo {
+    background-color: #303338;
+    color: white;
+}
+
+.internal-align {
+    min-height: 10vh;
+    margin: 1px;
+    padding: 10px;
+}
+
+.external-align {
+    display: "flex";
+    justify-content: "center";
+    align-items: "center";
+}
+
