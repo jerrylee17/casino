@@ -11,6 +11,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+import { registerUser } from '../../APIFunctions/user';
 import $ from "jquery";
 import "./register.css";
 
@@ -54,33 +55,10 @@ class RegisterModal extends Component {
         let username = data[0].value;
         let email = data[1].value;
         let password = data[2].value;
-        $.post(
-          "http://localhost:5000/api/register",
-          {
-            username: username,
-            email: email,
-            password: password,
-          },
-          (data) => {
-            console.log(data);
-          }
-        ).then((result) => {
-          if (result.token) {
-            localStorage.setItem("jwt", result.token);
-            localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
-            window.location.reload(false);
-          }
-          else if (result.usernameError) {
-            this.setState({
-              usernameError: true
-            });
-          }
-          else if (result.emailError) {
-            this.setState({
-              emailError: true
-            });
-          }
-        });
+        registerUser(username, password, email, result => {
+          if (result === 'usernameError') this.setState({ usernameError: true });
+          else if (result === 'emailError') this.setState({ emailError: true });
+        })
       }
     };
     return (
