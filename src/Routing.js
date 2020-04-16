@@ -17,6 +17,7 @@ export default function Routing() {
 
   useEffect(() => {
     onLoad();
+    // eslint-disable-next-line
   }, []);
 
   async function onLoad() {
