@@ -83,6 +83,8 @@ on delete cascade
 create table shop(
 shop_no int not null,
 primary key(shop_no)
+-- foreign key(shop_no) REFERENCES plays(player_id)
+-- on update cascade
 );
 -- did not do badges attribute yet
 
