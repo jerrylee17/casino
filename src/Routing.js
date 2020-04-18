@@ -7,6 +7,7 @@ import Games from "./Pages/Games/Games.js";
 import Profile from "./Pages/Profile/Profile.js";
 import Settings from "./Pages/Settings/Settings.js";
 import Errors from "./Pages/Error/Errors.js";
+import Admin from './Pages/Admin/Admin.js'
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
 const browserHistory = createBrowserHistory();
@@ -46,6 +47,10 @@ export default function Routing() {
       Component: Settings,
       path: "/settings",
     },
+    {
+      Component: Admin,
+      path: "/admin"
+    }
   ];
   return (
     !Authenticating && (
