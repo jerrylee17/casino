@@ -22,6 +22,7 @@ app.get('/users', function (req, res) {
 app.post("/api/login", function (req, res) {
   let user = {
     username: req.body.username,
+    email: req.body.email
   };
   // check if the username is valid
   userQuery.checkValidUser(user.username, (result) => {
@@ -52,7 +53,7 @@ app.post("/api/login", function (req, res) {
 
 app.post("/api/register", function (req, res) {
   let email = req.body.email;
-  let user = { username: req.body.username };
+  let user = { username: req.body.username, email: req.body.email };
   const saltRounds = 10;
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.password, salt, function (err, hashedPassword) {
