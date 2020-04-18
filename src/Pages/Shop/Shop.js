@@ -3,15 +3,13 @@ import {
   Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg,
   Col,
   Row,
-  Button,
+  Button
   // Modal,
   // ModalHeader,
   // ModalFooter,
   // ModalBody,
 } from "reactstrap";
-// import {
-//   Link
-// } from "react-router-dom";
+import './shop.css';
 
 import ReactDOM from 'react-dom';
 
@@ -45,13 +43,16 @@ function Shopbadges() {
     <div>
       <h1>Shop</h1>
       <h2>Badges of the Day!</h2>
-      <Row>
+      <section className='user_chip'>
+        <b>User's Chip Balance:</b> 5000
+      </section>
+      <section className='grid'>
         {shopbadges.map((shopbadge, i) => {
            return ( 
           <div key={i}>
-            <div class = "card-group">
-              <div class="card">
-                <img class="card-img-top"  src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100"/>
+            <Col md={10}>
+              <Card>
+                <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100"/>
                 <CardBody>
                   <CardTitle>{shopbadge.badgeName}</CardTitle>
                   <CardSubtitle><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
@@ -62,13 +63,12 @@ function Shopbadges() {
                     </Row>
                   </CardText>
                 </CardBody>
-
-              </div>
-            </div>
+              </Card>
+            </Col>
           </div>
              )
             })}  
-                </Row>
+                </section>
               
           </div>
   );

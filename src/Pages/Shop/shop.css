@@ -1,0 +1,11 @@
+.grid {
+    display: grid;
+    color: black;
+    gap: 1rem;
+    grid-auto-rows: 300px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.user_chip{
+    text-align: right;
+}
