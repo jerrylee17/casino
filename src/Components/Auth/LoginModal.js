@@ -11,7 +11,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 import $ from "jquery";
-// import { isAuthenticated } from "../../APIFunctions/user";
+import { loginUser } from "../../APIFunctions/user";
 import "./login.css";
 
 class LoginModal extends Component {
@@ -30,23 +30,9 @@ class LoginModal extends Component {
       let data = $("#login-form").serializeArray();
       let username = data[0].value;
       let password = data[1].value;
-      $.post("http://localhost:5000/api/login", {
-        username: username,
-        password: password,
-      }).then((result) => {
-        if (result.token) {
-          localStorage.setItem("jwt", result.token);
-          localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
-          window.location.reload(false);
-        } else if (result.error) {
-          this.setState({
-            passwordError: true,
-          });
-        } else {
-          this.setState({
-            usernameError: true,
-          });
-        }
+      loginUser(username, password, result => {
+        if (result === 'passwordError') this.setState({ passwordError: true });
+        else if (result === 'usernameError') this.setState({ usernameError: true });
       });
     };
 

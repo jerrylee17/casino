@@ -9,7 +9,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(require("./backend/api/auth"));
+app.use(require("./backend/routes/auth"));
+app.use(require("./backend/routes/user"));
 
 const port = 5000;
 app.listen(port, () => console.log("Server started at port 5000"));

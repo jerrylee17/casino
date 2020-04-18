@@ -13,6 +13,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import BlitsIcon from '../../Images/icon-white.png';
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ function NavBar({ component: Component }) {
   return (
     <div id="navbar">
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">Casino</NavbarBrand>
+        <NavbarBrand href="/"><img src={BlitsIcon} alt="" height="50" /></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -55,7 +56,7 @@ function NavBar({ component: Component }) {
         </Collapse>
       </Navbar>
       <Component />
-    </div>
+    </div >
   );
 }
 

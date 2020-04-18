@@ -1,0 +1,24 @@
+#settings-tab {
+    display: flex;
+    justify-content: center;
+}
+
+#settings-tab form {
+    width: 55%;
+    padding-top: 40px;
+}
+
+#settings-tab .btn-link {
+    color: white !important;
+}
+
+#submit-btn {
+    color: white;
+    border: 1px solid white;
+}
+
+#submit-btn:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+}

@@ -1,0 +1,38 @@
+#setting-page {
+    height: 100%;
+    min-height: 100vh;
+    background-color: #2c2f33;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 70px;
+}
+
+.setting-box {
+    height: 620px !important;
+    background-color: #23272a;
+    margin: 50px 20% 0 20%;
+    border-radius: 2%;
+}
+
+#setting-page .nav-tabs {
+    border: none;
+}
+
+#setting-page .nav-link {
+    border: none;
+}
+
+#setting-page .nav-tabs:hover{
+    border: none;
+}
+
+#setting-page .nav-item:hover {
+    cursor: pointer;
+    border: none !important;
+}
+
+#setting-page .delete-tab-btn{
+    margin: 10px;
+}

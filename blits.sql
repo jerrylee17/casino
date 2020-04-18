@@ -11,7 +11,14 @@ UNIQUE(username, email)
 );
 
 create table player(
+<<<<<<< HEAD
 player_id varchar(10) not null,
+=======
+player_id varchar(15) not null,
+no_of_chips int,
+no_of_warns int,
+banned varchar(10) DEFAULT 'false',
+>>>>>>> d52499f8dd73ae17af650f356df3548c515fb6de
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
 on delete cascade

@@ -42,10 +42,10 @@ function Shopbadges() {
   return (
     <div>
       <Jumbotron>
-      <div className='text-center'>
-        <h1 className='display-4'>Shop</h1>
-      </div>
-    </Jumbotron>
+        <div className='text-center'>
+          <h1 className='display-4'>Shop</h1>
+        </div>
+      </Jumbotron>
       <h2>Badges of the Day!</h2>
       <section className='user_chip'>
         <b>User's Chip Balance:</b> 5000
@@ -58,10 +58,8 @@ function Shopbadges() {
                 <Card>
                   <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
                   <CardBody>
-                     <CardTitle>{shopbadge.badgeName}</CardTitle>
-                     <Row>
-                       <CardSubtitle><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
-                     </Row>
+                    <CardTitle>{shopbadge.badgeName}</CardTitle>
+                    <CardSubtitle><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
                     <CardText>
                       <Row style={{ height: '100px' }}>
                         {shopbadge.badgeDesc}
@@ -70,8 +68,7 @@ function Shopbadges() {
                         {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
                       </Row>
                     </CardText>
-                    <Row><Button>Purchase Badge!</Button></Row>
-                    
+                    <Button>Purchase Badge!</Button>
                   </CardBody>
                 </Card>
               </Col>

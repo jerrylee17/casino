@@ -7,8 +7,8 @@ class Home extends Component {
   };
   componentDidMount() {
     this.setState({
-      user: currentUser(),
-    });
+      user: currentUser()
+    })
   }
   render() {
     return (
