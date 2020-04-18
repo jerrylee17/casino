@@ -1,10 +1,57 @@
 import React, { Component } from "react";
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
+import './setting.css';
+import SettingsTab from '../../Components/Settings/SettingsTab';
+import DeleteTab from '../../Components/Settings/DeleteTab';
 
 class Settings extends Component {
+  state = {
+    activeTab: "1"
+  }
+
+  handleTabToggle = (id) => {
+    this.setState({ activeTab: id })
+    console.log(this.state.activeTab)
+  }
+
   render() {
     return (
-      <div>
-        <h1>Settings</h1>
+      <div id="setting-page">
+        <h3>My Account</h3>
+        <div className="setting-box">
+          <Nav tabs>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "1" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("1") }}
+              >
+                Settings
+          </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "2" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("2") }}
+              >
+                Delete Account
+          </NavLink>
+            </NavItem>
+          </Nav>
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane tabId="1">
+              <SettingsTab />
+            </TabPane>
+            <TabPane tabId="2">
+              <DeleteTab />
+            </TabPane>
+          </TabContent>
+        </div>
       </div>
     );
   }
