@@ -12,9 +12,15 @@ import {
   Row
 } from 'reactstrap'
 import './Admin.css'
+import {
+  tableHead,
+  tableBody
+} from './AdminComponents'
 
 export default function Admin() {
   const [manage, setManage] = useState(false)
+
+  const tableTitles = ['#', 'Username', 'Winrate', 'Chip count', 'Action'];
 
   const user = [
     {
@@ -53,34 +59,8 @@ export default function Admin() {
       </Jumbotron>
       <Container>
         <Table size='sm' hover dark>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Username</th>
-              <th>winrate</th>
-              <th>Chip count</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user && user.length ? (
-              user.map((player, index) => (
-                <tr>
-                  <th scope='row'>{index + 1}</th>
-                  <td>{player.username}</td>
-                  <td>{player.winrate}</td>
-                  <td>{player.no_of_chips}</td>
-                  <td>
-                    <Button color='danger' onClick={() => setManage(true)}>
-                      Manage
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-                <h1>This game is lonely</h1>
-              )}
-          </tbody>
+          {tableHead(tableTitles)}
+          {tableBody(user, setManage)}
         </Table>
       </Container>
       <Modal isOpen={manage}
