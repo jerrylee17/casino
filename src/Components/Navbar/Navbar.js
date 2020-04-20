@@ -38,6 +38,9 @@ function NavBar({ component: Component }) {
             <NavItem>
               <NavLink href="/games">Games</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/shop">Shop</NavLink>
+            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 My Settings

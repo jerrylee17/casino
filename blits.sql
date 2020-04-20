@@ -36,10 +36,12 @@ primary key(admin_id)
 create table user_profile(
 user_id varchar(10) not null,
 no_of_chips int,
+loss_win_ratio int,
 primary key(user_id)
 -- foreign key(user_id) REFERENCES new_user(username)
 -- on delete cascade
 );
+-- don't know how to reference badges in this table
 
 create table plays(
 bet_chips int not null,
@@ -55,7 +57,7 @@ create table players_list(
 game varchar(9),
 max_capacity int not null
 -- foreign key(game) REFERENCES game(type)
-);
+); -- i don't think this is complete
 
 create table game(
 game_no varchar(10) not null,
@@ -64,7 +66,9 @@ status varchar(10)
 wager_amt int not null,
 type varchar (9)
 	check(type in ('Blackjack', 'Coin Flip', 'Slots')),
+winner varchar(10) not null,
 primary key(game_no),
+-- foreign key(winner) REFERENCES player(player_id)
 UNIQUE(game_no)
 );
 
@@ -78,5 +82,7 @@ no_of_chips int not null
 ); -- relationship between shop and user, don't know how to do derived attributes
 
 create table badges(
-total int
+total int, 
+badge_name varchar(10) not null,
+badge_cost int -- how much the badge costs
 ); -- not sure on details for badges
