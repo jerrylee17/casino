@@ -9,8 +9,9 @@ exports.selectAllUsers = (callback) => {
 }
 
 exports.registerUser = (username, email, hashedPassword, callback) => {
+    let currentDate = new Date().toJSON();
     let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
-    let REGISTER_QUERY_PLAYER = "INSERT player VALUES ('" + username + "', 0, 0, false);";
+    let REGISTER_QUERY_PLAYER = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) throw err;
         connection.query(REGISTER_QUERY_PLAYER, (err, results) => {
@@ -66,4 +67,29 @@ exports.checkBanned = (username, callback) => {
         if (err) throw err;
         return callback(results);
     })
+}
+
+exports.getLastLogin = (username, callback) => {
+    let GET_LAST_LOGIN_QUERY = "SELECT last_login FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) throw err;
+        return callback(results);
+    });
+}
+
+exports.updateLastLogin = (username, callback) => {
+    let currentDate = new Date().toJSON();
+    let UPDATE_LAST_LOGIN_QUERY = "UPDATE player SET last_login='" + currentDate + "' WHERE player_id='" + username + "';";
+    connection.query(UPDATE_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) throw err;
+        return callback(results);
+    });
+}
+
+exports.updateCredit = (username, amount, callback) => {
+    let UPDATE_CREDIT_QUERY = "UPDATE player SET no_of_chips=no_of_chips+" + amount + " WHERE player_id='" + username + "';";
+    connection.query(UPDATE_CREDIT_QUERY, (err, results) => {
+        if (err) throw err;
+        return callback(results);
+    });
 }
