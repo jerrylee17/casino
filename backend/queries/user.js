@@ -67,6 +67,7 @@ exports.checkBanned = (username, callback) => {
         if (err) throw err;
         return callback(results);
     })
+<<<<<<< HEAD
 }
 
 exports.getLastLogin = (username, callback) => {
@@ -92,4 +93,6 @@ exports.updateCredit = (username, amount, callback) => {
         if (err) throw err;
         return callback(results);
     });
+=======
+>>>>>>> 9d036bc... Add user banned functionality (#34)
 }
