@@ -28,18 +28,18 @@ awarded_chips int not null
 
 create table user_admin(
 admin_id varchar(10) not null,
-primary key(admin_id)
--- foreign key(admin_id) REFERENCES new_user(username)
--- on delete cascade
+primary key(admin_id),
+foreign key(admin_id) REFERENCES new_user(username)
+on delete cascade
 );
 
 create table user_profile(
 user_id varchar(10) not null,
 no_of_chips int,
 loss_win_ratio int,
-primary key(user_id)
--- foreign key(user_id) REFERENCES new_user(username)
--- on delete cascade
+primary key(user_id),
+foreign key(user_id) REFERENCES new_user(username)
+on delete cascade
 );
 -- don't know how to reference badges in this table
 
