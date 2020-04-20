@@ -29,7 +29,7 @@ exports.checkValidUser = (username, callback) => {
 }
 
 exports.checkValidEmail = (email, callback) => {
-    let FIND_EMAIL_QUERY = "SELECT * FROM users where email='" + email + "'";
+    let FIND_EMAIL_QUERY = "SELECT * FROM users WHERE email='" + email + "'";
     connection.query(FIND_EMAIL_QUERY, (err, results) => {
         if (err) throw err;
         return callback(results);
@@ -58,4 +58,12 @@ exports.unbanUser = (username, callback) => {
         if (err) throw err;
         return callback(results);
     });
+}
+
+exports.checkBanned = (username, callback) => {
+    let CHECK_IF_BANNED_USER_QUERY = "SELECT * FROM player WHERE player_id='" + username + "';";
+    connection.query(CHECK_IF_BANNED_USER_QUERY, (err, results) => {
+        if (err) throw err;
+        return callback(results);
+    })
 }

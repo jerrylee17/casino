@@ -32,11 +32,21 @@ app.post("/api/login", function (req, res) {
       bcrypt.compare(req.body.password, validUser[0].password, (err, result) => {
         if (err) console.log(err);
         if (result) {
-          jwt.sign({ user }, "secretkey", (err, token) => {
-            res.json({
-              token
-            });
-          });
+          // check if user is banned or not 
+          userQuery.checkBanned(user.username, (bannedResult) => {
+            let banned = bannedResult[0].banned;
+            if (banned) {
+                res.json({
+                  banned: true
+                })
+            } else {
+              jwt.sign({ user }, "secretkey", (err, token) => {
+                res.json({
+                  token
+                });
+              });
+            }  
+          })
         } else {
           res.json({
             error: true
