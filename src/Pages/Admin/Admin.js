@@ -14,14 +14,30 @@ import {
 import './Admin.css'
 import {
   tableHead,
-  tableBody
+  tableBody,
+  ConfirmationModal
 } from './AdminComponents'
 
 export default function Admin() {
   const [manage, setManage] = useState(false)
+  const [selectedUser, setSelectedUser] = useState('')
+  const [action, setAction] = useState('Warn')
+  const [message, setMessage] = useState('')
+  const [confirmModal, setConfirmModal] = useState(false)
 
   const tableTitles = ['#', 'Username', 'Winrate', 'Chip count', 'Action'];
 
+  const confirmProps = {
+    open: confirmModal,
+    setOpen: setConfirmModal,
+    Header: action + ' ' + selectedUser,
+    Message: message,
+    onClose: () => {
+      setConfirmModal(false);
+      setManage(false);
+    }
+  };
+  
   const user = [
     {
       username: 'Calvin',
@@ -60,7 +76,7 @@ export default function Admin() {
       <Container>
         <Table size='sm' hover dark>
           {tableHead(tableTitles)}
-          {tableBody(user, setManage)}
+          {tableBody(user, setManage, setSelectedUser)}
         </Table>
       </Container>
       <Modal isOpen={manage}
@@ -68,13 +84,15 @@ export default function Admin() {
           setManage(!manage)
         }}
       >
-        <ModalHeader> Manage user </ModalHeader>
+        <ModalHeader> Manage {selectedUser} </ModalHeader>
         <ModalBody>
           <Container>
             <Row form>
               Action
-              <Input type='select'>
-                {['Warn', 'Ban', 'Modify Chips'].map((action) => (
+              <Input type='select' onChange={e => {
+                setAction(e.target.value)
+              }}>
+                {['Warn', 'Ban'].map((action) => (
                   <option>{action}</option>
                 ))}
               </Input>
@@ -82,7 +100,10 @@ export default function Admin() {
             <br />
             <Row form>
               Message
-              <Input type="textarea" />
+              <Input type="textarea" onChange={e => {
+                setMessage(e.target.value)
+              }
+              }/>
             </Row>
             <br />
           </Container>
@@ -90,17 +111,26 @@ export default function Admin() {
         <ModalFooter>
           <Button
             color='danger'
-            style={{
-              float: 'left'
-            }}
             onClick={() => {
               setManage(false);
             }}
           >
             Back
           </Button>
+          <Button
+            color='success'
+            style={{
+              float: 'left'
+            }}
+            onClick={() => {
+              setConfirmModal(true)
+            }}
+          >
+            {action} {selectedUser}
+          </Button>
         </ModalFooter>
       </Modal>
+      <ConfirmationModal {...confirmProps} />
     </div>
   );
 }
