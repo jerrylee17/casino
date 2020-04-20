@@ -5,6 +5,7 @@ import Landing from "./Pages/Landing/Landing.js";
 import Home from "./Pages/Home/Home.js";
 import Games from "./Pages/Games/Games.js";
 import Profile from "./Pages/Profile/Profile.js";
+import Shop from "./Pages/Shop/Shop.js";
 import Settings from "./Pages/Settings/Settings.js";
 import Errors from "./Pages/Error/Errors.js";
 import Admin from './Pages/Admin/Admin.js'
@@ -38,6 +39,10 @@ export default function Routing() {
     {
       Component: Games,
       path: "/games",
+    },
+    {
+      Component: Shop,
+      path: "/shop",
     },
     {
       Component: Profile,
