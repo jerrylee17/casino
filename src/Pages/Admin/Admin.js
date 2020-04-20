@@ -18,6 +18,34 @@ import {
   ConfirmationModal
 } from './AdminComponents'
 
+const user = [
+  {
+    username: 'Calvin',
+    winrate: '70%',
+    no_of_chips: '500'
+  },
+  {
+    username: 'Habib',
+    winrate: '2%',
+    no_of_chips: '1'
+  },
+  {
+    username: 'Jerry',
+    winrate: '50%',
+    no_of_chips: '100'
+  },
+  {
+    username: 'Buford',
+    winrate: '100%',
+    no_of_chips: '150'
+  },
+  {
+    username: 'Baljeet',
+    winrate: '100%',
+    no_of_chips: '150'
+  }
+];
+
 export default function Admin() {
   const [manage, setManage] = useState(false)
   const [selectedUser, setSelectedUser] = useState('')
@@ -38,33 +66,7 @@ export default function Admin() {
     }
   };
   
-  const user = [
-    {
-      username: 'Calvin',
-      winrate: '70%',
-      no_of_chips: '500'
-    },
-    {
-      username: 'Habib',
-      winrate: '2%',
-      no_of_chips: '1'
-    },
-    {
-      username: 'Jerry',
-      winrate: '50%',
-      no_of_chips: '100'
-    },
-    {
-      username: 'Buford',
-      winrate: '100%',
-      no_of_chips: '150'
-    },
-    {
-      username: 'Baljeet',
-      winrate: '100%',
-      no_of_chips: '150'
-    }
-  ];
+  
 
   return (
     <div id='admin-page'>
