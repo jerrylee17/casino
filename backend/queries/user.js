@@ -68,6 +68,9 @@ exports.checkBanned = (username, callback) => {
         return callback(results);
     })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2a1fc09... Daily credit login feature (#36)
 }
 
 exports.getLastLogin = (username, callback) => {
@@ -93,6 +96,9 @@ exports.updateCredit = (username, amount, callback) => {
         if (err) throw err;
         return callback(results);
     });
+<<<<<<< HEAD
 =======
 >>>>>>> 9d036bc... Add user banned functionality (#34)
+=======
+>>>>>>> 2a1fc09... Daily credit login feature (#36)
 }
