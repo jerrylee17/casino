@@ -177,3 +177,26 @@ export function getCredit(user, callback) {
     return callback(result);
   })
 }
+
+export function changeUser(userInfo, callback) {
+  $.post(
+    "http://localhost:5000/api/change-user",
+    {
+      username: userInfo.username,
+      email: userInfo.email,
+      password: userInfo.password,
+    }
+  ).then(result => {
+    if (result.token) {
+      localStorage.setItem("jwt", result.token);
+      localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
+      window.location.reload(false);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
+    else if (result.usernameError) {
+      return callback('usernameError');
+    }
+  });
+}
