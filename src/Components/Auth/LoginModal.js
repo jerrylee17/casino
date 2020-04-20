@@ -17,7 +17,8 @@ import "./login.css";
 class LoginModal extends Component {
   state = {
     usernameError: false,
-    passwordError: false
+    passwordError: false,
+    userBanned: false
   };
   render() {
     // Function listens to login form and logs in if user is valid
@@ -25,7 +26,8 @@ class LoginModal extends Component {
       e.preventDefault();
       this.setState({
         usernameError: false,
-        passwordError: false
+        passwordError: false,
+        userBanned: false
       })
       let data = $("#login-form").serializeArray();
       let username = data[0].value;
@@ -33,6 +35,7 @@ class LoginModal extends Component {
       loginUser(username, password, result => {
         if (result === 'passwordError') this.setState({ passwordError: true });
         else if (result === 'usernameError') this.setState({ usernameError: true });
+        else if (result === 'userBanned') this.setState({ userBanned: true });
       });
     };
 
@@ -65,6 +68,7 @@ class LoginModal extends Component {
             </FormGroup>
             {this.state.usernameError ? <p>User not found!</p> : <></>}
             {this.state.passwordError ? <p>Password incorrect!</p> : <></>}
+            {this.state.userBanned ? <p>User Banned</p> : <></>}
           </ModalBody>
           <ModalFooter>
             <Button variant="primary" type="submit">
