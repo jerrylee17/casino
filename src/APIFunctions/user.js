@@ -59,6 +59,8 @@ export function loginUser(username, password, callback) {
       localStorage.setItem("jwt", result.token);
       localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
       window.location.reload(false);
+    } else if (result.banned) {
+      return callback('userBanned');
     } else if (result.error) {
       return callback('passwordError');
     } else {
