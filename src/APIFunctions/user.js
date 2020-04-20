@@ -130,3 +130,40 @@ export function unbanUser(username, callback) {
     return callback(result);
   })
 }
+
+export function dailyReward(callback) {
+  let user = currentUser();
+  $.post(
+    "http://localhost:5000/api/last_login",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function updateLogin(callback) {
+  let user = currentUser();
+  $.post(
+    "http://localhost:5000/api/update_login",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function updateCredit(amount, callback) {
+  let user = currentUser();
+  $.post(
+    "http://localhost:5000/api/update_credit",
+    {
+      username: user,
+      amount: amount
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
