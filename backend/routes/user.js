@@ -49,4 +49,10 @@ app.post("/api/update_credit", function (req, res) {
     });
 })
 
+app.post("api/getUsers", function(req, res){
+    userQuery.selectAllUsers((result) => {
+        res.json(result)
+    })
+})
+
 module.exports = app;
