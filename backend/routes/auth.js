@@ -37,6 +37,19 @@ app.post("/api/login", function (req, res) {
           throw err;
         };
         if (result) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+          // check if user is banned or not 
+          userQuery.checkBanned(user.username, (bannedResult) => {
+            let banned = bannedResult[0].banned;
+            if (banned === '1') {
+              res.json({
+                banned: true
+              })
+            } else {
+=======
+>>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
           // check if  user is admin or not
           userQuery.checkValidAdmin(user.username, (adminResult) => {
             if (adminResult.length) {
@@ -45,6 +58,13 @@ app.post("/api/login", function (req, res) {
                   token
                 });
               });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            }  
+=======
+>>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
             } else {
               // check if user is banned or not 
               userQuery.checkBanned(user.username, (bannedResult) => {
@@ -62,6 +82,13 @@ app.post("/api/login", function (req, res) {
                 }
               })
             }
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+            }
+>>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
+>>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
           })
         } else {
           res.json({

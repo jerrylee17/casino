@@ -26,7 +26,11 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
             logger.error(err);
             throw err;
         };
+<<<<<<< HEAD
         connection.query(REGISTER_QUERY, (err, results) => {
+=======
+        connection.query(REGISTER_QUERY_PLAYER, (err, results) => {
+>>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
             if (err) {
                 logger.error(err);
                 throw err;
@@ -57,6 +61,7 @@ exports.checkValidEmail = (email, callback) => {
             throw err;
         };
         logger.request("checked valid email - " + email);
+<<<<<<< HEAD
         return callback(results);
     });
 }
@@ -69,6 +74,8 @@ exports.checkValidAdmin = (username, callback) => {
             throw err;
         };
         logger.request("checked valid admin - " + username);
+=======
+>>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
         return callback(results);
     });
 }
@@ -105,6 +112,7 @@ exports.unbanUser = (username, callback) => {
             throw err;
         };
         logger.request("unbanned user - " + username);
+<<<<<<< HEAD
         return callback(results);
     });
 }
@@ -177,7 +185,61 @@ exports.getCredit = (username, callback) => {
             throw err;
         };
         logger.request("get user credits - " + username);
+=======
+>>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
         return callback(results);
     });
+<<<<<<< HEAD
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+}
+
+exports.checkBanned = (username, callback) => {
+    let CHECK_IF_BANNED_USER_QUERY = "SELECT * FROM player WHERE player_id='" + username + "';";
+    connection.query(CHECK_IF_BANNED_USER_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("check user banned - " + username);
+        return callback(results);
+    })
+}
+
+exports.getLastLogin = (username, callback) => {
+    let GET_LAST_LOGIN_QUERY = "SELECT last_login FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get last user login - " + username);
+        return callback(results);
+    });
+}
+
+exports.updateLastLogin = (username, callback) => {
+    let currentDate = new Date().toJSON();
+    let UPDATE_LAST_LOGIN_QUERY = "UPDATE player SET last_login='" + currentDate + "' WHERE player_id='" + username + "';";
+    connection.query(UPDATE_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("update last login - " + username);
+        return callback(results);
+    });
+}
+
+exports.updateCredit = (username, amount, callback) => {
+    let UPDATE_CREDIT_QUERY = "UPDATE player SET no_of_chips=no_of_chips+" + amount + " WHERE player_id='" + username + "';";
+    connection.query(UPDATE_CREDIT_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("update user credit - " + username);
+        return callback(results);
+    });
+>>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
 }
