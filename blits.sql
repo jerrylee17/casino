@@ -22,12 +22,16 @@ no_of_wins int,
 no_of_losses int,
 =======
 last_login varchar(50) not null,
+<<<<<<< HEAD
 >>>>>>> 2a1fc09... Daily credit login feature (#36)
 >>>>>>> f4f1d1f... rebasing
 =======
 last_login varchar(50) not null,
 >>>>>>> 2a1fc09... Daily credit login feature (#36)
 banned varchar(10) DEFAULT 'false',
+=======
+banned varchar(10) DEFAULT '0',
+>>>>>>> 72f36a3... hotfix (#38)
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
 on delete cascade
