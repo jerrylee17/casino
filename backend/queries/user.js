@@ -140,3 +140,15 @@ exports.updateCredit = (username, amount, callback) => {
         return callback(results);
     });
 }
+
+exports.getCredit = (username, callback) => {
+    let GET_LAST_LOGIN_QUERY = "SELECT no_of_chips FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}

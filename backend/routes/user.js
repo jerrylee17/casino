@@ -49,4 +49,10 @@ app.post("/api/update_credit", function (req, res) {
     });
 })
 
+app.post("/api/get_credit", function (req, res) {
+    userQuery.getCredit(req.body.username, result => {
+        res.json(result)
+    });
+})
+
 module.exports = app;

@@ -155,13 +155,23 @@ export function updateLogin(callback) {
   })
 }
 
-export function updateCredit(amount, callback) {
-  let user = currentUser();
+export function updateCredit(user, amount, callback) {
   $.post(
     "http://localhost:5000/api/update_credit",
     {
       username: user,
       amount: amount
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function getCredit(user, callback) {
+  $.post(
+    "http://localhost:5000/api/get_credit",
+    {
+      username: user
     }
   ).then(result => {
     return callback(result);

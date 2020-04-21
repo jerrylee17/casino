@@ -11,13 +11,30 @@
     padding-left: 1300px;
 }
 
+#shop-page .jumbotron {
+    padding-bottom: 20px;
+}
+
 #shop-page {
     background-color: #2c2f33;
     height: 100%;
+    min-height: 100vh;
     color: white;
 }
 
 .image{
     height: 100px;
     width: 100px;
+}
+
+#shop-page .card {
+    height: 700px;
+}
+
+#shop-page .card-title {
+    padding-bottom: 10px;
+}
+
+#shop-page #purchased-status {
+    padding-left: 40px;
 }

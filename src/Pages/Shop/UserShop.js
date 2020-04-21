@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { currentUser } from "../../APIFunctions/user";
+import { currentUser, getCredit } from "../../APIFunctions/user";
 
 class ShopUser extends Component {
   state = {
@@ -7,13 +7,20 @@ class ShopUser extends Component {
   };
   componentDidMount() {
     this.setState({
-      user: currentUser()
+      user: currentUser(),
+      credit: 0
+    })
+    getCredit(currentUser(), result => {
+      console.log(result)
+      this.setState({
+        credit: result[0].no_of_chips
+      })
     })
   }
   render() {
     return (
-      <div>
-    <b>{this.state.user}'s Chip Balance:</b> 5000
+      <div id="shop-balance">
+        <h6><b>{this.state.user}'s Chip Balance:</b> {this.state.credit}</h6>
       </div>
     );
   }
