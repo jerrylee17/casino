@@ -1,7 +1,10 @@
 #profile-page {
-    background-image: url('../../Images/Background2.png');
     background-color: #2c2f33;
     height: 100vh;
+    color: white;
+}
+.jumbo {
+    background-color: #303338;
     color: white;
 }
 th{
