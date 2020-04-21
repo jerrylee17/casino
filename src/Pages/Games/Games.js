@@ -7,12 +7,13 @@ import {
 import {
   Link
 } from "react-router-dom";
+import Logo from '../../Images/gameLogo.png';
 import "./Games.css"
 
 function Games() {
   const games = [
     {
-      id:1,
+      id: 1,
       gameName: 'Google Clubhouse',
       gameHost: 'google',
       userCount: '10',
@@ -92,15 +93,15 @@ function Games() {
       link: 'www.facebook.com'
     }
   ];
-  
+
   return (
     <div id="games-page">
       <Jumbotron className="jumbo">
-          <div className='text-center'>
-            <h1 className='display-4'>Games</h1>
-          </div>
+        <div className='text-center'>
+          <h1 className='display-4'>Games <img src={Logo} class="image" alt="" id="gameLogo"></img></h1>
+        </div>
       </Jumbotron>
-      <Container>    
+      <Container>
         <Table dark>
           <thead>
             <tr>
@@ -124,23 +125,23 @@ function Games() {
             </tr>
           </thead>
           <tbody>
-              {games.map((game, i) => {
-                return ( 
+            {games.map((game, i) => {
+              return (
                 <tr key={i}>
-                  <th scope ="row">{game.id}</th>
+                  <th scope="row">{game.id}</th>
                   <td>{game.gameName}</td>
                   <td>{game.gameHost}</td>
                   <td>{game.userCount}</td>
                   <td>{game.botsEnabled ? "Enabled" : "Disabled"}</td>
                   <td><Link to={game.link} className="btn btn-success">Join</Link></td>
                 </tr>
-                )
-              })} 
-          </tbody> 
+              )
+            })}
+          </tbody>
         </Table>
       </Container>
     </div>
-    );
+  );
 }
 
 export default Games;

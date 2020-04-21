@@ -144,8 +144,23 @@ exports.updateCredit = (username, amount, callback) => {
         return callback(results);
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 9d036bc... Add user banned functionality (#34)
 =======
 >>>>>>> 2a1fc09... Daily credit login feature (#36)
+=======
+}
+
+exports.getCredit = (username, callback) => {
+    let GET_LAST_LOGIN_QUERY = "SELECT no_of_chips FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
 }
