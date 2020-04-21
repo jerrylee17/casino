@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var userQuery = require('../queries/user');
+var logger = require('../logger');
 const app = express();
 
 app.use(cors());
@@ -30,22 +31,25 @@ app.post("/api/login", function (req, res) {
     if (validUser.length) {
       // compare input password & password in db
       bcrypt.compare(req.body.password, validUser[0].password, (err, result) => {
-        if (err) console.log(err);
+        if (err) {
+          logger.error(err);
+          throw err;
+        };
         if (result) {
           // check if user is banned or not 
           userQuery.checkBanned(user.username, (bannedResult) => {
             let banned = bannedResult[0].banned;
-            if (banned) {
-                res.json({
-                  banned: true
-                })
+            if (banned === '1') {
+              res.json({
+                banned: true
+              })
             } else {
               jwt.sign({ user }, "secretkey", (err, token) => {
                 res.json({
                   token
                 });
               });
-            }  
+            }
           })
         } else {
           res.json({
@@ -68,7 +72,8 @@ app.post("/api/register", function (req, res) {
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.password, salt, function (err, hashedPassword) {
       if (err) {
-        console.log(err);
+        logger.error(err);
+        throw err;
       } else {
         let usernameError = false;
         let emailError = false;
