@@ -10,8 +10,12 @@ import {
 import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
+<<<<<<< HEAD
 import ContactUsTab from '../../Components/Settings/ContactUsTab';
 import Logo from '../../Images/Settings/settingLogo.png';
+=======
+import Logo from '../../Images/settingLogo.png';
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
 
 class Settings extends Component {
   state = {
@@ -27,7 +31,11 @@ class Settings extends Component {
     return (
       <div id="setting-page">
         <Jumbotron>
+<<<<<<< HEAD
           <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
+=======
+          <h1 className='display-4'>Settings <img src={Logo} class="image" alt="" id="settingLogo"></img></h1>
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
         </Jumbotron>
         <div className="setting-box">
           <Nav tabs>
@@ -46,6 +54,7 @@ class Settings extends Component {
               >
                 Delete Account
               </NavLink>
+<<<<<<< HEAD
             </NavItem>
             <NavItem>
               <NavLink
@@ -54,6 +63,8 @@ class Settings extends Component {
               >
                 Contact Us
               </NavLink>
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>

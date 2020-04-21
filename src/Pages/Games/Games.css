@@ -2,7 +2,10 @@
     background-color: #2c2f33;
     height: 100%;
     min-height: 100vh;
+<<<<<<< HEAD
     color: white;
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
 }
 
 .jumbo {
@@ -13,6 +16,7 @@
 .table {
     background-color: #2c2f33;
     margin: 0;
+<<<<<<< HEAD
 }
 
 #gameLogo {
@@ -40,4 +44,10 @@
 .games img {
     height: 500px;
     width: 500px;
+=======
+}
+
+#gameLogo {
+    height: 70px;
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
 }

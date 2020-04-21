@@ -11,6 +11,15 @@
     padding-left: 1300px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+#shop-page {
+    background-color: #2c2f33;
+    height: 100%;
+=======
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 #shop-page .jumbotron {
     padding-bottom: 20px;
 }
@@ -19,12 +28,35 @@
     background-color: #2c2f33;
     height: 100%;
     min-height: 100vh;
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+#shop-page .jumbotron {
+    padding-bottom: 20px;
+}
+
+#shop-page {
+    background-color: #2c2f33;
+    height: 100%;
+    min-height: 100vh;
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
     color: white;
 }
 
 .image{
     height: 100px;
     width: 100px;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+}
+=======
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 }
 
 #shop-page .card {
@@ -38,3 +70,10 @@
 #shop-page #purchased-status {
     padding-left: 40px;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)

@@ -241,5 +241,20 @@ exports.updateCredit = (username, amount, callback) => {
         logger.request("update user credit - " + username);
         return callback(results);
     });
+<<<<<<< HEAD
 >>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
+=======
+}
+
+exports.getCredit = (username, callback) => {
+    let GET_LAST_LOGIN_QUERY = "SELECT no_of_chips FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LAST_LOGIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 }

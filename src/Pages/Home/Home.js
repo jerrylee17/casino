@@ -22,7 +22,19 @@ class Home extends Component {
       if (currentLogin >= checkLogin) {
         this.setState({ dailyReward: true });
         updateLogin(); // updates last login date
+<<<<<<< HEAD
         updateCredit(this.state.user, 500); // updates user's credit
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        updateCredit(500); // updates user's credit
+=======
+        updateCredit(this.state.user, 500); // updates user's credit
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+        updateCredit(this.state.user, 500); // updates user's credit
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
       }
     })
   }

@@ -49,16 +49,31 @@ app.post("/api/update_credit", function (req, res) {
     });
 })
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 app.post("/api/get_credit", function (req, res) {
     userQuery.getCredit(req.body.username, result => {
         res.json(result)
     });
 })
 
+<<<<<<< HEAD
 app.post("/api/check_admin", function (req, res) {
     userQuery.checkValidAdmin(req.body.username, result => {
         res.json(result)
     });
 })
 
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 module.exports = app;

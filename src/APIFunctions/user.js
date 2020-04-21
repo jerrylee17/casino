@@ -159,7 +159,20 @@ export function updateLogin(callback) {
   })
 }
 
+<<<<<<< HEAD
 export function updateCredit(user, amount, callback) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+export function updateCredit(amount, callback) {
+  let user = currentUser();
+=======
+export function updateCredit(user, amount, callback) {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+export function updateCredit(user, amount, callback) {
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
   $.post(
     "http://localhost:5000/api/update_credit",
     {
@@ -170,6 +183,14 @@ export function updateCredit(user, amount, callback) {
     return callback(result);
   })
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 
 export function getCredit(user, callback) {
   $.post(
@@ -181,6 +202,7 @@ export function getCredit(user, callback) {
     return callback(result);
   })
 }
+<<<<<<< HEAD
 
 export function changeUser(userInfo, callback) {
   $.post(
@@ -247,4 +269,11 @@ export async function submitErrorReport(errorReport, callback) {
       return callback("success");
     }
   });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+>>>>>>> ade4b8a... Fix css on pages and small additions (#40)
