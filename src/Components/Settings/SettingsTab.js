@@ -13,28 +13,44 @@ import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/us
 class SettingsTab extends Component {
     state = {
         changePassword: false,
-        user: currentUser() || '',
-        email: currentUserEmail() || '',
-        newPassword: "",
+        user: currentUser(),
+        newUser: currentUserEmail() || '',
+        email: currentUserEmail(),
+        newEmail: currentUserEmail() || '',
+        password: '',
+        newPassword: '',
         passwordError: false,
-        usernameError: false
+        usernameError: false,
+        emailError: false
     }
 
     handleChangePassword = () => { this.setState({ changePassword: true }) }
-    handleUsername = (event) => { this.setState({ user: event.target.value }) }
-    handleEmail = (event) => { this.setState({ email: event.target.value }) }
+    handleUsername = (event) => { this.setState({ newUser: event.target.value }) }
+    handleEmail = (event) => { this.setState({ newEmail: event.target.value }) }
     handleNewPassword = (event) => { this.setState({ newPassword: event.target.value }) }
+    handlePassword = (event) => { this.setState({ password: event.target.value }) }
 
     handleSubmit = (e) => {
+        e.preventDefault();
+        // this.setState({
+        //     passwordError: false,
+        //     usernameError: false,
+        //     emailError: false
+        // })
+        
         const userInfo = {
             user: this.state.user,
+            newUser: this.state.newUser,
             email: this.state.email,
+            newEmail: this.state.newEmail,
+            password: this.state.password,
             newPassword: this.state.newPassword,
             changePassword: this.state.changePassword
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });
             else if (result === "usernameError") this.setState({ usernameError: true });
+            else if (result === "emailError") this.setState({ emailError: true });
         });
     };
     render() {
@@ -43,15 +59,15 @@ class SettingsTab extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Username<span className="submit-asterik">*</span></Label>
-                        <Input type="text" name="username" value={this.state.user} onChange={event => { this.handleUsername(event) }} required></Input>
+                        <Input type="text" name="username" value={this.state.newUser} onChange={event => { this.handleUsername(event) }} required></Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Email<span className="submit-asterik">*</span></Label>
-                        <Input type="email" name="email" value={this.state.email} onChange={event => { this.handleEmail(event) }} required></Input>
+                        <Input type="email" name="email" value={this.state.newEmail} onChange={event => { this.handleEmail(event) }} required></Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Current Password<span className="submit-asterik">*</span></Label>
-                        <Input type="password" name="currentpassword" placeholder="Current Password Here" required></Input>
+                        <Input type="password" name="password" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
                     </FormGroup>
                     {this.state.changePassword ?
                         (<FormGroup>

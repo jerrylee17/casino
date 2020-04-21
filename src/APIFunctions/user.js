@@ -182,9 +182,7 @@ export function changeUser(userInfo, callback) {
   $.post(
     "http://localhost:5000/api/change-user",
     {
-      username: userInfo.username,
-      email: userInfo.email,
-      password: userInfo.password,
+      userInfo: userInfo
     }
   ).then(result => {
     if (result.token) {

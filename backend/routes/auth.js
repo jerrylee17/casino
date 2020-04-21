@@ -115,33 +115,33 @@ app.post("/api/register", function (req, res) {
 });
 
 app.post("/api/change-user", function (req, res) {
-  const user = req.body;
+  console.log(req.body);
   // check if the username is valid
-  userQuery.checkValidUser(user.username, (result) => {
-    let validUser = result;
-    if (validUser.length) {
-      // compare input password & password in db
-      bcrypt.compare(req.body.password, validUser[0].password, (err, result) => {
-        if (err) console.log(err);
-        if (result) {
-          jwt.sign({ user }, "secretkey", (err, token) => {
-            res.json({
-              token
-            });
-          });
-        } else {
-          res.json({
-            error: true
-          })
-        }
-      });
-    } else {
-      res.json({
-        token: false,
-      });
-    }
-  });
+  
 });
 
-
+// userQuery.checkValidUser(user.username, (result) => {
+//   let validUser = result;
+//   if (validUser.length) {
+//     // compare input password & password in db
+//     bcrypt.compare(req.body.password, validUser[0].password, (err, result) => {
+//       if (err) console.log(err);
+//       if (result) {
+//         jwt.sign({ user }, "secretkey", (err, token) => {
+//           res.json({
+//             token
+//           });
+//         });
+//       } else {
+//         res.json({
+//           error: true
+//         })
+//       }
+//     });
+//   } else {
+//     res.json({
+//       token: false,
+//     });
+//   }
+// });
 module.exports = app;
