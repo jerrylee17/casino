@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import {
-  Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg,
-  Col,
+  Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter,
   Row,
   Button,
   Jumbotron
 } from "reactstrap";
 
 import ShopUser from './UserShop';
-import Logo from './clipart1116730.png';
+import Logo from '../../Images/shopLogo.png';
 import './shop.css'
 
 function Shopbadges() {
@@ -42,39 +41,37 @@ function Shopbadges() {
   return (
     <div id="shop-page">
       <Jumbotron>
-      <div className='text-center'>
-        <h1 className='display-4'>Shop <img src={Logo} class="image"></img> </h1>
-      </div>
-    </Jumbotron>
+        <div className='text-center'>
+          <h1 className='display-4'>Shop <img src={Logo} className="image" alt=""></img> </h1>
+          <ShopUser></ShopUser>
+        </div>
+      </Jumbotron>
       <h2>Badges of the Day!</h2>
-      <section className='user_chip'>
-        <ShopUser></ShopUser>
-      </section>
       <section className='grid'>
         {shopbadges.map((shopbadge, i) => {
           return (
             <div key={i}>
-              <Col md={11}>
-                <Card>
-                  <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
-                  <CardBody>
-                     <CardTitle>{shopbadge.badgeName}</CardTitle>
-                     <Row>
-                       <CardSubtitle><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
-                     </Row>
-                    <CardText>
-                      <Row style={{ height: '100px' }}>
-                        {shopbadge.badgeDesc}
-                      </Row>
-                      <Row>
-                        {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
-                      </Row>
-                    </CardText>
-                    <Row><Button>Purchase Badge!</Button></Row>
-                    
-                  </CardBody>
-                </Card>
-              </Col>
+              <Card>
+                <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
+                <CardBody>
+                  <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
+                  <Row>
+                    <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
+                  </Row>
+                  <CardText>
+                    <Row style={{ height: '100px' }}>
+                      {shopbadge.badgeDesc}
+                    </Row>
+                  </CardText>
+                </CardBody>
+
+                <Row id="purchased-status">
+                  {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
+                </Row>
+                <CardFooter>
+                  <Button>Purchase Badge!</Button>
+                </CardFooter>
+              </Card>
             </div>
           )
         })}

@@ -18,7 +18,7 @@ class Home extends Component {
       if (currentLogin >= checkLogin) {
         this.setState({ dailyReward: true });
         updateLogin(); // updates last login date
-        updateCredit(500); // updates user's credit
+        updateCredit(this.state.user, 500); // updates user's credit
       }
     })
   }
