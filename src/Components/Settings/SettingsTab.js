@@ -7,7 +7,6 @@ import {
     Input
 } from 'reactstrap';
 import './settings-tab.css';
-import $ from "jquery";
 import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/user';
 
 class SettingsTab extends Component {
