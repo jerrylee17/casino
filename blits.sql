@@ -15,7 +15,7 @@ player_id varchar(15) not null,
 no_of_chips int,
 no_of_warns int,
 last_login varchar(50) not null,
-banned varchar(10) DEFAULT 'false',
+banned varchar(10) DEFAULT '0',
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
 on delete cascade
