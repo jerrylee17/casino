@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row } from "reactstrap";
 import "./landing.css";
-import icon from "../../Images/icon-white.png";
+import icon from "../../Images/Landing/icon-white.png";
 import LoginModal from "../../Components/Auth/LoginModal";
 import RegisterModal from "../../Components/Auth/RegisterModal";
 import $ from "jquery";
