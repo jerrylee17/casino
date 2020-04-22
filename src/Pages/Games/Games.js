@@ -7,6 +7,7 @@ import {
   Button
 } from "reactstrap";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Logo from '../../Images/Games/gameLogo.png';
 import blackjackLogo from '../../Images/Games/blackjackLogo.jpg';
 import coinLogo from '../../Images/Games/coinLogo.png';
@@ -73,99 +74,68 @@ class Games extends Component {
 import {
   Link
 } from "react-router-dom";
+=======
+>>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 import Logo from '../../Images/gameLogo.png';
+import blackjackLogo from '../../Images/blackjackLogo.jpg';
+import coinLogo from '../../Images/coinLogo.png';
+import slotsLogo from '../../Images/slotsLogo.png';
 import "./Games.css"
 
-function Games() {
-  const games = [
-    {
-      id: 1,
-      gameName: 'Google Clubhouse',
-      gameHost: 'google',
-      userCount: '10',
-      botsEnabled: false,
-      link: 'www.google.com'
-    },
-    {
-      id: 2,
-      gameName: 'Youtube Jammers',
-      gameHost: 'youtube',
-      userCount: '3',
-      botsEnabled: true,
-      link: 'www.youtube.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    },
-    {
-      id: 3,
-      gameName: 'U dummy',
-      gameHost: 'dummy391',
-      userCount: '1',
-      botsEnabled: true,
-      link: 'www.facebook.com'
-    }
-  ];
+class Games extends Component {
+  state = {
+    currentGame: "blackjack"
+  }
 
-  return (
-    <div id="games-page">
-      <Jumbotron className="jumbo">
-        <div className='text-center'>
-          <h1 className='display-4'>Games <img src={Logo} class="image" alt="" id="gameLogo"></img></h1>
+  handleGameChange = (e) => {
+    e.preventDefault();
+    this.setState({ currentGame: e.target.value })
+  }
+
+  handleGameImage = () => {
+    let game = this.state.currentGame;
+    if (game === "blackjack") {
+      return (
+        <img src={blackjackLogo} alt="" />
+      )
+    }
+    else if (game === "coinflip") {
+      return (
+        <img src={coinLogo} alt="" />
+      )
+    }
+    else {
+      return (
+        <img src={slotsLogo} alt="" />
+      )
+    }
+  }
+
+  render() {
+    let gameLogo = this.handleGameImage();
+    return (
+      <div id="games-page">
+        <Jumbotron className="jumbo">
+          <div className='text-center'>
+            <h1 className='display-4'>Games <img src={Logo} className="image" alt="" id="gameLogo"></img></h1>
+          </div>
+        </Jumbotron>
+        <div className="games text-center">
+          {gameLogo}
         </div>
+        <div className="game-input">
+          <Form id="game-form" inline>
+            <FormGroup>
+              <Input type="select" name="select" id="game-select" onChange={this.handleGameChange}>
+                <option value="blackjack">Blackjack</option>
+                <option value="coinflip">Coin Flip</option>
+                <option value="slots">Slots</option>
+              </Input>
+            </FormGroup>
+            <Button color="success">Play</Button>
+          </Form>
+        </div>
+<<<<<<< HEAD
       </Jumbotron>
       <Container>
         <Table dark>
@@ -209,6 +179,11 @@ function Games() {
     </div>
   );
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+      </div>
+    );
+  }
+>>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 }
 
 export default Games;

@@ -3,9 +3,13 @@
     height: 100%;
     min-height: 100vh;
 <<<<<<< HEAD
+<<<<<<< HEAD
     color: white;
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+    color: white;
+>>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 }
 
 .jumbo {
@@ -49,5 +53,31 @@
 
 #gameLogo {
     height: 70px;
+<<<<<<< HEAD
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+}
+
+.game-input {
+    padding-top: 20px;
+    display: flex;
+}
+
+.game-input form {
+    margin: auto;
+}
+
+.game-input select {
+    padding: 0 50px;
+    margin-right: 10px;
+}
+
+.games button {
+    margin: 20px 0px 20px 15px;
+}
+
+.games img {
+    height: 500px;
+    width: 500px;
+>>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 }
