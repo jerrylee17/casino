@@ -60,3 +60,14 @@ exports.deleteUser = (username, callback) => {
         return callback(results);
     });
 }
+
+exports.changeUserInformation = (newUsername, email, password, username, callback) => {
+    let CHANGE_USER_INFORMATION_QUERY = 'UPDATE users SET username="' + newUsername + '", email="' + email + '", password="' + password + '" WHERE username="' + username + '";';
+    connection.query(CHANGE_USER_INFORMATION_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        return callback(results);
+    });
+}

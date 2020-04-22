@@ -203,6 +203,9 @@ export function getCredit(user, callback) {
   })
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
 
 export function changeUser(userInfo, callback) {
   $.post(
@@ -227,6 +230,7 @@ export function changeUser(userInfo, callback) {
     }
   });
 }
+<<<<<<< HEAD
 
 export function deleteUser(user, callback) {
   $.post(
@@ -276,4 +280,9 @@ export async function submitErrorReport(errorReport, callback) {
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+<<<<<<< HEAD
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+=======
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
+>>>>>>> a1a7c99... Add functionality to change user settings (#42)

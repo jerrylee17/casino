@@ -43,7 +43,11 @@ banned varchar(10) DEFAULT '0',
 >>>>>>> 34ef045... rebasing
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
+<<<<<<< HEAD
 on update cascade 
+=======
+on update cascade on delete cascade
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
 );
 
 create table invited_by(

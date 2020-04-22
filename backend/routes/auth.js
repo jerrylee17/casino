@@ -219,13 +219,21 @@ app.post("/api/change-user", function (req, res) {
               };
             })
           }
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
           if (user.newPassword === '') {
             user.newPassword = user.password;
           }
           // udpate new password
           const saltRounds = 10;
+<<<<<<< HEAD
           bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
+=======
+          bcrypt.hash(user.newPassword, saltRounds, function(err, hashedPassword) {
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
             // store everything in the db
             settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
               if (result) {
@@ -237,6 +245,7 @@ app.post("/api/change-user", function (req, res) {
               };
             });
           });
+<<<<<<< HEAD
         } else {
           res.json({
             passwordError: true
@@ -283,4 +292,14 @@ app.post("/api/error-report", function(req, res) {
     success: true
   })
 })
+=======
+           
+        } 
+      })
+    }
+  });
+
+});
+
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
 module.exports = app;

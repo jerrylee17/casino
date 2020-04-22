@@ -7,15 +7,25 @@ import {
     Input
 } from 'reactstrap';
 import './settings-tab.css';
+<<<<<<< HEAD
+=======
+import $ from "jquery";
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
 import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/user';
 
 class SettingsTab extends Component {
     state = {
         changePassword: false,
         username: currentUser(),
+<<<<<<< HEAD
         newUsername: '',
         email: currentUserEmail(),
         newEmail: '',
+=======
+        newUsername: currentUser() || '',
+        email: currentUserEmail(),
+        newEmail: currentUserEmail() || '',
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
         password: '',
         newPassword: '',
         passwordError: false,
@@ -31,6 +41,14 @@ class SettingsTab extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+<<<<<<< HEAD
+=======
+        // this.setState({
+        //     passwordError: false,
+        //     usernameError: false,
+        //     emailError: false
+        // })
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
         
         const userInfo = {
             username: this.state.username,
@@ -39,6 +57,10 @@ class SettingsTab extends Component {
             newEmail: this.state.newEmail,
             password: this.state.password,
             newPassword: this.state.newPassword
+<<<<<<< HEAD
+=======
+            // changePassword: this.state.changePassword
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });
@@ -53,17 +75,26 @@ class SettingsTab extends Component {
                     <FormGroup>
                         <Label>Username<span className="submit-asterik">*</span></Label>
                         <Input type="text" name="username" value={this.state.newUser} onChange={event => { this.handleUsername(event) }} required></Input>
+<<<<<<< HEAD
                         {this.state.usernameError ? <p>Username already exists!</p> : <></>}
+=======
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
                     </FormGroup>
                     <FormGroup>
                         <Label>Email<span className="submit-asterik">*</span></Label>
                         <Input type="email" name="email" value={this.state.newEmail} onChange={event => { this.handleEmail(event) }} required></Input>
+<<<<<<< HEAD
                         {this.state.emailError ? <p>Email already exists!</p> : <></>}
+=======
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
                     </FormGroup>
                     <FormGroup>
                         <Label>Current Password<span className="submit-asterik">*</span></Label>
                         <Input type="password" name="password" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
+<<<<<<< HEAD
                         {this.state.passwordError ? <p>Incorrect password</p> : <></>}
+=======
+>>>>>>> 232cad2... Add functionality to change user settings (#42)
                     </FormGroup>
                     {this.state.changePassword ?
                         (<FormGroup>
