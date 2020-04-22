@@ -56,6 +56,20 @@ class Profile extends Component {
              <th>Type of Game</th>
             </tr>
           </thead>
+          <tbody>
+            <tr bgcolor="green">
+              <th>{this.state.credit}</th>
+              <th>10</th>
+              <th>5</th>
+              <th>Blackjack</th>
+            </tr>
+            <tr bgcolor="tomato">
+              <th>{this.state.credit}</th>
+              <th>10</th>
+              <th>6</th>
+              <th>Blackjack</th>
+            </tr>
+          </tbody>
         </Table>
       </Container>
       </div>
