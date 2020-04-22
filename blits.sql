@@ -29,7 +29,7 @@ awarded_chips int not null
 create table user_admin(
 admin_id varchar(10) not null,
 primary key(admin_id),
-foreign key(admin_id) REFERENCES new_user(username)
+foreign key(admin_id) REFERENCES users(username)
 on delete cascade
 );
 
@@ -38,43 +38,41 @@ user_id varchar(10) not null,
 no_of_chips int,
 loss_win_ratio int,
 primary key(user_id),
-foreign key(user_id) REFERENCES new_user(username)
+foreign key(user_id) REFERENCES users(username)
 on delete cascade
 );
 -- don't know how to reference badges in this table
+
+create table game(
+game_no varchar(10) not null,
+game_status varchar(10)
+	constraint status_check check (game_status in ('Open', 'In Progress', 'Finished')) ENFORCED,
+wager_amt int not null,
+game_type varchar (9)
+	constraint type_check check(game_type in ('Blackjack', 'Coin Flip', 'Slots')) ENFORCED,
+winner varchar(10) not null,
+primary key(game_no, game_status, game_type),
+foreign key(winner) REFERENCES player(player_id)
+on update cascade,
+UNIQUE(game_no)
+);
 
 create table plays(
 bet_chips int not null,
 player_id varchar(10) not null,
 game_id varchar(10) not null,
-primary key(player_id, game_id)
--- foreign key(player_id) REFERENCES new_user(username)
--- foreign key(game_id) REFERENCES game(game_no)
+primary key(player_id, game_id),
+foreign key(player_id) REFERENCES users(username),
+foreign key(game_id) REFERENCES game(game_no)
 ); 
 -- relationship between new_user and game
 
-create table players_list(
-game varchar(9),
-max_capacity int not null
--- foreign key(game) REFERENCES game(type)
-); -- i don't think this is complete
-
-create table game(
-game_no varchar(10) not null,
-status varchar(10)
-	check (status in ('Open', 'In Progress', 'Finished')),
-wager_amt int not null,
-type varchar (9)
-	check(type in ('Blackjack', 'Coin Flip', 'Slots')),
-winner varchar(10) not null,
-primary key(game_no),
--- foreign key(winner) REFERENCES player(player_id)
-UNIQUE(game_no)
-);
 
 create table shop(
 shop_no int not null,
-primary key(shop_no)
+primary key(shop_no),
+customer varchar(10) not null,
+foreign key(customer) REFERENCES users(username)
 ); -- did not do badges attribute yet
 
 create table use_chips(
@@ -84,5 +82,6 @@ no_of_chips int not null
 create table badges(
 total int, 
 badge_name varchar(10) not null,
+category varchar(10) not null,
 badge_cost int -- how much the badge costs
 ); -- not sure on details for badges
