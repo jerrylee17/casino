@@ -7,7 +7,7 @@ import {
   ModalFooter
 } from 'reactstrap'
 
-export function ConfirmationModal (props) {
+export function ConfirmationModal(props) {
   const { open,
     setOpen,
     Header,
@@ -26,7 +26,7 @@ export function ConfirmationModal (props) {
         {Message || 'No message'}
       </ModalBody>
       <ModalFooter>
-      <Button color='success'
+        <Button color='success'
           onClick={() => {
             onClose();
           }}>
@@ -46,8 +46,8 @@ export function ConfirmationModal (props) {
 export const tableHead = (titles) => (
   <thead>
     <tr>
-      {titles.map(title => (
-        <th>{title}</th>
+      {titles.map((title, i) => (
+        <th key={i}>{title}</th>
       ))}
     </tr>
   </thead>
@@ -57,7 +57,7 @@ export const tableBody = (user, setManage, setSelectedUser) => (
   <tbody>
     {user && user.length ? (
       user.map((player, index) => (
-        <tr>
+        <tr key={index}>
           <th scope='row'>{index + 1}</th>
           <td>{player.username}</td>
           <td>{player.winrate}</td>

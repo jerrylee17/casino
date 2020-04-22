@@ -17,6 +17,8 @@ import "./register.css";
 
 class RegisterModal extends Component {
   state = {
+    admin: false,
+    adminKey: "",
     passwordEqual: true,
     passwordLength: true,
     usernameError: false,
@@ -47,7 +49,8 @@ class RegisterModal extends Component {
         passwordEqual: true,
         passwordLength: true,
         usernameError: false,
-        emailError: false
+        emailError: false,
+        adminError: false
       });
       let data = $("#register-form").serializeArray();
       // If both passwords are valid and equal... then sign up
@@ -55,12 +58,19 @@ class RegisterModal extends Component {
         let username = data[0].value;
         let email = data[1].value;
         let password = data[2].value;
-        registerUser(username, password, email, result => {
+        let admin = this.state.adminKey;
+        registerUser(username, password, email, admin, result => {
           if (result === 'usernameError') this.setState({ usernameError: true });
           else if (result === 'emailError') this.setState({ emailError: true });
+          else if (result === 'adminError') this.setState({ adminError: true });
         })
       }
     };
+
+    let handleAdmin = () => { this.setState({ admin: true }) }
+
+    let handleAdminKeyChange = (e) => { this.setState({ adminKey: e.target.value }) }
+
     return (
       <Modal
         isOpen={this.props.showSignUp}
@@ -137,8 +147,21 @@ class RegisterModal extends Component {
                   </small>
                 )}
             </FormGroup>
+            {this.state.admin ?
+              (<FormGroup>
+                <Label>Admin Key</Label>
+                <Input
+                  type="password"
+                  placeholder="Enter Secret Key"
+                  name="admin"
+                  value={this.state.adminKey}
+                  onChange={handleAdminKeyChange} />
+              </FormGroup>) :
+              <Button color="link" id="admin-btn" onClick={handleAdmin}>Create Admin?</Button>}
+
             {this.state.usernameError ? <p>Username already exists!</p> : <></>}
             {this.state.emailError ? <p>Email already exists!</p> : <></>}
+            {this.state.adminError ? <p>Admin key wrong!</p> : <></>}
           </ModalBody>
           <ModalFooter>
             <Button variant="primary" type="submit">
