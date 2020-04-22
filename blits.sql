@@ -34,7 +34,7 @@ banned varchar(10) DEFAULT '0',
 >>>>>>> 72f36a3... hotfix (#38)
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
-on delete cascade
+on update cascade on delete cascade
 );
 
 create table invited_by(
