@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {Table, Container, Jumbotron} from 'reactstrap'
 import "./Profile.css"
-import { currentUser } from "../../APIFunctions/user";
+import { currentUser, getCredit } from "../../APIFunctions/user";
 import ProfilePic from '../../Images/profile-pic.png'
-import Badge1 from '../../Icon for Badges/Gold Chain.png'
-import Badge2 from '../../Icon for Badges/Make it rain.png'
-import Badge3 from '../../Icon for Badges/Raining Coin.png'
+import Badge1 from '../../Images/Gold Chain.png'
+import Badge2 from '../../Images/Make it rain.png'
+import Badge3 from '../../Images/Raining Coin.png'
 
 
 class Profile extends Component {
@@ -14,7 +14,14 @@ class Profile extends Component {
   };
   componentDidMount() {
     this.setState({
-      user: currentUser()
+      user: currentUser(),
+      credit: 0
+    })
+    getCredit(currentUser(),result =>{
+      console.log(result)
+      this.setState({
+        credit: result[0].no_of_chips
+      })
     })
   }
   render() {
@@ -22,12 +29,11 @@ class Profile extends Component {
       <div id="profile-page">
         <Jumbotron className="jumbo">
           <div className='text-center'>
-            <h1 className='display-4'>Profile</h1>
+            <h1 className='display-4'>{this.state.user}'s Profile</h1>
           </div>
           <img src={ProfilePic} class="center" width="200" height="180"></img>
-      <p align="center"><b>ID: {this.state.user}</b></p>
       <p align="center"><b>Win/Loss Ratio: 100%</b></p>
-      <p align="center"><b>Number of chips: 420</b><img src="https://media.giphy.com/media/13I3peucbA8BfG/giphy.gif" width="30" height="30"></img></p>
+      <p align="center"><b>Number of chips: {this.state.credit} </b><img src="https://media.giphy.com/media/13I3peucbA8BfG/giphy.gif" width="30" height="30"></img></p>
       <p align="center"><b>Badges:</b></p>
       <section>
         <div class="gallery">
@@ -44,9 +50,7 @@ class Profile extends Component {
         <Table>
           <thead>
            <tr>
-             <th>Player</th>
              <th>$$</th>
-             <th>Win Rate</th>
              <th>Total Wins</th>
              <th>Total Games Played</th>
              <th>Type of Game</th>
