@@ -38,7 +38,10 @@ app.post("/api/login", function (req, res) {
         };
         if (result) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 <<<<<<< HEAD
           // check if user is banned or not 
           userQuery.checkBanned(user.username, (bannedResult) => {
@@ -53,6 +56,15 @@ app.post("/api/login", function (req, res) {
           // check if  user is admin or not
           userQuery.checkValidAdmin(user.username, (adminResult) => {
             if (adminResult.length) {
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+          // check if  user is admin or not
+          userQuery.checkValidAdmin(user.username, (adminResult) => {
+            if (adminResult.length) {
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
               jwt.sign({ user }, "secretkey", (err, token) => {
                 res.json({
                   token
@@ -62,9 +74,15 @@ app.post("/api/login", function (req, res) {
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             }  
 =======
+<<<<<<< HEAD
 >>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
+=======
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
             } else {
               // check if user is banned or not 
               userQuery.checkBanned(user.username, (bannedResult) => {
@@ -81,11 +99,14 @@ app.post("/api/login", function (req, res) {
                   });
                 }
               })
+<<<<<<< HEAD
             }
 <<<<<<< HEAD
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
             }
 >>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
 >>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
@@ -220,20 +241,28 @@ app.post("/api/change-user", function (req, res) {
             })
           }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
           
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
           if (user.newPassword === '') {
             user.newPassword = user.password;
           }
           // udpate new password
           const saltRounds = 10;
 <<<<<<< HEAD
+<<<<<<< HEAD
           bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
 =======
           bcrypt.hash(user.newPassword, saltRounds, function(err, hashedPassword) {
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+          bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
             // store everything in the db
             settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
               if (result) {
@@ -306,13 +335,13 @@ app.post("/api/error-report", function(req, res) {
   });
 });
 
-app.post("/api/delete-user", function(req, res) {
+app.post("/api/delete-user", function (req, res) {
   logger.request('deleting user with information: ', req.body.user);
   const user = req.body.user;
   userQuery.checkValidUser(user.username, (result) => {
     let valid = result;
     if (valid.length) {
-      bcrypt.compare(user.password, valid[0].password, (err, result) => { 
+      bcrypt.compare(user.password, valid[0].password, (err, result) => {
         if (err) logger.error(err);
         if (result) {
           settingsQuery.deleteUser(user.username, (result) => {

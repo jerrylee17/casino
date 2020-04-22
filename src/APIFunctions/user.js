@@ -243,14 +243,22 @@ export function deleteUser(user, callback) {
     }
   ).then(result => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (result.token) {
       localStorage.removeItem("jwt");
       localStorage.removeItem("jwt-expire");
       window.location.reload(true);
+=======
+    if (result.token) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("jwt-expire");
+      window.location.reload(false);
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
     }
     else if (result.passwordError) {
       return callback('passwordError');
     }
+<<<<<<< HEAD
   });
 }
 
@@ -304,4 +312,22 @@ export async function submitErrorReport(errorReport, callback) {
   });
 }
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+<<<<<<< HEAD
 >>>>>>> 41541a1... Add functionality to delete a user when they want to (#44)
+=======
+=======
+  });
+}
+
+export async function checkValidAdmin(username, callback) {
+  $.post(
+    "http://localhost:5000/api/check_admin",
+    {
+      username: username
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)

@@ -12,25 +12,53 @@ exports.selectAllUsers = (callback) => {
     });
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+exports.registerUser = (username, email, hashedPassword, callback) => {
+=======
+exports.registerUser = (username, email, hashedPassword, admin, callback) => {
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+    let currentDate = new Date().toJSON();
+    let REGISTER_QUERY;
+    let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
+<<<<<<< HEAD
+    let REGISTER_QUERY_PLAYER = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+=======
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     let currentDate = new Date().toJSON();
     let REGISTER_QUERY;
     let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
     if (admin) {
         REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
     } else {
         REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) {
             logger.error(err);
             throw err;
         };
 <<<<<<< HEAD
+<<<<<<< HEAD
         connection.query(REGISTER_QUERY, (err, results) => {
 =======
         connection.query(REGISTER_QUERY_PLAYER, (err, results) => {
 >>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
+=======
+        connection.query(REGISTER_QUERY, (err, results) => {
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
             if (err) {
                 logger.error(err);
                 throw err;
@@ -76,6 +104,18 @@ exports.checkValidAdmin = (username, callback) => {
         logger.request("checked valid admin - " + username);
 =======
 >>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
+        return callback(results);
+    });
+}
+
+exports.checkValidAdmin = (username, callback) => {
+    let FIND_ADMIN_QUERY = "SELECT * FROM user_admin WHERE admin_id='" + username + "'";
+    connection.query(FIND_ADMIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("checked valid admin - " + username);
         return callback(results);
     });
 }

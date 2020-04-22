@@ -11,14 +11,43 @@ import {
   ModalFooter,
   Input,
   Row
+<<<<<<< HEAD
 } from 'reactstrap';
 import './Admin.css';
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+} from 'reactstrap'
+import './Admin.css'
+=======
+} from 'reactstrap';
+import './Admin.css';
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+} from 'reactstrap';
+import './Admin.css';
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 import {
   tableHead,
   tableBody,
   ConfirmationModal
+<<<<<<< HEAD
 } from './AdminComponents';
 import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+} from './AdminComponents'
+=======
+} from './AdminComponents';
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+} from './AdminComponents';
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 
 const user = [
   {
@@ -68,6 +97,16 @@ export default function Admin() {
       setManage(false);
     }
   };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  
+  
+=======
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 
   let checkAdmin = () => {
     let user = currentUser();
@@ -79,6 +118,13 @@ export default function Admin() {
   }
 
   checkAdmin();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 
   return (
     <div id='admin-page'>
@@ -106,8 +152,23 @@ export default function Admin() {
               <Input type='select' onChange={e => {
                 setAction(e.target.value)
               }}>
+<<<<<<< HEAD
                 {['Warn', 'Ban'].map((action, i) => (
                   <option key={i}>{action}</option>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                {['Warn', 'Ban'].map((action) => (
+                  <option>{action}</option>
+=======
+                {['Warn', 'Ban'].map((action, i) => (
+                  <option key={i}>{action}</option>
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+                {['Warn', 'Ban'].map((action, i) => (
+                  <option key={i}>{action}</option>
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
                 ))}
               </Input>
             </Row>
@@ -117,7 +178,19 @@ export default function Admin() {
               <Input type="textarea" onChange={e => {
                 setMessage(e.target.value)
               }
+<<<<<<< HEAD
               } />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+              }/>
+=======
+              } />
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+              } />
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
             </Row>
             <br />
           </Container>

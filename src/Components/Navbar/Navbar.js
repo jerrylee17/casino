@@ -15,9 +15,13 @@ import {
 } from "reactstrap";
 import BlitsIcon from '../../Images/Landing/icon-white.png';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
 =======
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+=======
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);

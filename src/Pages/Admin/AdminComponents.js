@@ -7,7 +7,19 @@ import {
   ModalFooter
 } from 'reactstrap'
 
+<<<<<<< HEAD
 export function ConfirmationModal(props) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+export function ConfirmationModal (props) {
+=======
+export function ConfirmationModal(props) {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+export function ConfirmationModal(props) {
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
   const { open,
     setOpen,
     Header,
@@ -26,7 +38,19 @@ export function ConfirmationModal(props) {
         {Message || 'No message'}
       </ModalBody>
       <ModalFooter>
+<<<<<<< HEAD
         <Button color='success'
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <Button color='success'
+=======
+        <Button color='success'
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+        <Button color='success'
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
           onClick={() => {
             onClose();
           }}>
@@ -46,8 +70,23 @@ export function ConfirmationModal(props) {
 export const tableHead = (titles) => (
   <thead>
     <tr>
+<<<<<<< HEAD
       {titles.map((title, i) => (
         <th key={i}>{title}</th>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      {titles.map(title => (
+        <th>{title}</th>
+=======
+      {titles.map((title, i) => (
+        <th key={i}>{title}</th>
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+      {titles.map((title, i) => (
+        <th key={i}>{title}</th>
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
       ))}
     </tr>
   </thead>
@@ -57,7 +96,19 @@ export const tableBody = (user, setManage, setSelectedUser) => (
   <tbody>
     {user && user.length ? (
       user.map((player, index) => (
+<<<<<<< HEAD
         <tr key={index}>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <tr>
+=======
+        <tr key={index}>
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+        <tr key={index}>
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
           <th scope='row'>{index + 1}</th>
           <td>{player.username}</td>
           <td>{player.winrate}</td>

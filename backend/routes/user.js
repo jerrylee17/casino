@@ -64,6 +64,9 @@ app.post("/api/get_credit", function (req, res) {
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 app.post("/api/check_admin", function (req, res) {
     userQuery.checkValidAdmin(req.body.username, result => {
         res.json(result)
@@ -71,9 +74,17 @@ app.post("/api/check_admin", function (req, res) {
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+>>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+>>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 module.exports = app;
