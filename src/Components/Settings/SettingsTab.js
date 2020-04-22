@@ -7,7 +7,6 @@ import {
     Input
 } from 'reactstrap';
 import './settings-tab.css';
-import $ from "jquery";
 import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/user';
 
 class SettingsTab extends Component {
@@ -32,11 +31,6 @@ class SettingsTab extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // this.setState({
-        //     passwordError: false,
-        //     usernameError: false,
-        //     emailError: false
-        // })
         
         const userInfo = {
             username: this.state.username,
@@ -45,7 +39,6 @@ class SettingsTab extends Component {
             newEmail: this.state.newEmail,
             password: this.state.password,
             newPassword: this.state.newPassword
-            // changePassword: this.state.changePassword
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });

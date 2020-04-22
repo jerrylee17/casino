@@ -201,3 +201,21 @@ export function changeUser(userInfo, callback) {
     }
   });
 }
+
+export function deleteUser(user, callback) {
+  $.post(
+    "http://localhost:5000/api/delete-user",
+    {
+      user: user
+    }
+  ).then(result => {
+  if (result.token) {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt-expire");
+    window.location.reload(false);
+  }
+  else if (result.passwordError) {
+    return callback('passwordError');
+  }
+  });
+}
