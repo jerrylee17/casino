@@ -71,3 +71,14 @@ exports.changeUserInformation = (newUsername, email, password, username, callbac
         return callback(results);
     });
 }
+
+exports.deleteUser = (username, callback) => {
+    let DELETE_USER_QUERY = 'DELETE FROM users WHERE username="' + username + '";';
+    connection.query(DELETE_USER_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        return callback(results);
+    });
+}

@@ -8,9 +8,12 @@ import {
 } from 'reactstrap';
 import './settings-tab.css';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import $ from "jquery";
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
 import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/user';
 
 class SettingsTab extends Component {
@@ -42,6 +45,7 @@ class SettingsTab extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // this.setState({
         //     passwordError: false,
@@ -49,6 +53,8 @@ class SettingsTab extends Component {
         //     emailError: false
         // })
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
         
         const userInfo = {
             username: this.state.username,
@@ -58,9 +64,12 @@ class SettingsTab extends Component {
             password: this.state.password,
             newPassword: this.state.newPassword
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // changePassword: this.state.changePassword
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });

@@ -246,11 +246,15 @@ app.post("/api/change-user", function (req, res) {
             });
           });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
         } else {
           res.json({
             passwordError: true
           })
         }
+<<<<<<< HEAD
       })
     }
   });
@@ -295,10 +299,39 @@ app.post("/api/error-report", function(req, res) {
 =======
            
         } 
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
       })
     }
   });
+});
 
+app.post("/api/delete-user", function(req, res) {
+  logger.request('deleting user with information: ', req.body.user);
+  const user = req.body.user;
+  userQuery.checkValidUser(user.username, (result) => {
+    let valid = result;
+    if (valid.length) {
+      bcrypt.compare(user.password, valid[0].password, (err, result) => { 
+        if (err) logger.error(err);
+        if (result) {
+          settingsQuery.deleteUser(user.username, (result) => {
+            if (result) {
+              jwt.sign({ user }, "secretkey", (err, token) => {
+                res.json({
+                  token
+                });
+              });
+            }
+          });
+        }
+      });
+    } else {
+      res.json({
+        passwordError: true
+      })
+    }
+  });
 });
 
 >>>>>>> 232cad2... Add functionality to change user settings (#42)

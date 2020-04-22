@@ -32,10 +32,14 @@ class Settings extends Component {
       <div id="setting-page">
         <Jumbotron>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
 =======
           <h1 className='display-4'>Settings <img src={Logo} class="image" alt="" id="settingLogo"></img></h1>
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+          <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
         </Jumbotron>
         <div className="setting-box">
           <Nav tabs>

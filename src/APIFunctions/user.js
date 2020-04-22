@@ -231,6 +231,9 @@ export function changeUser(userInfo, callback) {
   });
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
 
 export function deleteUser(user, callback) {
   $.post(
@@ -239,6 +242,7 @@ export function deleteUser(user, callback) {
       user: user
     }
   ).then(result => {
+<<<<<<< HEAD
     if (result.token) {
       localStorage.removeItem("jwt");
       localStorage.removeItem("jwt-expire");
@@ -285,4 +289,19 @@ export async function submitErrorReport(errorReport, callback) {
 =======
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+<<<<<<< HEAD
 >>>>>>> a1a7c99... Add functionality to change user settings (#42)
+=======
+=======
+  if (result.token) {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt-expire");
+    window.location.reload(false);
+  }
+  else if (result.passwordError) {
+    return callback('passwordError');
+  }
+  });
+}
+>>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+>>>>>>> 41541a1... Add functionality to delete a user when they want to (#44)
