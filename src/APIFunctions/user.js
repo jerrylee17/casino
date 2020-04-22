@@ -216,7 +216,7 @@ export function deleteUser(user, callback) {
     if (result.token) {
       localStorage.removeItem("jwt");
       localStorage.removeItem("jwt-expire");
-      window.location.reload(false);
+      window.location.reload(true);
     }
     else if (result.passwordError) {
       return callback('passwordError');
@@ -232,5 +232,19 @@ export async function checkValidAdmin(username, callback) {
     }
   ).then(result => {
     return callback(result);
+  });
+}
+
+export async function submitErrorReport(errorReport, callback) {
+  $.post(
+    "http://localhost:5000/api/error-report",
+    {
+      errorReport: errorReport
+    }
+  ).then(result => {
+    // window.location.reload(true);
+    if (result.success) {
+      return callback("success");
+    }
   });
 }

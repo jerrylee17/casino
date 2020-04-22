@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Jumbotron
+  Jumbotron, Container, Row, Col
 } from "reactstrap";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
 import "./home.css";
@@ -31,10 +31,19 @@ class Home extends Component {
       <div id="home-page">
         <Jumbotron>
           <div className='text-center'>
-            <h1 className='display-4'>Home</h1>
+            <h1 className='display-4'>Blips - Home</h1>
           </div>
         </Jumbotron>
-        <h1>Hello {this.state.user}</h1>
+        <Container>
+          <h1>A home to online gambling</h1>
+          <Row>
+            <h2>Games</h2>
+          </Row>
+          <Row>
+            <h2>Shop</h2>
+          </Row>
+        
+        </Container>
         {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
       </div>
     );
