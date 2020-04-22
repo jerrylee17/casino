@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import {
+  Jumbotron
+} from "reactstrap";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
+import "./home.css";
 
 class Home extends Component {
   state = {
@@ -24,7 +28,12 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
+      <div id="home-page">
+        <Jumbotron>
+          <div className='text-center'>
+            <h1 className='display-4'>Home</h1>
+          </div>
+        </Jumbotron>
         <h1>Hello {this.state.user}</h1>
         {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
       </div>

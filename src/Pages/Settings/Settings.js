@@ -10,7 +10,7 @@ import {
 import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
-import Logo from '../../Images/settingLogo.png';
+import Logo from '../../Images/Settings/settingLogo.png';
 
 class Settings extends Component {
   state = {
