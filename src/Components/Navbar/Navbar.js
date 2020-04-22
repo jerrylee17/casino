@@ -13,7 +13,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import BlitsIcon from '../../Images/icon-white.png';
+import BlitsIcon from '../../Images/Landing/icon-white.png';
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);

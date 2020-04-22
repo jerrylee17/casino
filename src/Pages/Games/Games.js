@@ -6,10 +6,10 @@ import {
   Input,
   Button
 } from "reactstrap";
-import Logo from '../../Images/gameLogo.png';
-import blackjackLogo from '../../Images/blackjackLogo.jpg';
-import coinLogo from '../../Images/coinLogo.png';
-import slotsLogo from '../../Images/slotsLogo.png';
+import Logo from '../../Images/Games/gameLogo.png';
+import blackjackLogo from '../../Images/Games/blackjackLogo.jpg';
+import coinLogo from '../../Images/Games/coinLogo.png';
+import slotsLogo from '../../Images/Games/slotsLogo.png';
 import "./Games.css"
 
 class Games extends Component {
