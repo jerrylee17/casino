@@ -18,7 +18,7 @@ last_login varchar(50) not null,
 banned varchar(10) DEFAULT '0',
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
-on delete cascade
+on update cascade on delete cascade
 );
 
 create table invited_by(

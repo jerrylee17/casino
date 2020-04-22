@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 var userQuery = require('../queries/user');
 var logger = require('../logger');
 const app = express();
+var settingsQuery = require('../queries/settings');
 
 app.use(cors());
 // support parsing of application/json type post data
@@ -112,6 +113,67 @@ app.post("/api/register", function (req, res) {
       }
     });
   });
+});
+
+app.post("/api/change-user", function (req, res) {
+  logger.request('changing user information: ', req.body.userInfo);
+  const user = req.body.userInfo;
+  userQuery.checkValidUser(user.username, (result) => {
+    let validUser = result;
+    if (validUser.length) {
+      bcrypt.compare(user.password, validUser[0].password, (err, result) => {
+        if (err) logger.error(err);
+        if (result) {
+          // let usernameError = false;
+          // let emailError = false;
+          userQuery.checkValidUser(user.newUsername, (exists) => {
+            if (exists.length) {
+              if (exists[0].username !== user.username) {
+                // usernameError = true;
+                res.json({
+                  usernameError: true
+                })
+                return;
+              };
+            };
+          })
+          if (user.newEmail !== user.email) {
+            userQuery.checkValidEmail(user.newEmail, (exists) => {
+              if (exists.length) {
+                if (exists[0].email !== user.email) {
+                  // emailError = true;
+                  res.json({
+                    emailError: true
+                  })
+                  return;
+                };
+              };
+            })
+          }
+          
+          if (user.newPassword === '') {
+            user.newPassword = user.password;
+          }
+          // udpate new password
+          const saltRounds = 10;
+          bcrypt.hash(user.newPassword, saltRounds, function(err, hashedPassword) {
+            // store everything in the db
+            settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
+              if (result) {
+                jwt.sign({ user }, "secretkey", (err, token) => {
+                  res.json({
+                    token
+                  });
+                });
+              };
+            });
+          });
+           
+        } 
+      })
+    }
+  });
+
 });
 
 module.exports = app;
