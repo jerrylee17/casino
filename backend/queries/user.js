@@ -61,6 +61,18 @@ exports.checkValidEmail = (email, callback) => {
     });
 }
 
+exports.checkValidAdmin = (username, callback) => {
+    let FIND_ADMIN_QUERY = "SELECT * FROM user_admin WHERE admin_id='" + username + "'";
+    connection.query(FIND_ADMIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("checked valid admin - " + username);
+        return callback(results);
+    });
+}
+
 exports.warnUser = (username, callback) => {
     let WARN_USER_QUERY = "UPDATE player SET no_of_warns=no_of_warns+1 WHERE player_id='" + username + "';";
     connection.query(WARN_USER_QUERY, (err, results) => {

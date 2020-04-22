@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Jumbotron,
   Table,
@@ -10,13 +11,14 @@ import {
   ModalFooter,
   Input,
   Row
-} from 'reactstrap'
-import './Admin.css'
+} from 'reactstrap';
+import './Admin.css';
 import {
   tableHead,
   tableBody,
   ConfirmationModal
-} from './AdminComponents'
+} from './AdminComponents';
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
 
 const user = [
   {
@@ -47,6 +49,7 @@ const user = [
 ];
 
 export default function Admin() {
+  let history = useHistory();
   const [manage, setManage] = useState(false)
   const [selectedUser, setSelectedUser] = useState('')
   const [action, setAction] = useState('Warn')
@@ -65,8 +68,17 @@ export default function Admin() {
       setManage(false);
     }
   };
-  
-  
+
+  let checkAdmin = () => {
+    let user = currentUser();
+    checkValidAdmin(user, result => {
+      if (!result.length) {
+        history.push('/')
+      }
+    })
+  }
+
+  checkAdmin();
 
   return (
     <div id='admin-page'>
@@ -94,8 +106,8 @@ export default function Admin() {
               <Input type='select' onChange={e => {
                 setAction(e.target.value)
               }}>
-                {['Warn', 'Ban'].map((action) => (
-                  <option>{action}</option>
+                {['Warn', 'Ban'].map((action, i) => (
+                  <option key={i}>{action}</option>
                 ))}
               </Input>
             </Row>
@@ -105,7 +117,7 @@ export default function Admin() {
               <Input type="textarea" onChange={e => {
                 setMessage(e.target.value)
               }
-              }/>
+              } />
             </Row>
             <br />
           </Container>

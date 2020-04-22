@@ -55,4 +55,10 @@ app.post("/api/get_credit", function (req, res) {
     });
 })
 
+app.post("/api/check_admin", function (req, res) {
+    userQuery.checkValidAdmin(req.body.username, result => {
+        res.json(result)
+    });
+})
+
 module.exports = app;

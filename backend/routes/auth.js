@@ -37,19 +37,30 @@ app.post("/api/login", function (req, res) {
           throw err;
         };
         if (result) {
-          // check if user is banned or not 
-          userQuery.checkBanned(user.username, (bannedResult) => {
-            let banned = bannedResult[0].banned;
-            if (banned === '1') {
-              res.json({
-                banned: true
-              })
-            } else {
+          // check if  user is admin or not
+          userQuery.checkValidAdmin(user.username, (adminResult) => {
+            if (adminResult.length) {
               jwt.sign({ user }, "secretkey", (err, token) => {
                 res.json({
                   token
                 });
               });
+            } else {
+              // check if user is banned or not 
+              userQuery.checkBanned(user.username, (bannedResult) => {
+                let banned = bannedResult[0].banned;
+                if (banned === '1') {
+                  res.json({
+                    banned: true
+                  })
+                } else {
+                  jwt.sign({ user }, "secretkey", (err, token) => {
+                    res.json({
+                      token
+                    });
+                  });
+                }
+              })
             }
           })
         } else {

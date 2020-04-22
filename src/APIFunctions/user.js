@@ -223,3 +223,14 @@ export function deleteUser(user, callback) {
     }
   });
 }
+
+export async function checkValidAdmin(username, callback) {
+  $.post(
+    "http://localhost:5000/api/check_admin",
+    {
+      username: username
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}
