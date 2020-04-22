@@ -11,11 +11,15 @@ import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ContactUsTab from '../../Components/Settings/ContactUsTab';
 import Logo from '../../Images/Settings/settingLogo.png';
 =======
 import Logo from '../../Images/settingLogo.png';
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+import Logo from '../../Images/Settings/settingLogo.png';
+>>>>>>> 838d2b4... Refactor code to categorize images better (#48)
 
 class Settings extends Component {
   state = {

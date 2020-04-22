@@ -1,9 +1,27 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
+=======
+>>>>>>> 71815a5... Refactor code to categorize images better (#48)
 import {
   Jumbotron, Container, Row, Col
 } from "reactstrap";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
 import "./home.css";
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+import {
+  Jumbotron
+} from "reactstrap";
+import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
+import "./home.css";
+>>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+>>>>>>> 71815a5... Refactor code to categorize images better (#48)
 
 class Home extends Component {
   state = {
@@ -40,6 +58,22 @@ class Home extends Component {
   }
   render() {
     return (
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <div>
+=======
+      <div id="home-page">
+        <Jumbotron>
+          <div className='text-center'>
+            <h1 className='display-4'>Home</h1>
+          </div>
+        </Jumbotron>
+>>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+        <h1>Hello {this.state.user}</h1>
+=======
+>>>>>>> 71815a5... Refactor code to categorize images better (#48)
       <div id="home-page">
         <Jumbotron>
           <div className='text-center'>

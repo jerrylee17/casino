@@ -14,7 +14,10 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import BlitsIcon from '../../Images/Landing/icon-white.png';
+<<<<<<< HEAD
 import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+=======
+>>>>>>> 838d2b4... Refactor code to categorize images better (#48)
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);

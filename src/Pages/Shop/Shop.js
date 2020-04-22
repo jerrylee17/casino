@@ -24,10 +24,14 @@ import ShopUser from './UserShop';
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Logo from './clipart1116730.png';
 =======
 import Logo from '../../Images/shopLogo.png';
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+import Logo from '../../Images/Shop/shopLogo.png';
+>>>>>>> 838d2b4... Refactor code to categorize images better (#48)
 import './shop.css'
 
 class Shop extends Component {
