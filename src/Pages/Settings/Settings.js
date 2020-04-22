@@ -26,7 +26,7 @@ class Settings extends Component {
     return (
       <div id="setting-page">
         <Jumbotron>
-          <h1 className='display-4'>Settings <img src={Logo} class="image" alt="" id="settingLogo"></img></h1>
+          <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
         </Jumbotron>
         <div className="setting-box">
           <Nav tabs>

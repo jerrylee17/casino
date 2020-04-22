@@ -168,12 +168,42 @@ app.post("/api/change-user", function (req, res) {
               };
             });
           });
-           
-        } 
+        } else {
+          res.json({
+            passwordError: true
+          })
+        }
       })
     }
   });
+});
 
+app.post("/api/delete-user", function(req, res) {
+  logger.request('deleting user with information: ', req.body.user);
+  const user = req.body.user;
+  userQuery.checkValidUser(user.username, (result) => {
+    let valid = result;
+    if (valid.length) {
+      bcrypt.compare(user.password, valid[0].password, (err, result) => { 
+        if (err) logger.error(err);
+        if (result) {
+          settingsQuery.deleteUser(user.username, (result) => {
+            if (result) {
+              jwt.sign({ user }, "secretkey", (err, token) => {
+                res.json({
+                  token
+                });
+              });
+            }
+          });
+        }
+      });
+    } else {
+      res.json({
+        passwordError: true
+      })
+    }
+  });
 });
 
 module.exports = app;
