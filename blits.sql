@@ -20,11 +20,6 @@ foreign key(player_id) REFERENCES users(username)
 on delete cascade
 );
 
-create table invited_by(
-awarded_chips int not null
-);
--- saw that awarded_chips is 500, but not sure how to do that lmao
--- also stuck on this relationship
 
 create table user_admin(
 admin_id varchar(10) not null,
@@ -44,8 +39,8 @@ on delete cascade
 -- don't know how to reference badges in this table
 
 create table game(
-game_no varchar(10) not null,
-game_status varchar(10)
+game_no int not null,
+game_status varchar(11)
 	constraint status_check check (game_status in ('Open', 'In Progress', 'Finished')) ENFORCED,
 wager_amt int not null,
 game_type varchar (9)
@@ -60,7 +55,7 @@ UNIQUE(game_no)
 create table plays(
 bet_chips int not null,
 player_id varchar(10) not null,
-game_id varchar(10) not null,
+game_id int not null,
 primary key(player_id, game_id),
 foreign key(player_id) REFERENCES users(username),
 foreign key(game_id) REFERENCES game(game_no)
@@ -68,11 +63,26 @@ foreign key(game_id) REFERENCES game(game_no)
 -- relationship between new_user and game
 
 
+create table bot(
+game_name varchar(10) not null,
+game_id int not null,
+primary key(game_name, game_id),
+foreign key(game_id) REFERENCES plays(game_id)
+on update cascade,
+opponent varchar(10) not null,
+foreign key(opponent) REFERENCES users(username)
+on update cascade
+);
+
 create table shop(
 shop_no int not null,
 primary key(shop_no),
 customer varchar(10) not null,
+current_chips int not null,
+foreign key(current_chips) REFERENCES player(no_of_chips)
+on update cascade,
 foreign key(customer) REFERENCES users(username)
+on update cascade
 ); -- did not do badges attribute yet
 
 create table use_chips(
@@ -80,8 +90,12 @@ no_of_chips int not null
 ); -- relationship between shop and user, don't know how to do derived attributes
 
 create table badges(
-total int, 
+owner_name varchar(10) not null,
+owned bool, 
 badge_name varchar(10) not null,
 category varchar(10) not null,
-badge_cost int -- how much the badge costs
-); -- not sure on details for badges
+badge_cost int,
+primary key(badge_name, category, badge_cost),
+foreign key(owner_name) REFERENCES users(username) 
+on update cascade
+); -- is this the user's badges or badges list alone
