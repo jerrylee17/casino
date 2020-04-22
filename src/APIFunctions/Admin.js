@@ -43,4 +43,4 @@ export function unbanUser(username, callback) {
   ).then(result => {
     return callback(result);
   })
-} 
+}
