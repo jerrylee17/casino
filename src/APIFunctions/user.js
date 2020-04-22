@@ -69,13 +69,14 @@ export function loginUser(username, password, callback) {
   });
 }
 
-export function registerUser(username, password, email, callback) {
+export function registerUser(username, password, email, admin, callback) {
   $.post(
     "http://localhost:5000/api/register",
     {
       username: username,
       email: email,
       password: password,
+      admin: admin
     },
     (data) => {
       console.log(data);
@@ -91,6 +92,9 @@ export function registerUser(username, password, email, callback) {
     }
     else if (result.emailError) {
       return callback('emailError');
+    }
+    else if (result.adminError) {
+      return callback('adminError');
     }
   });
 }
@@ -209,13 +213,13 @@ export function deleteUser(user, callback) {
       user: user
     }
   ).then(result => {
-  if (result.token) {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("jwt-expire");
-    window.location.reload(false);
-  }
-  else if (result.passwordError) {
-    return callback('passwordError');
-  }
+    if (result.token) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("jwt-expire");
+      window.location.reload(false);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
   });
 }

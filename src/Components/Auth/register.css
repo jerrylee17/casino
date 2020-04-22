@@ -7,6 +7,10 @@
   font-size: 25px;
 }
 
+#admin-btn {
+  padding: 0;
+}
+
 .password-error {
   color: red;
 }

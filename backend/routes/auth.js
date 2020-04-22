@@ -69,6 +69,7 @@ app.post("/api/login", function (req, res) {
 app.post("/api/register", function (req, res) {
   let email = req.body.email;
   let user = { username: req.body.username, email: req.body.email };
+  let admin = req.body.admin;
   const saltRounds = 10;
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.password, salt, function (err, hashedPassword) {
@@ -96,17 +97,47 @@ app.post("/api/register", function (req, res) {
               return;
             }
             if (!usernameError && !emailError) {
-              // Store new user in DB w/ password hash
-              userQuery.registerUser(user.username, email, hashedPassword, (result) => {
-                // automatically logs in the user
-                if (result) {
-                  jwt.sign({ user }, "secretkey", (err, token) => {
-                    res.json({
-                      token
+              if (admin) {
+                bcrypt.genSalt(saltRounds, function (err, salt) {
+                  bcrypt.hash(admin, salt, function (err, hashedAdminKey) {
+                    if (err) {
+                      logger.error(err);
+                      throw err;
+                    } else {
+                      bcrypt.compare("secretadminkey", hashedAdminKey, (err, result) => {
+                        if (result) {
+                          // Store new user in DB w/ password hash
+                          userQuery.registerUser(user.username, email, hashedPassword, admin, (result) => {
+                            // automatically logs in the user
+                            if (result) {
+                              jwt.sign({ user }, "secretkey", (err, token) => {
+                                res.json({
+                                  token
+                                });
+                              });
+                            }
+                          });
+                        } else {
+                          res.json({
+                            adminError: true
+                          })
+                        }
+                      })
+                    }
+                  })
+                })
+              } else {
+                userQuery.registerUser(user.username, email, hashedPassword, admin, (result) => {
+                  // automatically logs in the user
+                  if (result) {
+                    jwt.sign({ user }, "secretkey", (err, token) => {
+                      res.json({
+                        token
+                      });
                     });
-                  });
-                }
-              });
+                  }
+                });
+              }
             }
           });
         });
@@ -150,13 +181,13 @@ app.post("/api/change-user", function (req, res) {
               };
             })
           }
-          
+
           if (user.newPassword === '') {
             user.newPassword = user.password;
           }
           // udpate new password
           const saltRounds = 10;
-          bcrypt.hash(user.newPassword, saltRounds, function(err, hashedPassword) {
+          bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
             // store everything in the db
             settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
               if (result) {
@@ -178,13 +209,13 @@ app.post("/api/change-user", function (req, res) {
   });
 });
 
-app.post("/api/delete-user", function(req, res) {
+app.post("/api/delete-user", function (req, res) {
   logger.request('deleting user with information: ', req.body.user);
   const user = req.body.user;
   userQuery.checkValidUser(user.username, (result) => {
     let valid = result;
     if (valid.length) {
-      bcrypt.compare(user.password, valid[0].password, (err, result) => { 
+      bcrypt.compare(user.password, valid[0].password, (err, result) => {
         if (err) logger.error(err);
         if (result) {
           settingsQuery.deleteUser(user.username, (result) => {

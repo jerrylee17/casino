@@ -12,16 +12,21 @@ exports.selectAllUsers = (callback) => {
     });
 }
 
-exports.registerUser = (username, email, hashedPassword, callback) => {
+exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     let currentDate = new Date().toJSON();
+    let REGISTER_QUERY;
     let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
-    let REGISTER_QUERY_PLAYER = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+    if (admin) {
+        REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
+    } else {
+        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+    }
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) {
             logger.error(err);
             throw err;
         };
-        connection.query(REGISTER_QUERY_PLAYER, (err, results) => {
+        connection.query(REGISTER_QUERY, (err, results) => {
             if (err) {
                 logger.error(err);
                 throw err;
