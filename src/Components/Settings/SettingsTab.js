@@ -13,8 +13,8 @@ import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/us
 class SettingsTab extends Component {
     state = {
         changePassword: false,
-        user: currentUser(),
-        newUser: currentUserEmail() || '',
+        username: currentUser(),
+        newUsername: currentUser() || '',
         email: currentUserEmail(),
         newEmail: currentUserEmail() || '',
         password: '',
@@ -25,7 +25,7 @@ class SettingsTab extends Component {
     }
 
     handleChangePassword = () => { this.setState({ changePassword: true }) }
-    handleUsername = (event) => { this.setState({ newUser: event.target.value }) }
+    handleUsername = (event) => { this.setState({ newUsername: event.target.value }) }
     handleEmail = (event) => { this.setState({ newEmail: event.target.value }) }
     handleNewPassword = (event) => { this.setState({ newPassword: event.target.value }) }
     handlePassword = (event) => { this.setState({ password: event.target.value }) }
@@ -39,13 +39,13 @@ class SettingsTab extends Component {
         // })
         
         const userInfo = {
-            user: this.state.user,
-            newUser: this.state.newUser,
+            username: this.state.username,
+            newUsername: this.state.newUsername,
             email: this.state.email,
             newEmail: this.state.newEmail,
             password: this.state.password,
-            newPassword: this.state.newPassword,
-            changePassword: this.state.changePassword
+            newPassword: this.state.newPassword
+            // changePassword: this.state.changePassword
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });

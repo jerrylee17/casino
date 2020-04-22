@@ -188,13 +188,16 @@ export function changeUser(userInfo, callback) {
     if (result.token) {
       localStorage.setItem("jwt", result.token);
       localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
-      window.location.reload(false);
+      window.location.reload(true);
     }
     else if (result.passwordError) {
       return callback('passwordError');
     }
     else if (result.usernameError) {
       return callback('usernameError');
+    }
+    else if (result.emailError) {
+      return callback('emailError');
     }
   });
 }
