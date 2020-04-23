@@ -14,26 +14,27 @@ create table player(
 player_id varchar(15) not null,
 no_of_chips int,
 no_of_warns int,
+no_of_wins int,
+no_of_losses int,
 banned varchar(10) DEFAULT 'false',
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
 on delete cascade
 );
 
-
 create table user_admin(
-admin_id varchar(10) not null,
+admin_id varchar(15) not null,
 primary key(admin_id),
 foreign key(admin_id) REFERENCES users(username)
 on delete cascade
 );
 
 create table user_profile(
-user_id varchar(10) not null,
+user_id varchar(15) not null,
 no_of_chips int,
 loss_win_ratio int,
 primary key(user_id),
-foreign key(user_id) REFERENCES users(username)
+constraint user_name foreign key(user_id) REFERENCES player(player_id)
 on delete cascade
 );
 -- don't know how to reference badges in this table
@@ -74,27 +75,17 @@ foreign key(opponent) REFERENCES users(username)
 on update cascade
 );
 
-create table shop(
-shop_no int not null,
-primary key(shop_no),
-customer varchar(10) not null,
-current_chips int not null,
-foreign key(current_chips) REFERENCES player(no_of_chips)
-on update cascade,
-foreign key(customer) REFERENCES users(username)
-on update cascade
-); -- did not do badges attribute yet
-
 create table use_chips(
 no_of_chips int not null
 ); -- relationship between shop and user, don't know how to do derived attributes
 
-create table badges(
-owner_name varchar(10) not null,
-owned bool, 
+create table badges_shop(
+owner_name varchar(15) not null,
+owned varchar(5) DEFAULT 'false', 
 badge_name varchar(10) not null,
 category varchar(10) not null,
 badge_cost int,
+description varchar(100),
 primary key(badge_name, category, badge_cost),
 foreign key(owner_name) REFERENCES users(username) 
 on update cascade
