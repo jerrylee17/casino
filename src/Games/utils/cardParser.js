@@ -17,9 +17,13 @@ class cardHandler {
         }
         let allImages = []
         for (let i = 0; i < this.hand.length; i++){
-            let suit = suitMap[Math.floor(this.hand[i] / 13)];
+            let suit = Math.floor(this.hand[i] / 13);
             let number = this.hand[i] % 13;
-            allImages.push(imgPath + String(number) + String(suit))
+            if (number === 0){
+                number = 13
+                suit = suit - 1
+            }
+            allImages.push(imgPath + String(number) + suitMap[suit]+'.png')
         }
         return allImages
     }
@@ -27,6 +31,6 @@ class cardHandler {
 
 module.exports = {cardHandler}
 
-// cards = new cardHandler([1,2,3])
+// cards = new cardHandler([1,2,3,13])
 // allCards = cards.getCards(imagePath)
 // console.log(allCards)

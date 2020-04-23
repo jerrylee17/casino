@@ -4,12 +4,14 @@ import {
   Row,
   Col,
   Button,
-  Jumbotron
 } from 'reactstrap'
 import './Blackjack.css'
 import { BlackJackGame } from '../../../Games/BlackJack/blackjack'
-// import { cardHandler } from '../../../Games/utils/cardParser'
-const imgPath = '../../../Images/Games/Cards/'
+import {
+  Title,
+  HandDisplay
+} from './BlackJackComponents'
+
 
 class BlackJack extends Component {
   state = {
@@ -18,7 +20,8 @@ class BlackJack extends Component {
   }
 
   gameResult = {
-    undefined: 'Game in progress...',
+    undefined: 'Game has not started',
+    100: 'Game in progress...',
     0: 'Dealer wins!',
     1: 'Tie!',
     2: 'You win!'
@@ -32,7 +35,7 @@ class BlackJack extends Component {
       game,
       handValue: phigh,
       dealerValue: dhigh,
-      winner: undefined
+      winner: 100
     })
   }
 
@@ -58,12 +61,14 @@ class BlackJack extends Component {
     let game = new BlackJackGame()
     return (
       <div id='blackjack-page'>
-        <Jumbotron>
-          <div className='text-center'>
-            <h1 className='display-4'>Blackjack</h1>
-          </div>
-        </Jumbotron>
+        {Title('BlackJack')}
         <Container>
+          <Row>
+            <Col>
+              <center><h2>{this.gameResult[this.state.winner]}</h2></center>
+            </Col>
+          </Row>
+          <br />
           <Row>
             <Col>
               <Button onClick={async () => {
@@ -76,8 +81,9 @@ class BlackJack extends Component {
               <br />
               <br />
               <Button
+                hidden={this.state.winner === undefined}
                 onClick={async () => {
-                  if (!this.state.game || this.state.winner !== undefined) {
+                  if (!this.state.game || this.state.winner !== 100) {
                     return
                   }
                   let game = this.state.game
@@ -89,33 +95,45 @@ class BlackJack extends Component {
                     game.determineWinner()
                     await this.handleGameEnd(game)
                   }
-                  console.log(this.state)
                 }}>
                 Hit
               </Button>
               {" "}
               <Button
+                hidden={this.state.winner === undefined}
                 onClick={async () => {
-                  if (!this.state.game || this.state.winner !== undefined) {
+                  if (!this.state.game || this.state.winner !== 100) {
                     return
                   }
                   let game = this.state.game
                   game.playDealer()
                   game.determineWinner()
                   await this.handleGameEnd(game)
-                  console.log(this.state)
                 }}>
                 Stop
               </Button>
             </Col>
             <Col>
-              Player hand: {this.state.game &&
-                this.state.game.playerHand.join(' ')} = {this.state.handValue}
+              <center><h5>Player hand</h5></center>
+              {this.state.game ?
+                <div>
+                  <HandDisplay hand={this.state.game.playerHand} />
+                  {this.state.game.playerHand.join(' ')}
+                </div>
+                :
+                (<center>Game not started</center>)}
               <br />
-              Dealer hand: {this.state.game &&
-                this.state.game.dealerHand.join(' ')} = {this.state.dealerValue}
-              <br /> <br />
-              <center><h4>{this.gameResult[this.state.winner]}</h4></center>
+              Value: {this.state.handValue}
+              <br />
+            </Col>
+            <Col>
+              <center><h5>Dealer hand</h5></center>
+              {this.state.game ?
+                this.state.game.dealerHand.join(' ') :
+                (<center>Game not started</center>)
+              }
+              <br />
+              Value: {this.state.dealerValue}
             </Col>
           </Row>
         </Container>

@@ -14,3 +14,10 @@ tbody {
     height: 100vh;
     color: white;
 }
+
+.grid {
+    display: grid;
+    color: black;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
