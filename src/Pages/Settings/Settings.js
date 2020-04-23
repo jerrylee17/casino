@@ -12,6 +12,9 @@ import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
 import ContactUsTab from '../../Components/Settings/ContactUsTab';
 import Logo from '../../Images/Settings/settingLogo.png';
 =======
@@ -73,6 +76,14 @@ class Settings extends Component {
               </NavLink>
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "3" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("3") }}
+              >
+                Contact Us
+              </NavLink>
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>

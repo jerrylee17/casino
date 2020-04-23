@@ -16,7 +16,7 @@ import "./home.css";
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
 import {
-  Jumbotron
+  Jumbotron, Container, Row, Col
 } from "reactstrap";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
 import "./home.css";
@@ -67,9 +67,10 @@ class Home extends Component {
       <div id="home-page">
         <Jumbotron>
           <div className='text-center'>
-            <h1 className='display-4'>Home</h1>
+            <h1 className='display-4'>Blips - Home</h1>
           </div>
         </Jumbotron>
+<<<<<<< HEAD
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
         <h1>Hello {this.state.user}</h1>
 =======
@@ -80,6 +81,8 @@ class Home extends Component {
             <h1 className='display-4'>Blips - Home</h1>
           </div>
         </Jumbotron>
+=======
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
         <Container>
           <h1>A home to online gambling</h1>
           <Row>
@@ -90,6 +93,13 @@ class Home extends Component {
           </Row>
         
         </Container>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+>>>>>>> f427180... Added functionality for user to submit feedback report (#54)
         {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
       </div>
     );

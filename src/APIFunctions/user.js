@@ -252,8 +252,12 @@ export function deleteUser(user, callback) {
     if (result.token) {
       localStorage.removeItem("jwt");
       localStorage.removeItem("jwt-expire");
+<<<<<<< HEAD
       window.location.reload(false);
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+      window.location.reload(true);
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
     }
     else if (result.passwordError) {
       return callback('passwordError');
@@ -329,5 +333,25 @@ export async function checkValidAdmin(username, callback) {
     return callback(result);
   });
 }
+<<<<<<< HEAD
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+<<<<<<< HEAD
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
+=======
+=======
+
+export async function submitErrorReport(errorReport, callback) {
+  $.post(
+    "http://localhost:5000/api/error-report",
+    {
+      errorReport: errorReport
+    }
+  ).then(result => {
+    // window.location.reload(true);
+    if (result.success) {
+      return callback("success");
+    }
+  });
+}
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+>>>>>>> f427180... Added functionality for user to submit feedback report (#54)

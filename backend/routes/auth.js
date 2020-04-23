@@ -363,5 +363,16 @@ app.post("/api/delete-user", function (req, res) {
   });
 });
 
+<<<<<<< HEAD
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+app.post("/api/error-report", function(req, res) {
+  if (req.body.userReport !== '') {
+    logger.userReport(req.body.errorReport);
+  }
+  res.json({
+    success: true
+  })
+})
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
 module.exports = app;

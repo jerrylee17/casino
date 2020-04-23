@@ -21,6 +21,7 @@ class SettingsTab extends Component {
         changePassword: false,
         username: currentUser(),
 <<<<<<< HEAD
+<<<<<<< HEAD
         newUsername: '',
         email: currentUserEmail(),
         newEmail: '',
@@ -29,6 +30,11 @@ class SettingsTab extends Component {
         email: currentUserEmail(),
         newEmail: currentUserEmail() || '',
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+        newUsername: '',
+        email: currentUserEmail(),
+        newEmail: '',
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
         password: '',
         newPassword: '',
         passwordError: false,
@@ -85,25 +91,37 @@ class SettingsTab extends Component {
                         <Label>Username<span className="submit-asterik">*</span></Label>
                         <Input type="text" name="username" value={this.state.newUser} onChange={event => { this.handleUsername(event) }} required></Input>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.usernameError ? <p>Username already exists!</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+                        {this.state.usernameError ? <p>Username already exists!</p> : <></>}
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
                     </FormGroup>
                     <FormGroup>
                         <Label>Email<span className="submit-asterik">*</span></Label>
                         <Input type="email" name="email" value={this.state.newEmail} onChange={event => { this.handleEmail(event) }} required></Input>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.emailError ? <p>Email already exists!</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+                        {this.state.emailError ? <p>Email already exists!</p> : <></>}
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
                     </FormGroup>
                     <FormGroup>
                         <Label>Current Password<span className="submit-asterik">*</span></Label>
                         <Input type="password" name="password" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.passwordError ? <p>Incorrect password</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+                        {this.state.passwordError ? <p>Incorrect password</p> : <></>}
+>>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
                     </FormGroup>
                     {this.state.changePassword ?
                         (<FormGroup>
