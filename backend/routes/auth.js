@@ -248,4 +248,12 @@ app.post("/api/delete-user", function (req, res) {
   });
 });
 
+app.post("/api/error-report", function(req, res) {
+  if (req.body.userReport !== '') {
+    logger.userReport(req.body.errorReport);
+  }
+  res.json({
+    success: true
+  })
+})
 module.exports = app;

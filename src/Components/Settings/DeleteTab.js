@@ -15,7 +15,7 @@ class DeleteTab extends Component {
         username: currentUser(),
         password: ''
     }
-    handlePassword = (event) => { this.setState({ password: event.target.value })}
+    handlePassword = (event) => { this.setState({ password: event.target.value }) }
     handleDelete = (e) => {
         e.preventDefault();
 
@@ -36,13 +36,14 @@ class DeleteTab extends Component {
                         (
                         <div>
                             <h4>Are you sure you want to delete your account?</h4>
-                            <Button className="delete-tab-btn" color="success" onClick={() => { this.setState({ deleteAccount: true }) }}>Yes</Button>
+                            <Button className="delete-tab-btn" color="success" onClick={() => { this.setState({ deleteAccount: true }) }}>Yes i'm sure</Button>
                         </div>
                         )
                         :
                         (<FormGroup>
                             <Label>Confirm Your Password</Label>
                             <Input type="password" name="currentpassword" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
+                            {this.state.passwordError ? <p>Incorrect password</p> : <></>}
                             <Button className="delete-tab-btn" color="danger" onClick={() => this.handleDelete} type="submit">Delete Account</Button>
                         </FormGroup>)
                     }
