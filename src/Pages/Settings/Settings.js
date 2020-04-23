@@ -10,6 +10,7 @@ import {
 import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
+import ContactUsTab from '../../Components/Settings/ContactUsTab';
 import Logo from '../../Images/Settings/settingLogo.png';
 
 class Settings extends Component {
@@ -46,6 +47,14 @@ class Settings extends Component {
                 Delete Account
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "3" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("3") }}
+              >
+                Contact Us
+              </NavLink>
+            </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
@@ -53,6 +62,9 @@ class Settings extends Component {
             </TabPane>
             <TabPane tabId="2">
               <DeleteTab />
+            </TabPane>
+            <TabPane tabId="3">
+              <ContactUsTab />
             </TabPane>
           </TabContent>
         </div>

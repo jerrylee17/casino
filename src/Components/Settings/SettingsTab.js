@@ -13,9 +13,9 @@ class SettingsTab extends Component {
     state = {
         changePassword: false,
         username: currentUser(),
-        newUsername: currentUser() || '',
+        newUsername: '',
         email: currentUserEmail(),
-        newEmail: currentUserEmail() || '',
+        newEmail: '',
         password: '',
         newPassword: '',
         passwordError: false,
@@ -53,14 +53,17 @@ class SettingsTab extends Component {
                     <FormGroup>
                         <Label>Username<span className="submit-asterik">*</span></Label>
                         <Input type="text" name="username" value={this.state.newUser} onChange={event => { this.handleUsername(event) }} required></Input>
+                        {this.state.usernameError ? <p>Username already exists!</p> : <></>}
                     </FormGroup>
                     <FormGroup>
                         <Label>Email<span className="submit-asterik">*</span></Label>
                         <Input type="email" name="email" value={this.state.newEmail} onChange={event => { this.handleEmail(event) }} required></Input>
+                        {this.state.emailError ? <p>Email already exists!</p> : <></>}
                     </FormGroup>
                     <FormGroup>
                         <Label>Current Password<span className="submit-asterik">*</span></Label>
                         <Input type="password" name="password" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
+                        {this.state.passwordError ? <p>Incorrect password</p> : <></>}
                     </FormGroup>
                     {this.state.changePassword ?
                         (<FormGroup>
