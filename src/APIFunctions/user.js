@@ -50,6 +50,12 @@ export function currentUserEmail() {
   return JSON.parse(jsonPayload).user.email;
 }
 
+export function getUsers(callback) {
+  $.get("http://localhost:5000/api/getUsers", function (data) {
+    return callback(data);
+  });
+}
+
 export function loginUser(username, password, callback) {
   $.post("http://localhost:5000/api/login", {
     username: username,
