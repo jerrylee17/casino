@@ -7,6 +7,9 @@
     background-color: #303338;
     color: white;
 }
+th ,td{
+    border-bottom: 1px solid black;
+}
 th{
     color: white;
 }

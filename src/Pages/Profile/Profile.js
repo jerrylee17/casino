@@ -47,7 +47,7 @@ class Profile extends Component {
       </Jumbotron>
       <h1 align="center">Game History</h1>
       <Container>
-        <Table>
+        <Table bgcolor="#00FF00">
           <thead>
            <tr>
              <th>$$</th>
@@ -57,13 +57,13 @@ class Profile extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr bgcolor="green">
+            <tr bgcolor="#77dd77">
               <th>{this.state.credit}</th>
               <th>10</th>
               <th>5</th>
               <th>Blackjack</th>
             </tr>
-            <tr bgcolor="tomato">
+            <tr bgcolor="#ff6961">
               <th>{this.state.credit}</th>
               <th>10</th>
               <th>6</th>
