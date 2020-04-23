@@ -75,13 +75,9 @@ foreign key(opponent) REFERENCES users(username)
 on update cascade
 );
 
-create table use_chips(
-no_of_chips int not null
-); -- relationship between shop and user, don't know how to do derived attributes
-
 create table badges_shop(
 owner_name varchar(15) not null,
-owned varchar(5) DEFAULT 'false', 
+owned varchar(5) DEFAULT 'false', -- would be the equivalent of purchased?
 badge_name varchar(10) not null,
 category varchar(10) not null,
 badge_cost int,
@@ -89,4 +85,4 @@ description varchar(100),
 primary key(badge_name, category, badge_cost),
 foreign key(owner_name) REFERENCES users(username) 
 on update cascade
-); -- is this the user's badges or badges list alone
+);
