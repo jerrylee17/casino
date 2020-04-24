@@ -25,3 +25,15 @@ Has won the coin flip at least once!
 True Winner 
 500
 Won in Blackjack, Coin Flip, and Slots.
+
+God Chains
+10000
+This badge is the ultimate badge to show everyone who's boss.
+
+Make it Rain
+5000
+Accumulated 5000 chips in total balance. Make it rain!
+
+Senpai Club
+0
+The admin badge! Senpai on the streets.
