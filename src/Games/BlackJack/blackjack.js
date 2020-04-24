@@ -27,7 +27,7 @@ class BlackJackGame {
     }
   }
 
-  hit(hand=this.playerHand) {
+  hit(hand = this.playerHand) {
     hand.push(this.cards.shift());
   }
 
@@ -46,14 +46,17 @@ class BlackJackGame {
         hlow += value;
         hhigh += value;
       }
-      if (hhigh > 21 && hlow < 21) {
+      if (hhigh > 21 && hlow <= 21) {
         hhigh -= 10;
       }
+    }
+    if (hhigh > 21 && hlow <= 21) {
+      hhigh -= 10;
     }
     return [hlow, hhigh];
   }
 
-  playDealer(hand=this.dealerHand) {
+  playDealer(hand = this.dealerHand) {
     this.revealDealer = true;
     for (let i = 0; i < this.cards.length; i++) {
       const [hlow, hhigh] = this.getHandValue(hand);
@@ -70,8 +73,8 @@ class BlackJackGame {
     }
   }
 
-  checkBust(hand=this.playerHand) {
-    const [hlow, ] = this.getHandValue(hand);
+  checkBust(hand = this.playerHand) {
+    const [hlow,] = this.getHandValue(hand);
     if (hlow > 21) {
       return true
     }
@@ -83,9 +86,9 @@ class BlackJackGame {
   1: tie
   2: player wins
   */
-  determineWinner(dealer=this.dealerHand, player=this.playerHand) {
-    const [ , dhigh] = this.getHandValue(dealer);
-    const [ , phigh] = this.getHandValue(player);
+  determineWinner(dealer = this.dealerHand, player = this.playerHand) {
+    const [, dhigh] = this.getHandValue(dealer);
+    const [, phigh] = this.getHandValue(player);
     const pbust = this.checkBust(player);
     const dbust = this.checkBust(dealer);
     if (pbust && dbust) {
@@ -125,7 +128,7 @@ class BlackJackGame {
   }
 }
 
-module.exports = {BlackJackGame}
+module.exports = { BlackJackGame }
 
 // const game = new BlackJackGame()
 // game.shuffle()
