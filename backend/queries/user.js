@@ -1,8 +1,8 @@
 const connection = require('../connection');
 var logger = require('../logger');
 
-exports.selectAllUsers = (callback) => {
-    let SELECT_ALL_USERS_QUERY = 'SELECT * from users';
+exports.getUsers = (callback) => {
+    let SELECT_ALL_USERS_QUERY = 'SELECT player_id, no_of_chips, no_of_warns, banned FROM player';
     connection.query(SELECT_ALL_USERS_QUERY, (err, results) => {
         if (err) {
             logger.error(err);
