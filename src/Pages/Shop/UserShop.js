@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { currentUser, getCredit } from "../../APIFunctions/user";
 =======
 <<<<<<< HEAD
@@ -16,6 +17,9 @@ import { currentUser, getCredit } from "../../APIFunctions/user";
 =======
 import { currentUser, getCredit } from "../../APIFunctions/user";
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+import { currentUser, getCredit } from "../../APIFunctions/user";
+>>>>>>> 2424320d3805bd7cd752e83822e5304f8bc28b8f
 
 class ShopUser extends Component {
   state = {
@@ -23,6 +27,7 @@ class ShopUser extends Component {
   };
   componentDidMount() {
     this.setState({
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -35,6 +40,8 @@ class ShopUser extends Component {
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> 2424320d3805bd7cd752e83822e5304f8bc28b8f
       user: currentUser(),
       credit: 0
     })
@@ -45,6 +52,7 @@ class ShopUser extends Component {
       })
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
@@ -53,10 +61,13 @@ class ShopUser extends Component {
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+>>>>>>> 2424320d3805bd7cd752e83822e5304f8bc28b8f
     })
   }
   render() {
     return (
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <div id="shop-balance">
@@ -79,6 +90,10 @@ class ShopUser extends Component {
       <div id="shop-balance">
         <h6><b>{this.state.user}'s Chip Balance:</b> {this.state.credit}</h6>
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
+=======
+      <div id="shop-balance">
+        <h6><b>{this.state.user}'s Chip Balance:</b> {this.state.credit}</h6>
+>>>>>>> 2424320d3805bd7cd752e83822e5304f8bc28b8f
       </div>
     );
   }
