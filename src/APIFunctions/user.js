@@ -59,6 +59,8 @@ export function loginUser(username, password, callback) {
       localStorage.setItem("jwt", result.token);
       localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
       window.location.reload(false);
+    } else if (result.banned) {
+      return callback('userBanned');
     } else if (result.error) {
       return callback('passwordError');
     } else {
@@ -67,13 +69,14 @@ export function loginUser(username, password, callback) {
   });
 }
 
-export function registerUser(username, password, email, callback) {
+export function registerUser(username, password, email, admin, callback) {
   $.post(
     "http://localhost:5000/api/register",
     {
       username: username,
       email: email,
       password: password,
+      admin: admin
     },
     (data) => {
       console.log(data);
@@ -89,6 +92,9 @@ export function registerUser(username, password, email, callback) {
     }
     else if (result.emailError) {
       return callback('emailError');
+    }
+    else if (result.adminError) {
+      return callback('adminError');
     }
   });
 }
@@ -127,4 +133,118 @@ export function unbanUser(username, callback) {
   ).then(result => {
     return callback(result);
   })
+}
+
+export function dailyReward(callback) {
+  let user = currentUser();
+  $.post(
+    "http://localhost:5000/api/last_login",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function updateLogin(callback) {
+  let user = currentUser();
+  $.post(
+    "http://localhost:5000/api/update_login",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function updateCredit(user, amount, callback) {
+  $.post(
+    "http://localhost:5000/api/update_credit",
+    {
+      username: user,
+      amount: amount
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function getCredit(user, callback) {
+  $.post(
+    "http://localhost:5000/api/get_credit",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function changeUser(userInfo, callback) {
+  $.post(
+    "http://localhost:5000/api/change-user",
+    {
+      userInfo: userInfo
+    }
+  ).then(result => {
+    if (result.token) {
+      localStorage.setItem("jwt", result.token);
+      localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
+      window.location.reload(true);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
+    else if (result.usernameError) {
+      return callback('usernameError');
+    }
+    else if (result.emailError) {
+      return callback('emailError');
+    }
+  });
+}
+
+export function deleteUser(user, callback) {
+  $.post(
+    "http://localhost:5000/api/delete-user",
+    {
+      user: user
+    }
+  ).then(result => {
+    if (result.token) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("jwt-expire");
+      window.location.reload(true);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
+  });
+}
+
+export async function checkValidAdmin(username, callback) {
+  $.post(
+    "http://localhost:5000/api/check_admin",
+    {
+      username: username
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}
+
+export async function submitErrorReport(errorReport, callback) {
+  $.post(
+    "http://localhost:5000/api/error-report",
+    {
+      errorReport: errorReport
+    }
+  ).then(result => {
+    // window.location.reload(true);
+    if (result.success) {
+      return callback("success");
+    }
+  });
 }

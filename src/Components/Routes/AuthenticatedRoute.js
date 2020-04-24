@@ -15,8 +15,8 @@ export default function AuthenticatedRoute({
           appProps.Authenticated ? (
             <NavBar component={Component} {...props} {...appProps} />
           ) : (
-            <Redirect to={`/?redirect=signin`} />
-          )
+              <Redirect to={`/`} />
+            )
         }
       />
     </div>

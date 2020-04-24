@@ -1,7 +1,15 @@
 html {
+  overflow: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   color: red !important;
 }
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

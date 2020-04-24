@@ -1,5 +1,8 @@
 #games-page {
     background-color: #2c2f33;
+    height: 100%;
+    min-height: 100vh;
+    color: white;
 }
 
 .jumbo {
@@ -9,4 +12,32 @@
 
 .table {
     background-color: #2c2f33;
+    margin: 0;
+}
+
+#gameLogo {
+    height: 70px;
+}
+
+.game-input {
+    padding-top: 20px;
+    display: flex;
+}
+
+.game-input form {
+    margin: auto;
+}
+
+.game-input select {
+    padding: 0 50px;
+    margin-right: 10px;
+}
+
+.games button {
+    margin: 20px 0px 20px 15px;
+}
+
+.games img {
+    height: 500px;
+    width: 500px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ErrorPic from "../../Images/404.svg";
+import ErrorPic from "../../Images/Error/404.svg";
 import "./error.css";
 
 class Errors extends Component {

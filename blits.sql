@@ -19,7 +19,7 @@ no_of_losses int,
 banned varchar(10) DEFAULT 'false',
 primary key(player_id),
 foreign key(player_id) REFERENCES users(username)
-on delete cascade
+on update cascade on delete cascade
 );
 
 create table user_admin(

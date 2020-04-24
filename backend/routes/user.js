@@ -31,4 +31,34 @@ app.post("/api/unban", function (req, res) {
     });
 })
 
+app.post("/api/last_login", function (req, res) {
+    userQuery.getLastLogin(req.body.username, result => {
+        res.json(result)
+    });
+})
+
+app.post("/api/update_login", function (req, res) {
+    userQuery.updateLastLogin(req.body.username, result => {
+        res.json(result)
+    });
+})
+
+app.post("/api/update_credit", function (req, res) {
+    userQuery.updateCredit(req.body.username, req.body.amount, result => {
+        res.json(result)
+    });
+})
+
+app.post("/api/get_credit", function (req, res) {
+    userQuery.getCredit(req.body.username, result => {
+        res.json(result)
+    });
+})
+
+app.post("/api/check_admin", function (req, res) {
+    userQuery.checkValidAdmin(req.body.username, result => {
+        res.json(result)
+    });
+})
+
 module.exports = app;

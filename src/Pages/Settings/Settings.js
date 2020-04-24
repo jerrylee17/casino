@@ -4,11 +4,14 @@ import {
   TabPane,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Jumbotron
 } from 'reactstrap';
 import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
+import ContactUsTab from '../../Components/Settings/ContactUsTab';
+import Logo from '../../Images/Settings/settingLogo.png';
 
 class Settings extends Component {
   state = {
@@ -23,7 +26,9 @@ class Settings extends Component {
   render() {
     return (
       <div id="setting-page">
-        <h3>My Account</h3>
+        <Jumbotron>
+          <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
+        </Jumbotron>
         <div className="setting-box">
           <Nav tabs>
             <NavItem>
@@ -32,7 +37,7 @@ class Settings extends Component {
                 onClick={() => { this.handleTabToggle("1") }}
               >
                 Settings
-          </NavLink>
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
@@ -40,7 +45,15 @@ class Settings extends Component {
                 onClick={() => { this.handleTabToggle("2") }}
               >
                 Delete Account
-          </NavLink>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "3" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("3") }}
+              >
+                Contact Us
+              </NavLink>
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
@@ -49,6 +62,9 @@ class Settings extends Component {
             </TabPane>
             <TabPane tabId="2">
               <DeleteTab />
+            </TabPane>
+            <TabPane tabId="3">
+              <ContactUsTab />
             </TabPane>
           </TabContent>
         </div>
