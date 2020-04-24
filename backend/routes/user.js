@@ -50,6 +50,7 @@ app.post("/api/update_credit", function (req, res) {
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,6 +58,8 @@ app.post("/api/update_credit", function (req, res) {
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 app.post("/api/get_credit", function (req, res) {
     userQuery.getCredit(req.body.username, result => {
         res.json(result)
@@ -65,14 +68,18 @@ app.post("/api/get_credit", function (req, res) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 app.post("/api/check_admin", function (req, res) {
     userQuery.checkValidAdmin(req.body.username, result => {
         res.json(result)
     });
 })
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -87,4 +94,6 @@ app.post("/api/check_admin", function (req, res) {
 =======
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 module.exports = app;

@@ -160,6 +160,7 @@ export function updateLogin(callback) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export function updateCredit(user, amount, callback) {
 =======
 <<<<<<< HEAD
@@ -173,6 +174,9 @@ export function updateCredit(user, amount, callback) {
 export function updateCredit(user, amount, callback) {
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+export function updateCredit(user, amount, callback) {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
   $.post(
     "http://localhost:5000/api/update_credit",
     {
@@ -184,6 +188,7 @@ export function updateCredit(user, amount, callback) {
   })
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -191,6 +196,8 @@ export function updateCredit(user, amount, callback) {
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 export function getCredit(user, callback) {
   $.post(
@@ -204,8 +211,11 @@ export function getCredit(user, callback) {
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 export function changeUser(userInfo, callback) {
   $.post(
@@ -232,8 +242,11 @@ export function changeUser(userInfo, callback) {
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 export function deleteUser(user, callback) {
   $.post(
@@ -242,6 +255,7 @@ export function deleteUser(user, callback) {
       user: user
     }
   ).then(result => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     if (result.token) {
@@ -258,10 +272,17 @@ export function deleteUser(user, callback) {
 =======
       window.location.reload(true);
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+    if (result.token) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("jwt-expire");
+      window.location.reload(true);
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     }
     else if (result.passwordError) {
       return callback('passwordError');
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
   });
 }
@@ -320,6 +341,8 @@ export async function submitErrorReport(errorReport, callback) {
 >>>>>>> 41541a1... Add functionality to delete a user when they want to (#44)
 =======
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
   });
 }
 
@@ -334,11 +357,14 @@ export async function checkValidAdmin(username, callback) {
   });
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 <<<<<<< HEAD
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
 =======
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 export async function submitErrorReport(errorReport, callback) {
   $.post(
@@ -352,6 +378,10 @@ export async function submitErrorReport(errorReport, callback) {
       return callback("success");
     }
   });
+<<<<<<< HEAD
 }
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
 >>>>>>> f427180... Added functionality for user to submit feedback report (#54)
+=======
+}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943

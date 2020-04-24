@@ -39,6 +39,7 @@ app.post("/api/login", function (req, res) {
         if (result) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
@@ -65,11 +66,17 @@ app.post("/api/login", function (req, res) {
             if (adminResult.length) {
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
+=======
+          // check if  user is admin or not
+          userQuery.checkValidAdmin(user.username, (adminResult) => {
+            if (adminResult.length) {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
               jwt.sign({ user }, "secretkey", (err, token) => {
                 res.json({
                   token
                 });
               });
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -83,6 +90,8 @@ app.post("/api/login", function (req, res) {
 =======
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
             } else {
               // check if user is banned or not 
               userQuery.checkBanned(user.username, (bannedResult) => {
@@ -100,6 +109,7 @@ app.post("/api/login", function (req, res) {
                 }
               })
 <<<<<<< HEAD
+<<<<<<< HEAD
             }
 <<<<<<< HEAD
 =======
@@ -110,6 +120,9 @@ app.post("/api/login", function (req, res) {
             }
 >>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
 >>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
+=======
+            }
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
           })
         } else {
           res.json({
@@ -242,6 +255,7 @@ app.post("/api/change-user", function (req, res) {
           }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
           
@@ -249,11 +263,15 @@ app.post("/api/change-user", function (req, res) {
 =======
 
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
           if (user.newPassword === '') {
             user.newPassword = user.password;
           }
           // udpate new password
           const saltRounds = 10;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
@@ -263,6 +281,9 @@ app.post("/api/change-user", function (req, res) {
 =======
           bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+          bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
             // store everything in the db
             settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
               if (result) {
@@ -276,13 +297,17 @@ app.post("/api/change-user", function (req, res) {
           });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         } else {
           res.json({
             passwordError: true
           })
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
       })
     }
@@ -330,6 +355,8 @@ app.post("/api/error-report", function(req, res) {
         } 
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
       })
     }
   });
@@ -364,8 +391,11 @@ app.post("/api/delete-user", function (req, res) {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 app.post("/api/error-report", function(req, res) {
   if (req.body.userReport !== '') {
     logger.userReport(req.body.errorReport);
@@ -374,5 +404,8 @@ app.post("/api/error-report", function(req, res) {
     success: true
   })
 })
+<<<<<<< HEAD
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 module.exports = app;

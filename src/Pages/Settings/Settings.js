@@ -13,6 +13,7 @@ import DeleteTab from '../../Components/Settings/DeleteTab';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
 import ContactUsTab from '../../Components/Settings/ContactUsTab';
@@ -23,6 +24,10 @@ import Logo from '../../Images/settingLogo.png';
 =======
 import Logo from '../../Images/Settings/settingLogo.png';
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+=======
+import ContactUsTab from '../../Components/Settings/ContactUsTab';
+import Logo from '../../Images/Settings/settingLogo.png';
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 class Settings extends Component {
   state = {
@@ -40,6 +45,7 @@ class Settings extends Component {
         <Jumbotron>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
 =======
           <h1 className='display-4'>Settings <img src={Logo} class="image" alt="" id="settingLogo"></img></h1>
@@ -47,6 +53,9 @@ class Settings extends Component {
 =======
           <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+          <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         </Jumbotron>
         <div className="setting-box">
           <Nav tabs>
@@ -66,6 +75,7 @@ class Settings extends Component {
                 Delete Account
               </NavLink>
 <<<<<<< HEAD
+<<<<<<< HEAD
             </NavItem>
             <NavItem>
               <NavLink
@@ -76,6 +86,8 @@ class Settings extends Component {
               </NavLink>
 =======
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
             </NavItem>
             <NavItem>
               <NavLink

@@ -16,12 +16,16 @@ import {
 import BlitsIcon from '../../Images/Landing/icon-white.png';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
 =======
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
 =======
 import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 function NavBar({ component: Component }) {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
 <<<<<<< HEAD
+<<<<<<< HEAD
   Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter,
 =======
 <<<<<<< HEAD
@@ -14,12 +15,16 @@ import {
   Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter,
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+  Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter,
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
   Row,
   Button,
   Jumbotron
 } from "reactstrap";
 
 import ShopUser from './UserShop';
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -88,6 +93,8 @@ class Shop extends Component {
                      </Row>
 =======
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 import Logo from '../../Images/Shop/shopLogo.png';
 import './shop.css'
 
@@ -120,8 +127,11 @@ class Shop extends Component {
 
     // would like to add an image attribute in the future and replace chip balance w/ variable
 
+<<<<<<< HEAD
 =======
 >>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     return (
       <div id="shop-page">
         <Jumbotron>
@@ -142,11 +152,15 @@ class Shop extends Component {
                     <Row>
                       <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
                     </Row>
                     <CardText>
                       <Row style={{ height: '100px' }}>
                         {shopbadge.badgeDesc}
                       </Row>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -198,6 +212,8 @@ class Shop extends Component {
   );
 =======
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
                     </CardText>
                   </CardBody>
 
@@ -217,6 +233,7 @@ class Shop extends Component {
     );
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
@@ -237,10 +254,13 @@ class Shop extends Component {
   }
 >>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 >>>>>>> 6ecf9be... Redesigned game dashboard frontend (#46)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 }
 // not really sure for shop_no, is it randomized? how is it going to get assigned to the user?
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default Shop;
 =======
@@ -254,3 +274,6 @@ export default Shop;
 export default Shop;
 >>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
 >>>>>>> 6ecf9be... Redesigned game dashboard frontend (#46)
+=======
+export default Shop;
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943

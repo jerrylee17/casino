@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -15,13 +16,18 @@ import "./home.css";
 =======
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 import {
   Jumbotron, Container, Row, Col
 } from "reactstrap";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
 import "./home.css";
+<<<<<<< HEAD
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
 >>>>>>> 71815a5... Refactor code to categorize images better (#48)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 
 class Home extends Component {
   state = {
@@ -41,6 +47,7 @@ class Home extends Component {
         this.setState({ dailyReward: true });
         updateLogin(); // updates last login date
 <<<<<<< HEAD
+<<<<<<< HEAD
         updateCredit(this.state.user, 500); // updates user's credit
 =======
 <<<<<<< HEAD
@@ -53,23 +60,30 @@ class Home extends Component {
         updateCredit(this.state.user, 500); // updates user's credit
 >>>>>>> aad27cd... Fix css on pages and small additions (#40)
 >>>>>>> ade4b8a... Fix css on pages and small additions (#40)
+=======
+        updateCredit(this.state.user, 500); // updates user's credit
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
       }
     })
   }
   render() {
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
       <div>
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
       <div id="home-page">
         <Jumbotron>
           <div className='text-center'>
             <h1 className='display-4'>Blips - Home</h1>
           </div>
         </Jumbotron>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
         <h1>Hello {this.state.user}</h1>
@@ -83,6 +97,8 @@ class Home extends Component {
         </Jumbotron>
 =======
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         <Container>
           <h1>A home to online gambling</h1>
           <Row>
@@ -94,12 +110,15 @@ class Home extends Component {
         
         </Container>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 =======
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
 >>>>>>> f427180... Added functionality for user to submit feedback report (#54)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
       </div>
     );

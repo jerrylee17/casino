@@ -9,12 +9,16 @@ import {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 import Logo from '../../Images/Games/gameLogo.png';
 import blackjackLogo from '../../Images/Games/blackjackLogo.jpg';
 import coinLogo from '../../Images/Games/coinLogo.png';
 import slotsLogo from '../../Images/Games/slotsLogo.png';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import "./Games.css"
 
@@ -86,6 +90,8 @@ import coinLogo from '../../Images/coinLogo.png';
 import slotsLogo from '../../Images/slotsLogo.png';
 =======
 >>>>>>> 838d2b4... Refactor code to categorize images better (#48)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 import "./Games.css"
 
 class Games extends Component {
@@ -104,12 +110,21 @@ class Games extends Component {
       return (
         <img src={blackjackLogo} alt="" />
       )
+<<<<<<< HEAD
     }
     else if (game === "coinflip") {
       return (
         <img src={coinLogo} alt="" />
       )
     }
+=======
+    }
+    else if (game === "coinflip") {
+      return (
+        <img src={coinLogo} alt="" />
+      )
+    }
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     else {
       return (
         <img src={slotsLogo} alt="" />
@@ -141,6 +156,7 @@ class Games extends Component {
             <Button color="success">Play</Button>
           </Form>
         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
       </Jumbotron>
       <Container>
@@ -190,6 +206,11 @@ class Games extends Component {
     );
   }
 >>>>>>> e5b021e... Redesigned game dashboard frontend (#46)
+=======
+      </div>
+    );
+  }
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 }
 
 export default Games;

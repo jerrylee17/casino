@@ -13,6 +13,7 @@ exports.selectAllUsers = (callback) => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -33,11 +34,18 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
 =======
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+exports.registerUser = (username, email, hashedPassword, admin, callback) => {
+    let currentDate = new Date().toJSON();
+    let REGISTER_QUERY;
+    let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     if (admin) {
         REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
     } else {
         REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -45,11 +53,14 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
 =======
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
 >>>>>>> 900e89c... Implemented admin accounts & admin authentication (#51)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) {
             logger.error(err);
             throw err;
         };
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         connection.query(REGISTER_QUERY, (err, results) => {
@@ -59,6 +70,9 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
 =======
         connection.query(REGISTER_QUERY, (err, results) => {
 >>>>>>> f2cdeed... Implemented admin accounts & admin authentication (#51)
+=======
+        connection.query(REGISTER_QUERY, (err, results) => {
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
             if (err) {
                 logger.error(err);
                 throw err;
@@ -90,6 +104,7 @@ exports.checkValidEmail = (email, callback) => {
         };
         logger.request("checked valid email - " + email);
 <<<<<<< HEAD
+<<<<<<< HEAD
         return callback(results);
     });
 }
@@ -104,6 +119,8 @@ exports.checkValidAdmin = (username, callback) => {
         logger.request("checked valid admin - " + username);
 =======
 >>>>>>> 16ce1e4... Add logger functionality for errors/requests (#37)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         return callback(results);
     });
 }
@@ -153,6 +170,9 @@ exports.unbanUser = (username, callback) => {
         };
         logger.request("unbanned user - " + username);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         return callback(results);
     });
 }
@@ -169,8 +189,11 @@ exports.checkBanned = (username, callback) => {
     })
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 2a1fc09... Daily credit login feature (#36)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 }
 
 exports.getLastLogin = (username, callback) => {
@@ -208,6 +231,7 @@ exports.updateCredit = (username, amount, callback) => {
         logger.request("update user credit - " + username);
         return callback(results);
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -284,6 +308,8 @@ exports.updateCredit = (username, amount, callback) => {
 <<<<<<< HEAD
 >>>>>>> 6ca2192... Add logger functionality for errors/requests (#37)
 =======
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 }
 
 exports.getCredit = (username, callback) => {

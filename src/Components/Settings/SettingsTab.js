@@ -9,17 +9,21 @@ import {
 import './settings-tab.css';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import $ from "jquery";
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
 import { currentUser, currentUserEmail, changeUser } from '../../APIFunctions/user';
 
 class SettingsTab extends Component {
     state = {
         changePassword: false,
         username: currentUser(),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         newUsername: '',
@@ -35,6 +39,11 @@ class SettingsTab extends Component {
         email: currentUserEmail(),
         newEmail: '',
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+        newUsername: '',
+        email: currentUserEmail(),
+        newEmail: '',
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         password: '',
         newPassword: '',
         passwordError: false,
@@ -52,6 +61,7 @@ class SettingsTab extends Component {
         e.preventDefault();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // this.setState({
         //     passwordError: false,
@@ -61,6 +71,8 @@ class SettingsTab extends Component {
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         
         const userInfo = {
             username: this.state.username,
@@ -71,11 +83,14 @@ class SettingsTab extends Component {
             newPassword: this.state.newPassword
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             // changePassword: this.state.changePassword
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
 >>>>>>> f696f1b... Add functionality to delete a user when they want to (#44)
+=======
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
         }
         changeUser(userInfo, result => {
             if (result === "passwordError") this.setState({ passwordError: true });
@@ -92,36 +107,48 @@ class SettingsTab extends Component {
                         <Input type="text" name="username" value={this.state.newUser} onChange={event => { this.handleUsername(event) }} required></Input>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.usernameError ? <p>Username already exists!</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
                         {this.state.usernameError ? <p>Username already exists!</p> : <></>}
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+                        {this.state.usernameError ? <p>Username already exists!</p> : <></>}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
                     </FormGroup>
                     <FormGroup>
                         <Label>Email<span className="submit-asterik">*</span></Label>
                         <Input type="email" name="email" value={this.state.newEmail} onChange={event => { this.handleEmail(event) }} required></Input>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.emailError ? <p>Email already exists!</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
                         {this.state.emailError ? <p>Email already exists!</p> : <></>}
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+                        {this.state.emailError ? <p>Email already exists!</p> : <></>}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
                     </FormGroup>
                     <FormGroup>
                         <Label>Current Password<span className="submit-asterik">*</span></Label>
                         <Input type="password" name="password" value={this.state.password} onChange={event => { this.handlePassword(event) }} required></Input>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         {this.state.passwordError ? <p>Incorrect password</p> : <></>}
 =======
 >>>>>>> 232cad2... Add functionality to change user settings (#42)
 =======
                         {this.state.passwordError ? <p>Incorrect password</p> : <></>}
 >>>>>>> 57b49bb... Added functionality for user to submit feedback report (#54)
+=======
+                        {this.state.passwordError ? <p>Incorrect password</p> : <></>}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
                     </FormGroup>
                     {this.state.changePassword ?
                         (<FormGroup>
