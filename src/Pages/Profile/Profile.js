@@ -51,7 +51,8 @@ class Profile extends Component {
           <thead>
            <tr>
              <th>$$</th>
-             <th>Total Wins</th>
+             <th>Total Win</th>
+             <th>Total Loss</th>
              <th>Total Games Played</th>
              <th>Type of Game</th>
             </tr>
@@ -60,12 +61,14 @@ class Profile extends Component {
             <tr bgcolor="#77dd77">
               <th>{this.state.credit}</th>
               <th>10</th>
+              <th>0</th>
               <th>5</th>
               <th>Blackjack</th>
             </tr>
             <tr bgcolor="#ff6961">
               <th>{this.state.credit}</th>
               <th>10</th>
+              <th>1</th>
               <th>6</th>
               <th>Blackjack</th>
             </tr>
