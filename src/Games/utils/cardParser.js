@@ -17,6 +17,10 @@ class cardHandler {
         }
         let allImages = []
         for (let i = 0; i < this.hand.length; i++){
+            if (this.hand[i] === 0){
+                allImages.push('Purple.png')
+                continue
+            }
             let suit = Math.floor(this.hand[i] / 13);
             let number = this.hand[i] % 13;
             if (number === 0){

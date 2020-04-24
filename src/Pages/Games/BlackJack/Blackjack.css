@@ -15,9 +15,13 @@ tbody {
     color: white;
 }
 
-.grid {
+.cardsgrid {
     display: grid;
     color: black;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.deckcard {
+    width: 100px
 }

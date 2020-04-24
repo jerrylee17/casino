@@ -47,7 +47,7 @@ class BlackJackGame {
         hhigh += value;
       }
       if (hhigh > 21 && hlow < 21) {
-        hhigh = hlow;
+        hhigh -= 10;
       }
     }
     return [hlow, hhigh];

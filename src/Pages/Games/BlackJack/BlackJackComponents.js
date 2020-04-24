@@ -3,12 +3,14 @@ import {
   Jumbotron
 } from 'reactstrap'
 import { cardHandler } from '../../../Games/utils/cardParser'
-const imgPath = '../../../Images/Games/Cards'
 
-var images = require.context(imgPath, true, /\.(png|jpe?g|svg)$/);
-images.keys().forEach(function(key){
-    images(key);
-});
+function importAll(r) {
+  let images = {};
+  // eslint-disable-next-line
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+var images = importAll(require.context('../../../Images/Games/Cards', true, /\.(png|jpe?g|svg)$/));
 
 export const Title = (title) => (
   <Jumbotron>
@@ -25,13 +27,10 @@ export function HandDisplay(props) {
   const cardParser = new cardHandler(hand)
   let cardPath = cardParser.getCards('')
   return (
-    <section className='grid'>
+    <section className='cardsgrid'>
       {cardPath && cardPath.length && cardPath.map((object, index) => {
         return (
-          <div id={index}>
-            path = {object}
-            <img src={images[object]} />
-          </div>
+          <img className='deckcard' src={images[object]} alt=''/>
         )
       })}
     </section>

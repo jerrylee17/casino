@@ -4,6 +4,7 @@ import {
   Row,
   Col,
   Button,
+  Input,
 } from 'reactstrap'
 import './Blackjack.css'
 import { BlackJackGame } from '../../../Games/BlackJack/blackjack'
@@ -71,69 +72,87 @@ class BlackJack extends Component {
           <br />
           <Row>
             <Col>
-              <Button onClick={async () => {
-                this.startGame(game)
-                await this.handleGame(game)
-                console.log(this.state)
-              }}>
-                Start game
-              </Button>
-              <br />
-              <br />
-              <Button
-                hidden={this.state.winner === undefined}
-                onClick={async () => {
-                  if (!this.state.game || this.state.winner !== 100) {
-                    return
-                  }
-                  let game = this.state.game
-                  game.hit()
-                  if (!game.checkBust()) {
+              <center><h3>Player hand</h3></center>
+              <h6> Value: {this.state.handValue}</h6>
+              <br /> <br />
+              {this.state.game ?
+                <HandDisplay hand={this.state.game.playerHand} /> :
+                (<center>Game not started</center>)}
+            </Col>
+            <Col>
+              <div className='text-center'>
+                <Button
+                  size='lg'
+                  disabled={this.state.winner === 100}
+                  onClick={async () => {
+                    if (this.state.winner === 100) {
+                      return
+                    }
+                    this.startGame(game)
                     await this.handleGame(game)
-                  } else {
+                  }}>
+                  Start game
+              </Button>
+              </div>
+              <br />
+              <div className='text-center'>
+                <Button
+                  color='success'
+                  hidden={this.state.winner !== 100}
+                  onClick={async () => {
+                    if (!this.state.game || this.state.winner !== 100) {
+                      return
+                    }
+                    let game = this.state.game
+                    game.hit()
+                    if (!game.checkBust()) {
+                      await this.handleGame(game)
+                    } else {
+                      game.playDealer()
+                      game.determineWinner()
+                      await this.handleGameEnd(game)
+                    }
+                  }}>
+                  Hit
+                </Button>
+                <span>&emsp;</span>
+                <Button
+                  color='danger'
+                  hidden={this.state.winner !== 100}
+                  onClick={async () => {
+                    if (!this.state.game || this.state.winner !== 100) {
+                      return
+                    }
+                    let game = this.state.game
                     game.playDealer()
                     game.determineWinner()
                     await this.handleGameEnd(game)
-                  }
-                }}>
-                Hit
-              </Button>
-              {" "}
-              <Button
-                hidden={this.state.winner === undefined}
-                onClick={async () => {
-                  if (!this.state.game || this.state.winner !== 100) {
-                    return
-                  }
-                  let game = this.state.game
-                  game.playDealer()
-                  game.determineWinner()
-                  await this.handleGameEnd(game)
-                }}>
-                Stop
-              </Button>
+                  }}>
+                  Stop
+                </Button>
+                <br />
+                <br />
+                <Input
+                  placeholder='Enter wager. '
+                  disabled={this.state.winner === 100}
+                />
+              </div>
             </Col>
             <Col>
-              <center><h5>Player hand</h5></center>
-              {this.state.game ?
-                <div>
-                  <HandDisplay hand={this.state.game.playerHand} />
-                  {this.state.game.playerHand.join(' ')}
-                </div>
-                :
-                (<center>Game not started</center>)}
-              <br />
-              Value: {this.state.handValue}
-              <br />
-            </Col>
-            <Col>
-              <center><h5>Dealer hand</h5></center>
-              {this.state.game ?
-                this.state.game.dealerHand.join(' ') :
+              <center><h3>Dealer hand</h3></center>
+              <h6>{this.state.winner !== 100 ?
+                'Value: ' + this.state.dealerValue:
+                ''
+              }</h6>
+              <br /> <br />
+              {this.state.game ? (
+                (this.state.winner !== 100) ?
+                  <HandDisplay hand={this.state.game.dealerHand} /> :
+                  <HandDisplay hand={[0, this.state.game.dealerHand[0]]} />
+              ) :
                 (<center>Game not started</center>)
               }
               <br />
-              Value: {this.state.dealerValue}
             </Col>
           </Row>
         </Container>
