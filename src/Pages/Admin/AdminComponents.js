@@ -1,47 +1,7 @@
 import React from 'react'
 import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from 'reactstrap'
-
-export function ConfirmationModal(props) {
-  const { open,
-    setOpen,
-    Header,
-    Message,
-    onClose
-  } = props;
-  return (
-    <Modal isOpen={open}
-      toggle={() => {
-        setOpen(!open)
-      }}>
-      <ModalHeader>
-        {Header}
-      </ModalHeader>
-      <ModalBody>
-        {Message || 'No message'}
-      </ModalBody>
-      <ModalFooter>
-        <Button color='success'
-          onClick={() => {
-            onClose();
-          }}>
-          {Header}
-        </Button>
-        <Button color='danger'
-          onClick={() => {
-            setOpen(false);
-          }}>
-          Back
-        </Button>
-      </ModalFooter>
-    </Modal>
-  )
-}
+  Button
+} from 'reactstrap';
 
 export const tableHead = (titles) => (
   <thead>
@@ -53,19 +13,22 @@ export const tableHead = (titles) => (
   </thead>
 )
 
-export const tableBody = (user, setManage, setSelectedUser) => (
+export const tableBody = (user, setManage, setAction, setMessage, setSelectedUser) => (
   <tbody>
     {user && user.length ? (
       user.map((player, index) => (
         <tr key={index}>
           <th scope='row'>{index + 1}</th>
-          <td>{player.username}</td>
-          <td>{player.winrate}</td>
+          <td>{player.player_id}</td>
           <td>{player.no_of_chips}</td>
+          <td>{player.no_of_warns}</td>
+          <td>{player.banned === '1' ? '❌' : '✔️'}</td>
           <td>
             <Button color='danger' onClick={() => {
               setManage(true)
-              setSelectedUser(player.username)
+              setAction('Warn')
+              setMessage('')
+              setSelectedUser(player.player_id)
             }}>
               Manage
             </Button>
@@ -73,7 +36,7 @@ export const tableBody = (user, setManage, setSelectedUser) => (
         </tr>
       ))
     ) : (
-        <h1>This game is lonely</h1>
+        <></>
       )}
   </tbody>
 )

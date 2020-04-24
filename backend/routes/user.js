@@ -61,4 +61,10 @@ app.post("/api/check_admin", function (req, res) {
     });
 })
 
+app.get("/api/getUsers", function (req, res) {
+    userQuery.getUsers(result => {
+        res.json(result);
+    });
+})
+
 module.exports = app;

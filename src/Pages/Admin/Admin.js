@@ -15,59 +15,34 @@ import {
 import './Admin.css';
 import {
   tableHead,
-  tableBody,
-  ConfirmationModal
+  tableBody
 } from './AdminComponents';
-import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
-
-const user = [
-  {
-    username: 'Calvin',
-    winrate: '70%',
-    no_of_chips: '500'
-  },
-  {
-    username: 'Habib',
-    winrate: '2%',
-    no_of_chips: '1'
-  },
-  {
-    username: 'Jerry',
-    winrate: '50%',
-    no_of_chips: '100'
-  },
-  {
-    username: 'Buford',
-    winrate: '100%',
-    no_of_chips: '150'
-  },
-  {
-    username: 'Baljeet',
-    winrate: '100%',
-    no_of_chips: '150'
-  }
-];
+import { currentUser, checkValidAdmin, getUsers, warnUser, banUser, unbanUser } from '../../APIFunctions/user';
 
 export default function Admin() {
   let history = useHistory();
   const [manage, setManage] = useState(false)
   const [selectedUser, setSelectedUser] = useState('')
-  const [action, setAction] = useState('Warn')
-  const [message, setMessage] = useState('')
-  const [confirmModal, setConfirmModal] = useState(false)
+  const [action, setAction] = useState('Warn');
+  const [users, setUsers] = useState([])
+  const [message, setMessage] = useState('');
 
-  const tableTitles = ['#', 'Username', 'Winrate', 'Chip count', 'Action'];
+  const tableTitles = ['#', 'Username', 'Chip count', 'Warnings', 'Status', 'Action'];
 
-  const confirmProps = {
-    open: confirmModal,
-    setOpen: setConfirmModal,
-    Header: action + ' ' + selectedUser,
-    Message: message,
-    onClose: () => {
-      setConfirmModal(false);
-      setManage(false);
+  let handleAction = (user) => {
+    if (action === 'Warn') {
+      warnUser(user);
+      setMessage(user + ' has been warned!');
     }
-  };
+    else if (action === 'Ban') {
+      banUser(user);
+      setMessage(user + ' has been banned!');
+    }
+    else if (action === 'Unban') {
+      unbanUser(user);
+      setMessage(user + ' has been unbanned!');
+    }
+  }
 
   let checkAdmin = () => {
     let user = currentUser();
@@ -78,7 +53,13 @@ export default function Admin() {
     })
   }
 
+  // check if a user is an admin
   checkAdmin();
+
+  // get all users
+  getUsers(result => {
+    setUsers(result);
+  });
 
   return (
     <div id='admin-page'>
@@ -90,7 +71,7 @@ export default function Admin() {
       <Container>
         <Table size='sm' hover dark>
           {tableHead(tableTitles)}
-          {tableBody(user, setManage, setSelectedUser)}
+          {tableBody(users, setManage, setAction, setMessage, setSelectedUser)}
         </Table>
       </Container>
       <Modal isOpen={manage}
@@ -106,20 +87,13 @@ export default function Admin() {
               <Input type='select' onChange={e => {
                 setAction(e.target.value)
               }}>
-                {['Warn', 'Ban'].map((action, i) => (
-                  <option key={i}>{action}</option>
+                {['Warn', 'Ban', 'Unban'].map((action, i) => (
+                  <option key={i} id="action-input">{action}</option>
                 ))}
               </Input>
             </Row>
             <br />
-            <Row form>
-              Message
-              <Input type="textarea" onChange={e => {
-                setMessage(e.target.value)
-              }
-              } />
-            </Row>
-            <br />
+            {message !== '' ? <p>{message}</p> : <></>}
           </Container>
         </ModalBody>
         <ModalFooter>
@@ -127,6 +101,7 @@ export default function Admin() {
             color='danger'
             onClick={() => {
               setManage(false);
+              setMessage('');
             }}
           >
             Back
@@ -136,15 +111,12 @@ export default function Admin() {
             style={{
               float: 'left'
             }}
-            onClick={() => {
-              setConfirmModal(true)
-            }}
+            onClick={() => { handleAction(selectedUser) }}
           >
             {action} {selectedUser}
           </Button>
         </ModalFooter>
       </Modal>
-      <ConfirmationModal {...confirmProps} />
     </div>
   );
 }
