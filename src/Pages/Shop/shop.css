@@ -25,14 +25,26 @@
 }
 
 #shop-page .card {
-    transform: scale(0.9)
-    /* height: 700px; */
+    transition: 0.3s;
+    transform: scale(0.9);
+}
+
+#shop-page .card:hover {
+    transition: 0.3s;
+    transform: scale(0.95);
+    border: 5px solid #2c2f33;
 }
 
 #shop-page .card-title {
-    padding-bottom: 10px;
+    padding: 20px 0px 0px 0px;
+    text-align: center;
 }
 
 #shop-page #purchased-status {
     text-align: center;
 }
+
+#shop-page .card-body {
+    margin: 0px 10px 0px 10px;
+}
+

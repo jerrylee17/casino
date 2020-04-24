@@ -34,7 +34,7 @@ class Shop extends Component {
         badgeName: 'Ultimate OG Badge',
         badgeDesc: 'Show the newbies that you have been here since day 1! ',
         badgeCost: 1000,
-        badgePurchased: false
+        badgePurchased: true
       },
       {
         id: 3,
@@ -71,8 +71,9 @@ class Shop extends Component {
                     <div key={i}>
                       <Card>
                         <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
+                        {/* <br /> */}
+                        <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
                         <CardBody>
-                          <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
                           <Row>
                             <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
                           </Row>
@@ -92,8 +93,11 @@ class Shop extends Component {
                           <Row>
                             <div className='col text-center'>
                               <Button
-                              hidden={shopbadge.badgePurchased}
-                              >Purchase Badge!</Button>
+                                disabled={shopbadge.badgePurchased}
+                                className='btn-dark'
+                              >
+                                Purchase Badge!
+                              </Button>
                             </div>
                           </Row>
                         </CardFooter>
