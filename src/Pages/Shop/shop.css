@@ -7,9 +7,6 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.user_chip{
-    padding-left: 1300px;
-}
 
 #shop-page .jumbotron {
     padding-bottom: 20px;
@@ -28,7 +25,8 @@
 }
 
 #shop-page .card {
-    height: 700px;
+    transform: scale(0.9)
+    /* height: 700px; */
 }
 
 #shop-page .card-title {
@@ -36,5 +34,5 @@
 }
 
 #shop-page #purchased-status {
-    padding-left: 40px;
+    text-align: center;
 }

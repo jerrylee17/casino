@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import {
-  Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter,
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardImg,
+  CardFooter,
   Row,
+  Col,
   Button,
-  Jumbotron
+  Jumbotron,
+  Container
 } from "reactstrap";
 
 import ShopUser from './UserShop';
@@ -47,37 +55,56 @@ class Shop extends Component {
             <ShopUser></ShopUser>
           </div>
         </Jumbotron>
-        <h2>Badges of the Day!</h2>
-        <section className='grid'>
-          {shopbadges.map((shopbadge, i) => {
-            return (
-              <div key={i}>
-                <Card>
-                  <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
-                  <CardBody>
-                    <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
-                    <Row>
-                      <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
-                    </Row>
-                    <CardText>
-                      <Row style={{ height: '100px' }}>
-                        {shopbadge.badgeDesc}
-                      </Row>
-                    </CardText>
-                  </CardBody>
-
-                  <Row id="purchased-status">
-                    {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
-                  </Row>
-                  <CardFooter>
-                    <Button>Purchase Badge!</Button>
-                  </CardFooter>
-                </Card>
+        <Container>
+          <Row>
+            <Col>
+              <div className='text-center'>
+                <h2>Badges of the Day!</h2>
               </div>
-            )
-          })}
-        </section>
-
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <section className='grid'>
+                {shopbadges.map((shopbadge, i) => {
+                  return (
+                    <div key={i}>
+                      <Card>
+                        <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
+                        <CardBody>
+                          <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
+                          <Row>
+                            <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
+                          </Row>
+                          <CardText>
+                            <Row>
+                              {shopbadge.badgeDesc}
+                            </Row>
+                          </CardText>
+                        </CardBody>
+                        <CardFooter>
+                          <Row id="purchased-status">
+                            <div className='col text-center'>
+                              {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
+                              <br /> <br />
+                            </div>
+                          </Row>
+                          <Row>
+                            <div className='col text-center'>
+                              <Button
+                              hidden={shopbadge.badgePurchased}
+                              >Purchase Badge!</Button>
+                            </div>
+                          </Row>
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  )
+                })}
+              </section>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
