@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {
-  Jumbotron, Container, Row, Col,
+  Jumbotron, Container, Row, Col
 } from "reactstrap";
-import { 
-  Link 
+import {
+  Link
 } from "react-router-dom";
 import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
 import "./home.css";
@@ -17,7 +17,7 @@ import ProfileTwo from '../../Images/Landing/profile.svg';
 import ChangeProfileOne from '../../Images/Landing/human-two.svg';
 import ChangeProfileTwo from '../../Images/Landing/pen.svg';
 
-
+const groupMembers = ['Fanus Arefaine', 'Jerry Lee', 'Calvin Ly', 'Tiffany Nguyen', 'Habib Sorathia', 'Tien Tran'];
 
 class Home extends Component {
   state = {
@@ -56,7 +56,7 @@ class Home extends Component {
             <Col md={6} className='intro-title'>
               <h1>A home to online gambling</h1>
               <p>
-                Blips is the best outlet to play games, win chips, and 
+                Blips is the best outlet to play games, win chips, and
                 experience gambling during quarantine.
               </p>
               <Link to={'/Games/'} className="btn btn-success">Play Games</Link>
@@ -70,7 +70,7 @@ class Home extends Component {
                 <ul>
                   <li>
                     For each game you play, you can bet a certain amount of chips,
-                    if you win, you can take home twice (or more!) 
+                    if you win, you can take home twice (or more!)
                   </li>
                   <li>
                     There's a daily login bonus of 200 chips (24 hours after
@@ -85,70 +85,58 @@ class Home extends Component {
             </Col>
           </Row>
           <Row className="rows">
-            <Col md={6} className='col-txt'>
-              <h2>Shop <img src={ShoppingCart} alt="" className="imgs-icons"></img>
-              <img src={ShoppingBag} alt="" className="imgs-icons"></img></h2>
-              <p>
-                Spend all your hard earned chips at the shop, where you can buy
-                new badges and deck out your profile.
+            <Col className='col-txt component-outline'>
+              <Link className='component-outline' to={'/Shop/'}>
+                <h2>Shop <img src={ShoppingCart} alt="" className="imgs-icons"></img>
+                  <img src={ShoppingBag} alt="" className="imgs-icons"></img></h2>
+                <p>
+                  Spend all your hard earned chips at the shop, where you can buy
+                  new badges and deck out your profile.
               </p>
-              <Link to={'/Shop/'}>Shop</Link>
+              </Link>
             </Col>
-            <Col md={6} className='col-txt'>
-              <h2>Profile <img src={ProfileOne} alt="" className="imgs-icons"></img>
-              <img src={ProfileTwo} alt="" className="imgs-icons"></img></h2>
-              <p>
-                Check out your wins and losses, how many chips you have, and more
-                at your user profile.
-              </p> 
-              <Link to={'/Profile/'}>User Profile</Link>
+            <Col md={1}></Col>
+            <Col className='col-txt component-outline'>
+              <Link className='component-outline' to={'/Profile/'}>
+                <h2>Profile <img src={ProfileOne} alt="" className="imgs-icons"></img>
+                  <img src={ProfileTwo} alt="" className="imgs-icons"></img></h2>
+                <p>
+                  Check out your wins and losses, how many chips you have, and more
+                  at your user profile.
+              </p>
+              </Link>
             </Col>
           </Row>
           <Row className="rows">
-            <Col md={10} className='col-txt'>
-              <h2>User Settings <img src={ChangeProfileOne} alt="" className="imgs-icons"></img>
-                <img src={ChangeProfileTwo} alt="" className="imgs-icons"></img></h2>
-              <p>
-                Head over to the user settings page to change your account details
-                like your username, email, password, and more. Also, feel free to
-                give us feedback here about what we can improve about the website!
+            <Link className='component-outline' to={'/Settings/'}>
+              <Col md={10} className='col-txt'>
+                <h2>User Settings <img src={ChangeProfileOne} alt="" className="imgs-icons"></img>
+                  <img src={ChangeProfileTwo} alt="" className="imgs-icons"></img></h2>
+                <p>
+                  Head over to the user settings page to change your account details
+                  like your username, email, password, and more. Also, feel free to
+                  give us feedback here about what we can improve about the website!
               </p>
-              <Link to={'/Settings/'}>User Settings</Link>
-            </Col>
+              </Col>
+            </Link>
           </Row>
         </Container>
         <div id='contact-us'>
           <Container id='contact-us'>
-              <Row className='rows-contact'>
-                <Col className='col-contact'>
-                  <p><b>Made by:</b> Team 2 - CMPE 138</p>
-                </Col>
-              </Row>
-              <Row className='rows-contact'>
+            <Row className='rows-contact'>
+              <Col className='col-contact'>
+                <center> <p><b>Made by:</b> Team 2 - CMPE 138</p></center>
+              </Col>
+            </Row>
+            <Row className='rows-contact'>
+              {groupMembers.map((member) => (
                 <Col>
-                  <h6>Group members:</h6>
+                  <center><p>{member}</p></center>
                 </Col>
-                <Col>
-                  <p>Fanus Arefaine</p>
-                </Col>
-                <Col>
-                  <p>Jerry Lee</p>
-                </Col>
-                <Col>
-                  <p>Calvin Ly</p>
-                </Col>
-                <Col>
-                  <p>Tiffany Nguyen</p>
-                </Col>
-                <Col>
-                  <p>Habib Sorathia</p>
-                </Col>
-                <Col>
-                  <p>Tien Tran</p>
-                </Col>
-              </Row>
+              ))}
+            </Row>
           </Container>
-        {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
+          {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
         </div>
       </div>
     );

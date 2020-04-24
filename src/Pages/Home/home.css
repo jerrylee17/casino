@@ -44,6 +44,7 @@
 
 #contact-us {
     background-color: #36393f;
+    padding-bottom: 10px;
 }
 
 .col-contact {
@@ -53,4 +54,23 @@
 
 .rows-contact {
     margin-top: 25px;
+}
+
+.component-outline {
+    color: white;
+    transition: 0.3s;
+    /* border: 2px solid #6c3ff6; */
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.component-outline:hover {
+    z-index: 1;
+    padding: 10px 5px 10px 20px;
+    color: white;
+    text-decoration: none;
+    background-color: #57595c;
+    transition: 0.3s;
+    transform: scale(1.05);
+    border: 1px solid white;
 }
