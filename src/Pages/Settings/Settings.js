@@ -10,7 +10,8 @@ import {
 import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
-import Logo from '../../Images/settingLogo.png';
+import ContactUsTab from '../../Components/Settings/ContactUsTab';
+import Logo from '../../Images/Settings/settingsLogo.svg';
 
 class Settings extends Component {
   state = {
@@ -26,7 +27,7 @@ class Settings extends Component {
     return (
       <div id="setting-page">
         <Jumbotron>
-          <h1 className='display-4'>Settings <img src={Logo} class="image" alt="" id="settingLogo"></img></h1>
+          <h1 className='display-4'>Settings <img src={Logo} className="image" alt="" id="settingLogo"></img></h1>
         </Jumbotron>
         <div className="setting-box">
           <Nav tabs>
@@ -46,6 +47,14 @@ class Settings extends Component {
                 Delete Account
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink
+                className={this.state.activeTab === "3" ? 'active' : 'nonactive'}
+                onClick={() => { this.handleTabToggle("3") }}
+              >
+                Contact Us
+              </NavLink>
+            </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
@@ -53,6 +62,9 @@ class Settings extends Component {
             </TabPane>
             <TabPane tabId="2">
               <DeleteTab />
+            </TabPane>
+            <TabPane tabId="3">
+              <ContactUsTab />
             </TabPane>
           </TabContent>
         </div>

@@ -50,6 +50,12 @@ export function currentUserEmail() {
   return JSON.parse(jsonPayload).user.email;
 }
 
+export function getUsers(callback) {
+  $.get("http://localhost:5000/api/getUsers", function (data) {
+    return callback(data);
+  });
+}
+
 export function loginUser(username, password, callback) {
   $.post("http://localhost:5000/api/login", {
     username: username,
@@ -69,13 +75,14 @@ export function loginUser(username, password, callback) {
   });
 }
 
-export function registerUser(username, password, email, callback) {
+export function registerUser(username, password, email, admin, callback) {
   $.post(
     "http://localhost:5000/api/register",
     {
       username: username,
       email: email,
       password: password,
+      admin: admin
     },
     (data) => {
       console.log(data);
@@ -91,6 +98,9 @@ export function registerUser(username, password, email, callback) {
     }
     else if (result.emailError) {
       return callback('emailError');
+    }
+    else if (result.adminError) {
+      return callback('adminError');
     }
   });
 }
@@ -176,4 +186,71 @@ export function getCredit(user, callback) {
   ).then(result => {
     return callback(result);
   })
+}
+
+export function changeUser(userInfo, callback) {
+  $.post(
+    "http://localhost:5000/api/change-user",
+    {
+      userInfo: userInfo
+    }
+  ).then(result => {
+    if (result.token) {
+      localStorage.setItem("jwt", result.token);
+      localStorage.setItem("jwt-expire", Date.now() + 2 * 60 * 60 * 1000);
+      window.location.reload(true);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
+    else if (result.usernameError) {
+      return callback('usernameError');
+    }
+    else if (result.emailError) {
+      return callback('emailError');
+    }
+  });
+}
+
+export function deleteUser(user, callback) {
+  $.post(
+    "http://localhost:5000/api/delete-user",
+    {
+      user: user
+    }
+  ).then(result => {
+    if (result.token) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("jwt-expire");
+      window.location.reload(true);
+    }
+    else if (result.passwordError) {
+      return callback('passwordError');
+    }
+  });
+}
+
+export async function checkValidAdmin(username, callback) {
+  $.post(
+    "http://localhost:5000/api/check_admin",
+    {
+      username: username
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}
+
+export async function submitErrorReport(errorReport, callback) {
+  $.post(
+    "http://localhost:5000/api/error-report",
+    {
+      errorReport: errorReport
+    }
+  ).then(result => {
+    // window.location.reload(true);
+    if (result.success) {
+      return callback("success");
+    }
+  });
 }

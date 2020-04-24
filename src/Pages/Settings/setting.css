@@ -16,8 +16,8 @@
 }
 
 #settingLogo {
-    height: 80px;
-    width: 80px;
+    height: 120px;
+    width: 140px;
 }
 
 #setting-page .nav-tabs {
@@ -39,4 +39,18 @@
 
 #setting-page .delete-tab-btn{
     margin: 10px;
+}
+
+.nonactive.nav-link {
+    color: #fff;
+    background-color: #36393f;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #23272a;
+}
+
+.nav-tabs > li > a:hover {
+    color: #fff;
 }

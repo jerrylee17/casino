@@ -7,9 +7,6 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.user_chip{
-    padding-left: 1300px;
-}
 
 #shop-page .jumbotron {
     padding-bottom: 20px;
@@ -23,18 +20,31 @@
 }
 
 .image{
-    height: 100px;
-    width: 100px;
+    height: 130px;
+    width: 130px;
 }
 
 #shop-page .card {
-    height: 700px;
+    transition: 0.3s;
+    transform: scale(0.9);
+}
+
+#shop-page .card:hover {
+    transition: 0.3s;
+    transform: scale(0.95);
+    border: 5px solid #2c2f33;
 }
 
 #shop-page .card-title {
-    padding-bottom: 10px;
+    padding: 20px 0px 0px 0px;
+    text-align: center;
 }
 
 #shop-page #purchased-status {
-    padding-left: 40px;
+    text-align: center;
 }
+
+#shop-page .card-body {
+    margin: 0px 10px 0px 10px;
+}
+

@@ -1,8 +1,8 @@
 const connection = require('../connection');
 var logger = require('../logger');
 
-exports.selectAllUsers = (callback) => {
-    let SELECT_ALL_USERS_QUERY = 'SELECT * from users';
+exports.getUsers = (callback) => {
+    let SELECT_ALL_USERS_QUERY = 'SELECT player_id, no_of_chips, no_of_warns, banned FROM player';
     connection.query(SELECT_ALL_USERS_QUERY, (err, results) => {
         if (err) {
             logger.error(err);
@@ -12,16 +12,21 @@ exports.selectAllUsers = (callback) => {
     });
 }
 
-exports.registerUser = (username, email, hashedPassword, callback) => {
+exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     let currentDate = new Date().toJSON();
+    let REGISTER_QUERY;
     let REGISTER_QUERY_USER = "INSERT users VALUES ('" + username + "', '" + email + "', '" + hashedPassword + "');";
-    let REGISTER_QUERY_PLAYER = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+    if (admin) {
+        REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
+    } else {
+        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+    }
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) {
             logger.error(err);
             throw err;
         };
-        connection.query(REGISTER_QUERY_PLAYER, (err, results) => {
+        connection.query(REGISTER_QUERY, (err, results) => {
             if (err) {
                 logger.error(err);
                 throw err;
@@ -52,6 +57,18 @@ exports.checkValidEmail = (email, callback) => {
             throw err;
         };
         logger.request("checked valid email - " + email);
+        return callback(results);
+    });
+}
+
+exports.checkValidAdmin = (username, callback) => {
+    let FIND_ADMIN_QUERY = "SELECT * FROM user_admin WHERE admin_id='" + username + "'";
+    connection.query(FIND_ADMIN_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("checked valid admin - " + username);
         return callback(results);
     });
 }
