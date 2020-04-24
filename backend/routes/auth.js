@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var userQuery = require('../queries/user');
+var logger = require('../logger');
 const app = express();
+var settingsQuery = require('../queries/settings');
 
 app.use(cors());
 // support parsing of application/json type post data
@@ -30,13 +32,37 @@ app.post("/api/login", function (req, res) {
     if (validUser.length) {
       // compare input password & password in db
       bcrypt.compare(req.body.password, validUser[0].password, (err, result) => {
-        if (err) console.log(err);
+        if (err) {
+          logger.error(err);
+          throw err;
+        };
         if (result) {
-          jwt.sign({ user }, "secretkey", (err, token) => {
-            res.json({
-              token
-            });
-          });
+          // check if  user is admin or not
+          userQuery.checkValidAdmin(user.username, (adminResult) => {
+            if (adminResult.length) {
+              jwt.sign({ user }, "secretkey", (err, token) => {
+                res.json({
+                  token
+                });
+              });
+            } else {
+              // check if user is banned or not 
+              userQuery.checkBanned(user.username, (bannedResult) => {
+                let banned = bannedResult[0].banned;
+                if (banned === '1') {
+                  res.json({
+                    banned: true
+                  })
+                } else {
+                  jwt.sign({ user }, "secretkey", (err, token) => {
+                    res.json({
+                      token
+                    });
+                  });
+                }
+              })
+            }
+          })
         } else {
           res.json({
             error: true
@@ -54,11 +80,13 @@ app.post("/api/login", function (req, res) {
 app.post("/api/register", function (req, res) {
   let email = req.body.email;
   let user = { username: req.body.username, email: req.body.email };
+  let admin = req.body.admin;
   const saltRounds = 10;
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.password, salt, function (err, hashedPassword) {
       if (err) {
-        console.log(err);
+        logger.error(err);
+        throw err;
       } else {
         let usernameError = false;
         let emailError = false;
@@ -80,17 +108,47 @@ app.post("/api/register", function (req, res) {
               return;
             }
             if (!usernameError && !emailError) {
-              // Store new user in DB w/ password hash
-              userQuery.registerUser(user.username, email, hashedPassword, (result) => {
-                // automatically logs in the user
-                if (result) {
-                  jwt.sign({ user }, "secretkey", (err, token) => {
-                    res.json({
-                      token
+              if (admin) {
+                bcrypt.genSalt(saltRounds, function (err, salt) {
+                  bcrypt.hash(admin, salt, function (err, hashedAdminKey) {
+                    if (err) {
+                      logger.error(err);
+                      throw err;
+                    } else {
+                      bcrypt.compare("secretadminkey", hashedAdminKey, (err, result) => {
+                        if (result) {
+                          // Store new user in DB w/ password hash
+                          userQuery.registerUser(user.username, email, hashedPassword, admin, (result) => {
+                            // automatically logs in the user
+                            if (result) {
+                              jwt.sign({ user }, "secretkey", (err, token) => {
+                                res.json({
+                                  token
+                                });
+                              });
+                            }
+                          });
+                        } else {
+                          res.json({
+                            adminError: true
+                          })
+                        }
+                      })
+                    }
+                  })
+                })
+              } else {
+                userQuery.registerUser(user.username, email, hashedPassword, admin, (result) => {
+                  // automatically logs in the user
+                  if (result) {
+                    jwt.sign({ user }, "secretkey", (err, token) => {
+                      res.json({
+                        token
+                      });
                     });
-                  });
-                }
-              });
+                  }
+                });
+              }
             }
           });
         });
@@ -99,4 +157,103 @@ app.post("/api/register", function (req, res) {
   });
 });
 
+app.post("/api/change-user", function (req, res) {
+  logger.request('changing user information: ', req.body.userInfo);
+  const user = req.body.userInfo;
+  userQuery.checkValidUser(user.username, (result) => {
+    let validUser = result;
+    if (validUser.length) {
+      bcrypt.compare(user.password, validUser[0].password, (err, result) => {
+        if (err) logger.error(err);
+        if (result) {
+          // let usernameError = false;
+          // let emailError = false;
+          userQuery.checkValidUser(user.newUsername, (exists) => {
+            if (exists.length) {
+              if (exists[0].username !== user.username) {
+                // usernameError = true;
+                res.json({
+                  usernameError: true
+                })
+                return;
+              };
+            };
+          })
+          if (user.newEmail !== user.email) {
+            userQuery.checkValidEmail(user.newEmail, (exists) => {
+              if (exists.length) {
+                if (exists[0].email !== user.email) {
+                  // emailError = true;
+                  res.json({
+                    emailError: true
+                  })
+                  return;
+                };
+              };
+            })
+          }
+
+          if (user.newPassword === '') {
+            user.newPassword = user.password;
+          }
+          // udpate new password
+          const saltRounds = 10;
+          bcrypt.hash(user.newPassword, saltRounds, function (err, hashedPassword) {
+            // store everything in the db
+            settingsQuery.changeUserInformation(user.newUsername, user.newEmail, hashedPassword, user.username, (result) => {
+              if (result) {
+                jwt.sign({ user }, "secretkey", (err, token) => {
+                  res.json({
+                    token
+                  });
+                });
+              };
+            });
+          });
+        } else {
+          res.json({
+            passwordError: true
+          })
+        }
+      })
+    }
+  });
+});
+
+app.post("/api/delete-user", function (req, res) {
+  logger.request('deleting user with information: ', req.body.user);
+  const user = req.body.user;
+  userQuery.checkValidUser(user.username, (result) => {
+    let valid = result;
+    if (valid.length) {
+      bcrypt.compare(user.password, valid[0].password, (err, result) => {
+        if (err) logger.error(err);
+        if (result) {
+          settingsQuery.deleteUser(user.username, (result) => {
+            if (result) {
+              jwt.sign({ user }, "secretkey", (err, token) => {
+                res.json({
+                  token
+                });
+              });
+            }
+          });
+        }
+      });
+    } else {
+      res.json({
+        passwordError: true
+      })
+    }
+  });
+});
+
+app.post("/api/error-report", function(req, res) {
+  if (req.body.userReport !== '') {
+    logger.userReport(req.body.errorReport);
+  }
+  res.json({
+    success: true
+  })
+})
 module.exports = app;

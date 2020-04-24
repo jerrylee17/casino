@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Row } from "reactstrap";
 import "./landing.css";
-import icon from "../../Images/icon-white.png";
+import icon from "../../Images/Landing/icon-white.png";
 import LoginModal from "../../Components/Auth/LoginModal";
 import RegisterModal from "../../Components/Auth/RegisterModal";
-import $ from "jquery";
 
 class Landing extends Component {
   state = {
@@ -12,11 +11,6 @@ class Landing extends Component {
     showSignUp: false,
   };
 
-  componentDidMount() {
-    $.get("http://localhost:5000/users", function (data) {
-      console.log(data);
-    });
-  }
 
   render() {
     const toggleSignInModal = () => {

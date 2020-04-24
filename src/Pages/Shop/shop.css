@@ -11,13 +11,40 @@
     padding-left: 1300px;
 }
 
+<<<<<<< HEAD
 #shop-page {
     background-color: #2c2f33;
     height: 100%;
+=======
+#shop-page .jumbotron {
+    padding-bottom: 20px;
+}
+
+#shop-page {
+    background-color: #2c2f33;
+    height: 100%;
+    min-height: 100vh;
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943
     color: white;
 }
 
 .image{
     height: 100px;
     width: 100px;
+<<<<<<< HEAD
 }
+=======
+}
+
+#shop-page .card {
+    height: 700px;
+}
+
+#shop-page .card-title {
+    padding-bottom: 10px;
+}
+
+#shop-page #purchased-status {
+    padding-left: 40px;
+}
+>>>>>>> 57b49bb3dcd3f98a077d519be6ec92ec132e5943

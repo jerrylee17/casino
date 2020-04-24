@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { currentUser } from "../../APIFunctions/user";
+import {
+  Jumbotron, Container, Row, Col
+} from "reactstrap";
+import { currentUser, dailyReward, updateLogin, updateCredit } from "../../APIFunctions/user";
+import "./home.css";
 
 class Home extends Component {
   state = {
@@ -7,13 +11,40 @@ class Home extends Component {
   };
   componentDidMount() {
     this.setState({
-      user: currentUser()
+      user: currentUser(),
+      dailyReward: false
+    })
+    dailyReward(result => {
+      let lastLogin = result[0].last_login;
+      let checkLogin = new Date(new Date(lastLogin).getTime() + 60 * 60 * 24 * 1000).toJSON(); // lastLogin + 24hours
+      let currentLogin = new Date().toJSON();
+      // eligible for daily reward if equal to or more than 24 hours
+      if (currentLogin >= checkLogin) {
+        this.setState({ dailyReward: true });
+        updateLogin(); // updates last login date
+        updateCredit(this.state.user, 500); // updates user's credit
+      }
     })
   }
   render() {
     return (
-      <div>
-        <h1>Hello {this.state.user}</h1>
+      <div id="home-page">
+        <Jumbotron>
+          <div className='text-center'>
+            <h1 className='display-4'>Blips - Home</h1>
+          </div>
+        </Jumbotron>
+        <Container>
+          <h1>A home to online gambling</h1>
+          <Row>
+            <h2>Games</h2>
+          </Row>
+          <Row>
+            <h2>Shop</h2>
+          </Row>
+        
+        </Container>
+        {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
       </div>
     );
   }

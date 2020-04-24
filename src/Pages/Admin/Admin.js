@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Jumbotron,
   Table,
@@ -10,39 +11,74 @@ import {
   ModalFooter,
   Input,
   Row
-} from 'reactstrap'
-import './Admin.css'
+} from 'reactstrap';
+import './Admin.css';
+import {
+  tableHead,
+  tableBody,
+  ConfirmationModal
+} from './AdminComponents';
+import { currentUser, checkValidAdmin } from '../../APIFunctions/user';
+
+const user = [
+  {
+    username: 'Calvin',
+    winrate: '70%',
+    no_of_chips: '500'
+  },
+  {
+    username: 'Habib',
+    winrate: '2%',
+    no_of_chips: '1'
+  },
+  {
+    username: 'Jerry',
+    winrate: '50%',
+    no_of_chips: '100'
+  },
+  {
+    username: 'Buford',
+    winrate: '100%',
+    no_of_chips: '150'
+  },
+  {
+    username: 'Baljeet',
+    winrate: '100%',
+    no_of_chips: '150'
+  }
+];
 
 export default function Admin() {
+  let history = useHistory();
   const [manage, setManage] = useState(false)
+  const [selectedUser, setSelectedUser] = useState('')
+  const [action, setAction] = useState('Warn')
+  const [message, setMessage] = useState('')
+  const [confirmModal, setConfirmModal] = useState(false)
 
-  const user = [
-    {
-      username: 'Calvin',
-      winrate: '70%',
-      no_of_chips: '500'
-    },
-    {
-      username: 'Habib',
-      winrate: '2%',
-      no_of_chips: '1'
-    },
-    {
-      username: 'Jerry',
-      winrate: '50%',
-      no_of_chips: '100'
-    },
-    {
-      username: 'Buford',
-      winrate: '100%',
-      no_of_chips: '150'
-    },
-    {
-      username: 'Baljeet',
-      winrate: '100%',
-      no_of_chips: '150'
+  const tableTitles = ['#', 'Username', 'Winrate', 'Chip count', 'Action'];
+
+  const confirmProps = {
+    open: confirmModal,
+    setOpen: setConfirmModal,
+    Header: action + ' ' + selectedUser,
+    Message: message,
+    onClose: () => {
+      setConfirmModal(false);
+      setManage(false);
     }
-  ];
+  };
+
+  let checkAdmin = () => {
+    let user = currentUser();
+    checkValidAdmin(user, result => {
+      if (!result.length) {
+        history.push('/')
+      }
+    })
+  }
+
+  checkAdmin();
 
   return (
     <div id='admin-page'>
@@ -53,34 +89,8 @@ export default function Admin() {
       </Jumbotron>
       <Container>
         <Table size='sm' hover dark>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Username</th>
-              <th>winrate</th>
-              <th>Chip count</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user && user.length ? (
-              user.map((player, index) => (
-                <tr>
-                  <th scope='row'>{index + 1}</th>
-                  <td>{player.username}</td>
-                  <td>{player.winrate}</td>
-                  <td>{player.no_of_chips}</td>
-                  <td>
-                    <Button color='danger' onClick={() => setManage(true)}>
-                      Manage
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-                <h1>This game is lonely</h1>
-              )}
-          </tbody>
+          {tableHead(tableTitles)}
+          {tableBody(user, setManage, setSelectedUser)}
         </Table>
       </Container>
       <Modal isOpen={manage}
@@ -88,21 +98,26 @@ export default function Admin() {
           setManage(!manage)
         }}
       >
-        <ModalHeader> Manage user </ModalHeader>
+        <ModalHeader> Manage {selectedUser} </ModalHeader>
         <ModalBody>
           <Container>
             <Row form>
               Action
-              <Input type='select'>
-                {['Warn', 'Ban', 'Modify Chips'].map((action) => (
-                  <option>{action}</option>
+              <Input type='select' onChange={e => {
+                setAction(e.target.value)
+              }}>
+                {['Warn', 'Ban'].map((action, i) => (
+                  <option key={i}>{action}</option>
                 ))}
               </Input>
             </Row>
             <br />
             <Row form>
               Message
-              <Input type="textarea" />
+              <Input type="textarea" onChange={e => {
+                setMessage(e.target.value)
+              }
+              } />
             </Row>
             <br />
           </Container>
@@ -110,17 +125,26 @@ export default function Admin() {
         <ModalFooter>
           <Button
             color='danger'
-            style={{
-              float: 'left'
-            }}
             onClick={() => {
               setManage(false);
             }}
           >
             Back
           </Button>
+          <Button
+            color='success'
+            style={{
+              float: 'left'
+            }}
+            onClick={() => {
+              setConfirmModal(true)
+            }}
+          >
+            {action} {selectedUser}
+          </Button>
         </ModalFooter>
       </Modal>
+      <ConfirmationModal {...confirmProps} />
     </div>
   );
 }
