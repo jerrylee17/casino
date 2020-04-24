@@ -11,6 +11,8 @@ import Errors from "./Pages/Error/Errors.js";
 import Admin from './Pages/Admin/Admin.js'
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
+import BlackJack from './Pages/Games/BlackJack/Blackjack.js'
+
 const browserHistory = createBrowserHistory();
 
 export default function Routing() {
@@ -55,6 +57,10 @@ export default function Routing() {
     {
       Component: Admin,
       path: "/admin"
+    },
+    {
+      Component: BlackJack,
+      path: "/blackjack"
     }
   ];
   return (

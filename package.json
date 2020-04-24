@@ -15,11 +15,14 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.3",
+    "prompt-sync": "^4.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "require-context": "^1.1.0",
+    "require-dir": "^1.2.0"
   },
   "main": "server.js",
   "scripts": {
