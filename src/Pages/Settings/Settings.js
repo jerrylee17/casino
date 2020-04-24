@@ -11,7 +11,7 @@ import './setting.css';
 import SettingsTab from '../../Components/Settings/SettingsTab';
 import DeleteTab from '../../Components/Settings/DeleteTab';
 import ContactUsTab from '../../Components/Settings/ContactUsTab';
-import Logo from '../../Images/Settings/settingLogo.png';
+import Logo from '../../Images/Settings/settingsLogo.svg';
 
 class Settings extends Component {
   state = {

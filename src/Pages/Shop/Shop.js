@@ -7,7 +7,7 @@ import {
 } from "reactstrap";
 
 import ShopUser from './UserShop';
-import Logo from '../../Images/Shop/shopLogo.png';
+import Logo from '../../Images/Shop/shop.svg';
 import './shop.css'
 
 class Shop extends Component {

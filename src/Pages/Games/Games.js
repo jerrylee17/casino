@@ -6,7 +6,7 @@ import {
   Input,
   Button
 } from "reactstrap";
-import Logo from '../../Images/Games/gameLogo.png';
+import Logo from '../../Images/Games/gaming.svg';
 import blackjackLogo from '../../Images/Games/blackjackLogo.jpg';
 import coinLogo from '../../Images/Games/coinLogo.png';
 import slotsLogo from '../../Images/Games/slotsLogo.png';
@@ -47,7 +47,7 @@ class Games extends Component {
       <div id="games-page">
         <Jumbotron className="jumbo">
           <div className='text-center'>
-            <h1 className='display-4'>Games <img src={Logo} className="image" alt="" id="gameLogo"></img></h1>
+            <h1 className='display-4'>Games <img src={Logo} alt="" id="gameLogo"></img></h1>
           </div>
         </Jumbotron>
         <div className="games text-center">
