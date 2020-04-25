@@ -37,6 +37,7 @@ class Home extends Component {
         this.setState({ dailyReward: true });
         updateLogin(); // updates last login date
         updateCredit(this.state.user, 500); // updates user's credit
+        window.setTimeout(() => { this.setState({ dailyReward: false }) }, 3000)
       }
     })
   }
