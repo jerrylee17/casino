@@ -12,6 +12,7 @@ import Admin from './Pages/Admin/Admin.js'
 import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
 import BlackJack from './Pages/Games/BlackJack/Blackjack.js'
+import slotsWrapper from './Pages/Games/Slots/slotsWrapper.js'
 
 const browserHistory = createBrowserHistory();
 
@@ -61,6 +62,10 @@ export default function Routing() {
     {
       Component: BlackJack,
       path: "/blackjack"
+    },
+    {
+      Component: slotsWrapper,
+      path: "/slots"
     }
   ];
   return (
