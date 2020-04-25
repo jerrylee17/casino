@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import {Table, Container, Jumbotron} from 'reactstrap'
 import "./Profile.css"
 import { currentUser, getCredit } from "../../APIFunctions/user";
-import ProfilePic from '../../Images/profile-pic.png'
-import Badge1 from '../../Images/Gold Chain.png'
-import Badge2 from '../../Images/Make it rain.png'
-import Badge3 from '../../Images/Raining Coin.png'
-
+import ProfilePic from '../../Images/Profile/profile.svg'
 
 class Profile extends Component {
   state = {
@@ -38,9 +34,9 @@ class Profile extends Component {
       <section>
         <div class="gallery">
           <div>
-            <img src={Badge1} width="50"></img>
-            <img src={Badge2} width="50"></img>
-            <img src={Badge3} width="50"></img>
+            <img src={ProfilePic} width="50"></img>
+            <img src={ProfilePic} width="50"></img>
+            <img src={ProfilePic} width="50"></img>
           </div>
         </div>
       </section>
