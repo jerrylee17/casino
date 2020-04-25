@@ -67,4 +67,16 @@ app.get("/api/getUsers", function (req, res) {
     });
 })
 
+app.post("/api/getBadges", function (req, res) {
+    userQuery.getBadges(req.body.username, result => {
+        res.json(result);
+    });
+})
+
+app.post("/api/buyBadge", function (req, res) {
+    userQuery.buyBadge(req.body.username, req.body.badgeName, req.body.badgeCost, result => {
+        res.json(result);
+    });
+})
+
 module.exports = app;

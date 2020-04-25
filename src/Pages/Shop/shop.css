@@ -19,9 +19,9 @@
     color: white;
 }
 
-.image{
-    height: 130px;
-    width: 130px;
+#shop-page img{
+    height: 150px;
+    width: 150px;
 }
 
 #shop-page .card {
@@ -45,6 +45,20 @@
 }
 
 #shop-page .card-body {
+    height: 150px;
     margin: 0px 10px 0px 10px;
 }
 
+#shop-page #credit-error-alert {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#shop-page #purchased-alert {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

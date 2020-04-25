@@ -11,7 +11,6 @@ class ShopUser extends Component {
       credit: 0
     })
     getCredit(currentUser(), result => {
-      console.log(result)
       this.setState({
         credit: result[0].no_of_chips
       })

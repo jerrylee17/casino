@@ -19,8 +19,22 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     if (admin) {
         REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
     } else {
-        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, '" + currentDate + "', false);";
+        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, 0, 0,'" + currentDate + "', false);";
     }
+
+    // Create badges for the user
+    let BADGES_QUERY =
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Casual Noob', 2000, 'We are all noobs over here, we gotta start somewhere (casually).');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'All Threes', 2500, 'Getting three matching slots thrice!');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Get That Coin', 2500, 'Has won the coin flip at least once!');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Make it Rain', 5000, 'Accumulated 5000 chips in total balance. Make it rain!');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Blackjack Master', 10000, 'Congratulations for winning 10+ times! No need to be modest.');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'True Winner', 10000, 'Won in Blackjack, Coin Flip, and Slots.');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, '30 Day Login Streak', 15000, 'This user has logged in 30 days in a row! That is impressive.');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Casual Pro', 25000, 'Too pro for winning 1000 chips in total from all the games you participated in.');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'God Chains', 50000, 'This badge is the ultimate badge to show everyone who is boss.');" +
+        "INSERT badges_shop VALUES ('" + username + "', false, 'Senpai Club', 1000000, 'The senpai badge! Senpai on the streets.');";
+
     connection.query(REGISTER_QUERY_USER, (err, results) => {
         if (err) {
             logger.error(err);
@@ -32,7 +46,14 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
                 throw err;
             };
             logger.request("registered user - " + username);
-            return callback(true);
+            connection.query(BADGES_QUERY, (err, results) => {
+                if (err) {
+                    logger.error(err);
+                    throw err;
+                }
+                logger.request("inserted badges - " + username);
+                return callback(true);
+            })
         });
     });
 }
@@ -167,5 +188,40 @@ exports.getCredit = (username, callback) => {
         };
         logger.request("get user credits - " + username);
         return callback(results);
+    });
+}
+
+exports.getBadges = (username, callback) => {
+    let GET_BADGES = "SELECT * FROM badges_shop WHERE owner_name='" + username + "' ORDER BY badge_cost ASC;";
+    connection.query(GET_BADGES, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user badges - " + username);
+        return callback(results);
+    });
+}
+
+exports.buyBadge = (username, badgeName, badgeCost, callback) => {
+    this.getCredit(username, result => {
+        // eligible to buy badge
+        let credit = result[0].no_of_chips;
+        if (credit >= badgeCost) {
+            // deduct credits and purchase badge
+            this.updateCredit(username, -badgeCost, result => {
+                let UPDATE_BADGE_OWN = "UPDATE badges_shop SET owned=true WHERE owner_name='" + username + "' AND badge_name='" + badgeName + "';";
+                connection.query(UPDATE_BADGE_OWN, (err, results) => {
+                    if (err) {
+                        logger.error(err);
+                        throw err;
+                    };
+                    logger.request("update user badge own - " + username);
+                    return callback(results);
+                });
+            })
+        } else {
+            return callback("CreditError");
+        }
     });
 }

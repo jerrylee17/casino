@@ -67,11 +67,10 @@ on update cascade
 
 create table badges_shop(
 owner_name varchar(15) not null,
-owned varchar(5) DEFAULT 'false', 
-badge_name varchar(10) not null,
+owned boolean DEFAULT false, 
+badge_name varchar(30) not null,
 badge_cost int,
-description varchar(100),
-primary key(badge_name, badge_cost),
+description varchar(120),
 foreign key(owner_name) REFERENCES users(username)
 on update cascade
 ); 
