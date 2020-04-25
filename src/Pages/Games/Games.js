@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Jumbotron,
   Form,
@@ -12,18 +13,17 @@ import coinLogo from '../../Images/Games/coinLogo.png';
 import slotsLogo from '../../Images/Games/slotsLogo.png';
 import "./Games.css"
 
-class Games extends Component {
-  state = {
-    currentGame: "blackjack"
-  }
+export default function Games() {
+  let history = useHistory();
+  const [currentGame, setCurrentGame] = useState('blackjack');
 
-  handleGameChange = (e) => {
+  let handleGameChange = (e) => {
     e.preventDefault();
-    this.setState({ currentGame: e.target.value })
+    setCurrentGame(e.target.value);
   }
 
-  handleGameImage = () => {
-    let game = this.state.currentGame;
+  let handleGameImage = () => {
+    let game = currentGame;
     if (game === "blackjack") {
       return (
         <img src={blackjackLogo} alt="" />
@@ -41,33 +41,33 @@ class Games extends Component {
     }
   }
 
-  render() {
-    let gameLogo = this.handleGameImage();
-    return (
-      <div id="games-page">
-        <Jumbotron className="jumbo">
-          <div className='text-center'>
-            <h1 className='display-4'>Games <img src={Logo} alt="" id="gameLogo"></img></h1>
-          </div>
-        </Jumbotron>
-        <div className="games text-center">
-          {gameLogo}
-        </div>
-        <div className="game-input">
-          <Form id="game-form" inline>
-            <FormGroup>
-              <Input type="select" name="select" id="game-select" onChange={this.handleGameChange}>
-                <option value="blackjack">Blackjack</option>
-                <option value="coinflip">Coin Flip</option>
-                <option value="slots">Slots</option>
-              </Input>
-            </FormGroup>
-            <Button color="success">Play</Button>
-          </Form>
-        </div>
-      </div>
-    );
+  let handlePlay = () => {
+    history.push('/' + currentGame);
   }
-}
 
-export default Games;
+  let gameLogo = handleGameImage();
+  return (
+    <div id="games-page">
+      <Jumbotron className="jumbo">
+        <div className='text-center'>
+          <h1 className='display-4'>Games <img src={Logo} alt="" id="gameLogo"></img></h1>
+        </div>
+      </Jumbotron>
+      <div className="games text-center">
+        {gameLogo}
+      </div>
+      <div className="game-input">
+        <Form id="game-form" inline>
+          <FormGroup>
+            <Input type="select" name="select" id="game-select" onChange={handleGameChange}>
+              <option value="blackjack">Blackjack</option>
+              <option value="coinflip">Coin Flip</option>
+              <option value="slots">Slots</option>
+            </Input>
+          </FormGroup>
+          <Button color="success" onClick={handlePlay}>Play</Button>
+        </Form>
+      </div>
+    </div>
+  );
+}
