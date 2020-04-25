@@ -5,9 +5,10 @@ const connection = mysql.createPool({
     user: "root",
     password: "password",
     database: "blits",
-    waitForConnections : true,
-    wait_timeout : 28800,
-    connect_timeout :10
+    waitForConnections: true,
+    wait_timeout: 28800,
+    connect_timeout: 10,
+    multipleStatements: true
 });
 
 module.exports = connection;

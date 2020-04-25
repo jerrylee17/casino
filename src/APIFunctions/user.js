@@ -254,3 +254,27 @@ export async function submitErrorReport(errorReport, callback) {
     }
   });
 }
+
+export function getBadges(username, callback) {
+  $.post(
+    "http://localhost:5000/api/getBadges",
+    {
+      username: username
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}
+
+export function buyBadge(username, badgeName, badgeCost, callback) {
+  $.post(
+    "http://localhost:5000/api/buyBadge",
+    {
+      username: username,
+      badgeName: badgeName,
+      badgeCost: badgeCost
+    }
+  ).then(result => {
+    return callback(result);
+  });
+}

@@ -11,47 +11,66 @@ import {
   Col,
   Button,
   Jumbotron,
-  Container
+  Container,
+  Alert
 } from "reactstrap";
-
 import ShopUser from './UserShop';
 import Logo from '../../Images/Shop/shop.svg';
-import './shop.css'
+import './shop.css';
+import { currentUser, getBadges, buyBadge } from '../../APIFunctions/user';
+
+function importAll(r) {
+  let images = {};
+  // eslint-disable-next-line
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+var images = importAll(require.context('../../Images/Badges', true, /\.(png|jpe?g|svg)$/));
 
 class Shop extends Component {
-  render() {
 
-    const shopbadges = [
-      {
-        id: 1,
-        badgeName: '10+ Wins in Blackjack',
-        badgeDesc: 'Show off that you won over 10+ times in Blackjack!',
-        badgeCost: 10,
-        badgePurchased: false
-      },
-      {
-        id: 2,
-        badgeName: 'Ultimate OG Badge',
-        badgeDesc: 'Show the newbies that you have been here since day 1! ',
-        badgeCost: 1000,
-        badgePurchased: true
-      },
-      {
-        id: 3,
-        badgeName: '10 Consecutive Days Online!',
-        badgeDesc: 'Been online 10 days in a row is huge dedication! Get this badge to reward yourself.',
-        badgeCost: 10,
-        badgePurchased: false
+  state = {
+    user: currentUser(),
+    creditError: false,
+    purchasedAlert: false,
+    badges: []
+  }
+
+  componentDidMount() {
+    getBadges(this.state.user, result => {
+      this.setState({ badges: result })
+    })
+  }
+
+  handlePurchased = (badgeName, badgeCost) => {
+    buyBadge(this.state.user, badgeName, badgeCost, result => {
+      if (result === "CreditError") {
+        this.setState({ creditError: true })
+        window.setTimeout(() => {
+          this.setState({ creditError: false })
+        }, 3000)
       }
-    ];
+      if (result.affectedRows === 1) {
+        this.setState({ purchasedAlert: true })
+        window.setTimeout(() => {
+          window.location.reload(false);
+        }, 3000)
+      }
+    });
+  }
 
+  render() {
     // would like to add an image attribute in the future and replace chip balance w/ variable
 
     return (
       <div id="shop-page">
+        {this.state.creditError ?
+          (<Alert id="credit-error-alert" color="danger">Not enough credit.</Alert>) : <></>}
+        {this.state.purchasedAlert ?
+          (<Alert id="purchased-alert" color="success">Purchased badge! Refreshing to reflect changes.</Alert>) : <></>}
         <Jumbotron>
           <div className='text-center'>
-            <h1 className='display-4'>Shop <img src={Logo} className="image" alt=""></img> </h1>
+            <h1 className='display-4'>Shop <img src={images} className="image" alt=""></img> </h1>
             <ShopUser></ShopUser>
           </div>
         </Jumbotron>
@@ -66,35 +85,32 @@ class Shop extends Component {
           <Row>
             <Col>
               <section className='grid'>
-                {shopbadges.map((shopbadge, i) => {
+                {this.state.badges.map((shopbadge, i) => {
                   return (
                     <div key={i}>
                       <Card>
-                        <CardImg top src="https://66.media.tumblr.com/5e6f6e2c27c54517ea7b945919c97a39/tumblr_pfvoq9eW8j1uaogmwo2_250.png" size="100" />
+                        <div className="text-center"><CardImg top src={images[shopbadge.badge_name + ".png"]} /></div>
                         {/* <br /> */}
-                        <CardTitle><h5>{shopbadge.badgeName}</h5></CardTitle>
+                        <CardTitle><h5>{shopbadge.badge_name}</h5></CardTitle>
                         <CardBody>
-                          <Row>
-                            <CardSubtitle ><b>Cost: </b>{shopbadge.badgeCost}</CardSubtitle>
-                          </Row>
+                          <CardSubtitle ><b>Cost: </b>{shopbadge.badge_cost}</CardSubtitle>
                           <CardText>
-                            <Row>
-                              {shopbadge.badgeDesc}
-                            </Row>
+                            {shopbadge.description}
                           </CardText>
                         </CardBody>
                         <CardFooter>
                           <Row id="purchased-status">
                             <div className='col text-center'>
-                              {shopbadge.badgePurchased ? "Already Purchased!" : "Not purchased!"}
+                              {shopbadge.owned ? "Already Purchased!" : "Not purchased!"}
                               <br /> <br />
                             </div>
                           </Row>
                           <Row>
                             <div className='col text-center'>
                               <Button
-                                disabled={shopbadge.badgePurchased}
+                                disabled={shopbadge.owned ? true : false}
                                 className='btn-dark'
+                                onClick={() => { this.handlePurchased(shopbadge.badge_name, shopbadge.badge_cost) }}
                               >
                                 Purchase Badge!
                               </Button>
