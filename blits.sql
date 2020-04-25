@@ -24,14 +24,14 @@ on update cascade on delete cascade
 );
 
 create table user_admin(
-admin_id varchar(10) not null,
+admin_id varchar(15) not null,
 primary key(admin_id),
 foreign key(admin_id) REFERENCES users(username)
 on delete cascade
 );
 
 create table user_profile(
-user_id varchar(10) not null,
+user_id varchar(15) not null,
 no_of_chips int,
 loss_win_ratio int,
 primary key(user_id),

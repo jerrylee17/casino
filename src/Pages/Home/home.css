@@ -74,3 +74,10 @@
     transform: scale(1.05);
     border: 1px solid white;
 }
+
+#home-page #reward-alert {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
