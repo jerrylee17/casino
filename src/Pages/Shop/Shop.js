@@ -15,7 +15,7 @@ import {
   Alert
 } from "reactstrap";
 import ShopUser from './UserShop';
-import Logo from '../../Images/Shop/shop.svg';
+import Logo from '../../Images/Shop/shopLogo.png';
 import './shop.css';
 import { currentUser, getBadges, buyBadge } from '../../APIFunctions/user';
 
@@ -70,7 +70,7 @@ class Shop extends Component {
           (<Alert id="purchased-alert" color="success">Purchased badge! Refreshing to reflect changes.</Alert>) : <></>}
         <Jumbotron>
           <div className='text-center'>
-            <h1 className='display-4'>Shop <img src={images} className="image" alt=""></img> </h1>
+            <h1 className='display-4'>Shop <img src={Logo} className="image" alt=""></img> </h1>
             <ShopUser></ShopUser>
           </div>
         </Jumbotron>
