@@ -12,7 +12,7 @@ UNIQUE(username, email)
 
 create table player(
 player_id varchar(15) not null,
-no_of_chips int,
+no_of_chips int DEFAULT 500,
 no_of_wins int,
 no_of_losses int,
 no_of_warns int,
@@ -24,20 +24,19 @@ on update cascade on delete cascade
 );
 
 create table user_admin(
-admin_id varchar(10) not null,
+admin_id varchar(15) not null,
 primary key(admin_id),
 foreign key(admin_id) REFERENCES users(username)
 on delete cascade
 );
 
-create table user_profile(
-user_id varchar(10) not null,
-no_of_chips int,
-loss_win_ratio int,
-primary key(user_id),
-foreign key(user_id) REFERENCES users(username)
-on delete cascade
-);
+-- create table user_profile(
+-- user_id varchar(15) not null,
+-- loss_win_ratio int,
+-- primary key(user_id),
+-- foreign key(user_id) REFERENCES users(username),
+-- on delete cascade
+-- );
 
 create table game(
 game_no int not null,
