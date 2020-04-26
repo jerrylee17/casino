@@ -14,8 +14,11 @@ function RepeatButton(props) {
 class Slots extends Component {
   constructor(props) {
     super(props);
+    this.result = props.result
+    this.start = props.start
+    this.go = props.go
     this.state = {
-      winner: null
+      winner: null,
     }
     this.finishHandler = this.finishHandler.bind(this)
     this.handleClick = this.handleClick.bind(this);
@@ -23,6 +26,7 @@ class Slots extends Component {
 
   handleClick() {
     this.setState({ winner: null });
+    this.result(null)
     this.emptyArray();
     this._child1.forceUpdateHandler();
     this._child2.forceUpdateHandler();
@@ -38,6 +42,7 @@ class Slots extends Component {
       const first = Slots.matches[0];
       let results = Slots.matches.every(match => match === first)
       this.setState({ winner: results });
+      this.result(results)
     }
   }
 
@@ -51,6 +56,7 @@ class Slots extends Component {
 
     if (winner !== null) {
       repeatButton = <RepeatButton onClick={this.handleClick} />
+      this.result(winner)
     }
 
     return (

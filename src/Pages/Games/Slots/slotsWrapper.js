@@ -1,27 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
   Row,
   Col
 } from 'reactstrap'
 import Slots from './slots'
-import { Title } from './slotsComponents'
+import {
+  Title,
+  UserDashboard
+} from './slotsComponents'
 import './slotsWrapper.css'
 
-export default function slotsWrapper(props) {
+export default function SlotsWrapper() {
+  const [wager, setWager] = useState(0)
+  const [start, setStart] = useState(false)
+  const [winner, setWinner] = useState(null)
+  const [go, setGo] = useState(false)
+  const startSlots = () => {
+    setStart(true)
+  }
+
+  const SlotsProps = {
+    result: (win) => {
+      setWinner(win)
+    },
+    start: start
+  }
+
+  const userDashboardProps = {
+    dispComponents: (start !== false && winner === null),
+    setWager: setWager,
+    startGame: startSlots
+  }
   return (
     <div id='slots-page' >
       {Title('Slots')}
       <Container>
         <Row>
           <Col md={5}>
-            <h1>User panel</h1>
+            <UserDashboard {...userDashboardProps} />
           </Col>
           <Col>
-            <Slots />
+            {start ? <Slots {...SlotsProps} /> : (
+              <center><h1>Start game first!</h1></center>
+            )}
           </Col>
         </Row>
       </Container>
     </div>
   )
 }
+
