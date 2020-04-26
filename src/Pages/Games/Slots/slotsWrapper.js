@@ -19,18 +19,21 @@ export default function SlotsWrapper() {
   const startSlots = () => {
     setStart(true)
   }
+  const endSlots = () => {
+    setStart(false)
+  }
 
   const SlotsProps = {
     result: (win) => {
       setWinner(win)
     },
-    start: start
   }
 
   const userDashboardProps = {
-    dispComponents: (start !== false && winner === null),
+    dispComponents: (start !== false),
     setWager: setWager,
-    startGame: startSlots
+    startGame: startSlots,
+    endGame: endSlots
   }
   return (
     <div id='slots-page' >

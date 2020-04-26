@@ -15,8 +15,7 @@ class Slots extends Component {
   constructor(props) {
     super(props);
     this.result = props.result
-    this.start = props.start
-    this.go = props.go
+    // this.start = props.start
     this.state = {
       winner: null,
     }

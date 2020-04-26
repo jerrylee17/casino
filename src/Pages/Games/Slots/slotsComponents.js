@@ -17,7 +17,8 @@ export function UserDashboard(props) {
   const {
     startGame,
     dispComponents,
-    setWager
+    setWager,
+    endGame
   } = props
   return (
     <div>
@@ -27,9 +28,16 @@ export function UserDashboard(props) {
         <Button
           color='success'
           size='lg'
-          disabled={dispComponents}
+          hidden={dispComponents}
           onClick={startGame}>
           Start game
+        </Button>
+        <Button
+          color='success'
+          size='lg'
+          hidden={!dispComponents}
+          onClick={endGame}>
+          Reset Wager
         </Button>
       </div>
       <br />
