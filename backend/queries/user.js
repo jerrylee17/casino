@@ -19,7 +19,7 @@ exports.registerUser = (username, email, hashedPassword, admin, callback) => {
     if (admin) {
         REGISTER_QUERY = "INSERT user_admin VALUES ('" + username + "');"
     } else {
-        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 0, 0, 0, 0,'" + currentDate + "', false);";
+        REGISTER_QUERY = "INSERT player VALUES ('" + username + "', 500, 0, 0, 0,'" + currentDate + "', false);";
     }
 
     // Create badges for the user

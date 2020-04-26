@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Jumbotron, Container, Row, Col
+  Jumbotron, Container, Row, Col, Alert
 } from "reactstrap";
 import {
   Link
@@ -37,12 +37,14 @@ class Home extends Component {
         this.setState({ dailyReward: true });
         updateLogin(); // updates last login date
         updateCredit(this.state.user, 500); // updates user's credit
+        window.setTimeout(() => { this.setState({ dailyReward: false }) }, 3000)
       }
     })
   }
   render() {
     return (
       <div id="home-page">
+        {this.state.dailyReward ? (<Alert id="reward-alert" color="success">You have received your daily reward! +500 chips</Alert>) : <></>}
         <Jumbotron>
           <div className='text-center'>
             <h1 className='display-4'>Home <img src={Logo} alt="" id="homeLogo"></img></h1>
@@ -129,14 +131,13 @@ class Home extends Component {
               </Col>
             </Row>
             <Row className='rows-contact'>
-              {groupMembers.map((member) => (
-                <Col>
+              {groupMembers.map((member, i) => (
+                <Col key={i}>
                   <center><p>{member}</p></center>
                 </Col>
               ))}
             </Row>
           </Container>
-          {this.state.dailyReward ? (<p>You have received your daily reward! +500 chips</p>) : <></>}
         </div>
       </div>
     );
