@@ -11,7 +11,6 @@ class Landing extends Component {
     showSignUp: false,
   };
 
-
   render() {
     const toggleSignInModal = () => {
       this.setState({
