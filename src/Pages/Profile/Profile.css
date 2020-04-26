@@ -1,6 +1,7 @@
 #profile-page {
     background-color: #2c2f33;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     color: white;
 }
 .jumbo {
@@ -21,4 +22,9 @@ th{
 .gallery{
     display: flex;
     justify-content: center;
+}
+
+.images {
+    height: 50px;
+    width: 50px;
 }

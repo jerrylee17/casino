@@ -225,3 +225,51 @@ exports.buyBadge = (username, badgeName, badgeCost, callback) => {
         }
     });
 }
+
+exports.getWinrate = (username, callback) => {
+    let GET_WINRATE_QUERY = "SELECT no_of_wins, no_of_losses FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_WINRATE_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}
+
+exports.getWins = (username, callback) => {
+    let GET_WINS_QUERY = "SELECT no_of_wins FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_WINS_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}
+
+exports.getLosses = (username, callback) => {
+    let GET_LOSSES_QUERY = "SELECT no_of_losses FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_LOSSES_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}
+
+exports.getGameType = (username, callback) => {
+    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE player_id='" + username + "';";
+    connection.query(GET_GAME_TYPE_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}

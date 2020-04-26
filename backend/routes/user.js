@@ -79,4 +79,27 @@ app.post("/api/buyBadge", function (req, res) {
     });
 })
 
+app.post("/api/getWinrate", function (req, res) {
+    userQuery.getWinrate(req.body.username, result => {
+        res.json(result);
+    });
+})
+
+app.post("/api/getWins", function (req, res) {
+    userQuery.getWins(req.body.username, result => {
+        res.json(result);
+    });
+})
+
+app.post("/api/getLosses", function (req, res) {
+    userQuery.getLosses(req.body.username, result => {
+        res.json(result);
+    });
+})
+
+app.post("/api/getGameType", function (req, res) {
+    userQuery.getLosses(req.body.username, result => {
+        res.json(result);
+    });
+})
 module.exports = app;

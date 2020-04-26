@@ -12,7 +12,7 @@ UNIQUE(username, email)
 
 create table player(
 player_id varchar(15) not null,
-no_of_chips int,
+no_of_chips int default 500,
 no_of_wins int,
 no_of_losses int,
 no_of_warns int,
