@@ -312,9 +312,9 @@ export function getLosses(user, callback) {
   })
 }
 
-export function getGameType(user, callback) {
+export function getHistory(user, callback) {
   $.post(
-    "http://localhost:5000/api/getGameType",
+    "http://localhost:5000/api/getHistory",
     {
       username: user
     }
@@ -323,16 +323,6 @@ export function getGameType(user, callback) {
   })
 }
 
-export function getWinner(user, callback) {
-  $.post(
-    "http://localhost:5000/api/getWinner",
-    {
-      username: user
-    }
-  ).then(result => {
-    return callback(result);
-  })
-}
 export function playGame(username, wager, game, winner, callback) {
   $.post(
     "http://localhost:5000/api/playGame", 

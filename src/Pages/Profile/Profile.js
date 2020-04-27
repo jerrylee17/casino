@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Table, Container, Jumbotron} from 'reactstrap'
 import "./Profile.css"
-import { currentUser, getCredit, getBadges, getWinrate, getWins, getLosses, getGameType, getWinner } from "../../APIFunctions/user";
+import { currentUser, getCredit, getBadges, getWinrate, getWins, getLosses, getHistory } from "../../APIFunctions/user";
 import ProfilePic from '../../Images/Profile/profile.svg'
 
 function importAll(r) {
@@ -16,8 +16,9 @@ class Profile extends Component {
   state = {
     user: "",
     badges: [],
-    game_type: [],
+    games: [],
     winrate: 0,
+    own: false,
   };
   componentDidMount() {
     this.setState({
@@ -52,18 +53,15 @@ class Profile extends Component {
         losses: result[0].no_of_losses
       })
     })
-    getGameType(currentUser(),result =>{
+    getHistory(currentUser(),result =>{
       this.setState({
-        game_type: result[0].game_type
+        games: result
       })
-    })
-    getWinner(currentUser(),result =>{
-      this.setState({
-        winner: result[0].winner
-      })
+      console.log(this.state.games)
     })
   }
   render() {
+    let own = false;
     return (
       <div id="profile-page">
         <Jumbotron className="jumbo">
@@ -78,12 +76,15 @@ class Profile extends Component {
         <div class="gallery">
           <div>
             {this.state.badges.map((Badge,i) => {
+              console.log(this.state.badges.length);
               if (Badge.owned){
+                own = true;
                 return (
                   <img className="images" key={i} src={images[Badge.badge_name+".png"]} alt=""></img>
                 )
               }
             })}
+            {own ? "" : <p>You don't have any badges. Check out our shop</p>}
           </div>
         </div>
       </section>
@@ -92,26 +93,25 @@ class Profile extends Component {
       <Container>
         <Table bgcolor="#00FF00">
           <thead>
-           <tr>
-             <th>$$</th>
-             <th>Total Wins</th>
-             <th>Total Losses</th>
+           <tr id="TableHeader">
+             <th>Game #</th>
+             <th>Win/Loss</th>
+             <th>Wager</th>
              <th>Type of Game</th>
             </tr>
           </thead>
           <tbody>
-            <tr className={this.state.winner ? 'background-red' : 'background-green'}>
-              <th>{this.state.credit}</th>
-              <th>{this.state.wins}</th>
-              <th>{this.state.losses}</th>
-              <th>{this.state.game_type}</th>
-            </tr>
-            <tr className={this.state.winner ? 'background-red' : 'background-green'}>
-              <th>{this.state.credit}</th>
-              <th>{this.state.wins}</th>
-              <th>{this.state.losses}</th>
-              <th>{this.state.game_type}</th>
-            </tr>
+          {this.state.games.map((game,i) => {
+            let game_state = {0:"Loss", 1:"Tie", 2:"Win"};
+            return (
+              <tr className={game_state[game.winner]} key={i}>
+                <th>{i}</th>
+                <th>{game_state[game.winner]}</th>
+                <th>{game.wager_amt}</th>
+                <th>{game.game_type}</th>
+              </tr>
+            )
+            })}
           </tbody>
         </Table>
       </Container>

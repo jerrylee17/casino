@@ -262,9 +262,9 @@ exports.getLosses = (username, callback) => {
     });
 }
 
-exports.getGameType = (username, callback) => {
-    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE game_starter='" + username + "';";
-    connection.query(GET_GAME_TYPE_QUERY, (err, results) => {
+exports.getHistory = (username, callback) => {
+    let GET_HISTORY_QUERY = "SELECT * FROM game WHERE game_starter='" + username + "';";
+    connection.query(GET_HISTORY_QUERY, (err, results) => {
         if (err) {
             logger.error(err);
             throw err;
@@ -273,18 +273,6 @@ exports.getGameType = (username, callback) => {
         return callback(results);
     });
 }
-
-// exports.getWinner = (username, callback) => {
-//     let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT game_starter='" + username + "';";
-//     connection.query(GET_WINNER_QUERY, (err, results) => {
-//         if (err) {
-//             logger.error(err);
-//             throw err;
-//         };
-//         logger.request("get user credits - " + username);
-//         return callback(results);
-//     });
-// }
 
 exports.playGame = (username, wager, game, winner, callback) => {
   let chipUpdate;

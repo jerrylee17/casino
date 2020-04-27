@@ -97,14 +97,8 @@ app.post("/api/getLosses", function (req, res) {
     });
 })
 
-app.post("/api/getGameType", function (req, res) {
-    userQuery.getGameType(req.body.username, result => {
-        res.json(result);
-    });
-})
-
-app.post("/api/getWinner", function (req, res) {
-    userQuery.getWinner(req.body.username, result => {
+app.post("/api/getHistory", function (req, res) {
+    userQuery.getHistory(req.body.username, result => {
         res.json(result);
     });
 })
