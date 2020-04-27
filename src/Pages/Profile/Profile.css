@@ -1,24 +1,51 @@
 #profile-page {
     background-color: #2c2f33;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     color: white;
 }
-.jumbo {
+#profile-page .jumbo {
     background-color: #303338;
     color: white;
 }
-th ,td{
+#profile-page th ,td{
     border-bottom: 1px solid black;
 }
-th{
-    color: white;
+
+#profile-page th{
+    color: #303338;
 }
-.center{
+#profile-page .center{
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-.gallery{
+#profile-page .gallery{
     display: flex;
     justify-content: center;
+}
+
+#profile-page .images {
+    height: 50px;
+    width: 50px;
+}
+
+#profile-page .Loss {
+    background-color: #FF6961;
+}
+
+#profile-page .Win {
+    background-color: #77dd77;
+}
+
+#profile-page .Tie{
+    background-color: #fdfd96;
+}
+
+#profile-page .Container {
+    max-height: 100%;
+}
+
+#profile-page #TableHeader {
+    background-color: #AEC6CF;
 }

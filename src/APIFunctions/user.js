@@ -279,6 +279,50 @@ export function buyBadge(username, badgeName, badgeCost, callback) {
   });
 }
 
+export function getWinrate(user, callback) {
+  $.post(
+    "http://localhost:5000/api/getWinrate",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function getWins(user, callback) {
+  $.post(
+    "http://localhost:5000/api/getWins",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function getLosses(user, callback) {
+  $.post(
+    "http://localhost:5000/api/getLosses",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
+export function getHistory(user, callback) {
+  $.post(
+    "http://localhost:5000/api/getHistory",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}
+
 export function playGame(username, wager, game, winner, callback) {
   $.post(
     "http://localhost:5000/api/playGame", 
