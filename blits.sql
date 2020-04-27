@@ -45,9 +45,11 @@ game_status varchar(10)
 wager_amt int not null,
 game_type varchar (9)
 	constraint check_type check(game_type in ('Blackjack', 'Coin Flip', 'Slots')) ENFORCED,
-winner varchar(10) not null,
+game_starter varchar(15) not null,
+-- 0 = game_starter loses, 1 = tie, 2 = game_starter wins
+winner int not null,
 primary key(game_no),
-constraint game_winner foreign key(winner) REFERENCES player(player_id)
+constraint game_starter foreign key(game_starter) REFERENCES player(player_id)
 on update cascade,
 UNIQUE(game_no)
 );
