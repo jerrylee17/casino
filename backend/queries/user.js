@@ -263,7 +263,7 @@ exports.getLosses = (username, callback) => {
 }
 
 exports.getGameType = (username, callback) => {
-    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE player_id='" + username + "';";
+    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE SELECT player_id FROM player WHERE player_id='" + username + "';";
     connection.query(GET_GAME_TYPE_QUERY, (err, results) => {
         if (err) {
             logger.error(err);
