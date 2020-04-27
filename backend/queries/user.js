@@ -232,8 +232,11 @@ exports.playGame = (username, wager, game, winner, callback) => {
   if (winner == 0) {
     chipUpdate = wager*(-1);
   } else if (winner == 2) {
-    win = 1
+    win = 1;
     chipUpdate = wager;
+    if (game == 'Slots'){
+      chipUpdate = wager*50;
+    }
   } else {
     chipUpdate = 0;
   }

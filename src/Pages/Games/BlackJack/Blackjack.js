@@ -12,10 +12,16 @@ import {
   Title,
   HandDisplay
 } from './BlackJackComponents'
+import { 
+  currentUser, 
+  playGame 
+} from '../../../APIFunctions/user'
+
 
 
 class BlackJack extends Component {
   state = {
+    user: currentUser(),
     handValue: 0,
     dealerValue: 0
   }
