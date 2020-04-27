@@ -263,7 +263,7 @@ exports.getLosses = (username, callback) => {
 }
 
 exports.getGameType = (username, callback) => {
-    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE SELECT player_id FROM player WHERE player_id='" + username + "';";
+    let GET_GAME_TYPE_QUERY = "SELECT game_type FROM game WHERE game_starter='" + username + "';";
     connection.query(GET_GAME_TYPE_QUERY, (err, results) => {
         if (err) {
             logger.error(err);
@@ -275,7 +275,7 @@ exports.getGameType = (username, callback) => {
 }
 
 exports.getWinner = (username, callback) => {
-    let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT player_id FROM player WHERE player_id='" + username + "';";
+    let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT game_starter='" + username + "';";
     connection.query(GET_WINNER_QUERY, (err, results) => {
         if (err) {
             logger.error(err);

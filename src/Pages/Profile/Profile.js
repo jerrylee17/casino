@@ -100,7 +100,7 @@ class Profile extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr className={this.state.winner ? 'background-green' : 'background-red'}>
+            <tr className={this.state.winner ? 'background-red' : 'background-green'}>
               <th>{this.state.credit}</th>
               <th>{this.state.wins}</th>
               <th>{this.state.losses}</th>

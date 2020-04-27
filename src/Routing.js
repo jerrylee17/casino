@@ -13,7 +13,7 @@ import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
 import BlackJack from './Pages/Games/BlackJack/Blackjack.js'
 import SlotsWrapper from './Pages/Games/Slots/slotsWrapper.js'
-import Coinflip from './Pages/Games/CoinFlip/Coinflip.js'
+import Coinflip from './Pages/Games/CoinFlip/coinflip.js'
 
 const browserHistory = createBrowserHistory();
 
