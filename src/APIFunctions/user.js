@@ -322,3 +322,14 @@ export function getGameType(user, callback) {
     return callback(result);
   })
 }
+
+export function getWinner(user, callback) {
+  $.post(
+    "http://localhost:5000/api/getWinner",
+    {
+      username: user
+    }
+  ).then(result => {
+    return callback(result);
+  })
+}

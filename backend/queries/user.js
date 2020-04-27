@@ -273,3 +273,15 @@ exports.getGameType = (username, callback) => {
         return callback(results);
     });
 }
+
+exports.getWinner = (username, callback) => {
+    let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT player_id FROM player WHERE player_id='" + username + "';";
+    connection.query(GET_WINNER_QUERY, (err, results) => {
+        if (err) {
+            logger.error(err);
+            throw err;
+        };
+        logger.request("get user credits - " + username);
+        return callback(results);
+    });
+}

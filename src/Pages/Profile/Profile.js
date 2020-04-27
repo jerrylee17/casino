@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Table, Container, Jumbotron} from 'reactstrap'
 import "./Profile.css"
-import { currentUser, getCredit, getBadges, getWinrate, getWins, getLosses, getGameType } from "../../APIFunctions/user";
+import { currentUser, getCredit, getBadges, getWinrate, getWins, getLosses, getGameType, getWinner } from "../../APIFunctions/user";
 import ProfilePic from '../../Images/Profile/profile.svg'
 
 function importAll(r) {
@@ -17,6 +17,7 @@ class Profile extends Component {
     user: "",
     badges: [],
     winrate: 0,
+    winner: 0,
   };
   componentDidMount() {
     this.setState({
@@ -54,6 +55,11 @@ class Profile extends Component {
     getGameType(currentUser(),result =>{
       this.setState({
         game_type: result[0].game_type
+      })
+    })
+    getWinner(currentUser(),result =>{
+      this.setState({
+        winner: result[0].winner
       })
     })
   }
@@ -94,7 +100,7 @@ class Profile extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className={this.state.winner ? 'background-green' : 'background-red'}>
               <th>{this.state.credit}</th>
               <th>{this.state.wins}</th>
               <th>{this.state.losses}</th>

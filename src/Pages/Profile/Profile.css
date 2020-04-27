@@ -28,3 +28,11 @@ th{
     height: 50px;
     width: 50px;
 }
+
+.background-red {
+    background-color: red;
+}
+
+.background-green {
+    background-color: green;
+}
