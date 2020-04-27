@@ -36,3 +36,7 @@ th{
 .background-green {
     background-color: green;
 }
+
+.Container {
+    max-height: 100%;
+}
