@@ -15,10 +15,10 @@ class Slots extends Component {
   constructor(props) {
     super(props);
     this.result = props.result
-    // this.start = props.start
     this.state = {
       winner: null,
     }
+    this.saveResult = props.saveResult
     this.finishHandler = this.finishHandler.bind(this)
     this.handleClick = this.handleClick.bind(this);
   }
@@ -45,6 +45,7 @@ class Slots extends Component {
       let results = Slots.matches.every(match => match === first)
       this.setState({ winner: results });
       this.result(results)
+      this.saveResult(results)
     }
   }
 

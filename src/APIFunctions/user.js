@@ -279,6 +279,7 @@ export function buyBadge(username, badgeName, badgeCost, callback) {
   });
 }
 
+<<<<<<< HEAD
 export function getWinrate(user, callback) {
   $.post(
     "http://localhost:5000/api/getWinrate",
@@ -333,3 +334,18 @@ export function getWinner(user, callback) {
     return callback(result);
   })
 }
+=======
+export function playGame(username, wager, game, winner, callback) {
+  $.post(
+    "http://localhost:5000/api/playGame", 
+    {
+      username,
+      wager,
+      game,
+      winner
+    }
+  ).then(result => {
+    return callback(result)
+  })
+}
+>>>>>>> 1280373fe3a327819ff115054f31fc7e5ad407f7
