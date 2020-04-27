@@ -20,6 +20,7 @@ import {
 
 
 class BlackJack extends Component {
+  wager = 0
   state = {
     user: currentUser(),
     handValue: 0,
@@ -50,11 +51,14 @@ class BlackJack extends Component {
     const [, phigh] = await game.getHandValue(game.playerHand);
     const [, dhigh] = await game.getHandValue(game.dealerHand);
     let winner = game.determineWinner()
-    this.setState({
+    await this.setState({
       game,
       handValue: phigh,
       dealerValue: dhigh,
       winner: winner
+    })
+    playGame(this.state.user, this.wager, 'Blackjack', winner, () => {
+      console.log('Logged')
     })
   }
 
@@ -141,6 +145,9 @@ class BlackJack extends Component {
                 <Input
                   placeholder='Enter wager. '
                   disabled={this.state.winner === 100}
+                  onChange={(e) => {
+                    this.wager = e.target.value
+                  }}
                 />
               </div>
             </Col>
