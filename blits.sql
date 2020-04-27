@@ -27,7 +27,7 @@ create table user_admin(
 admin_id varchar(15) not null,
 primary key(admin_id),
 foreign key(admin_id) REFERENCES users(username)
-on delete cascade
+on update cascade on delete cascade
 );
 
 -- create table user_profile(
@@ -50,7 +50,7 @@ game_starter varchar(15) not null,
 winner int not null,
 primary key(game_no),
 constraint game_starter foreign key(game_starter) REFERENCES player(player_id)
-on update cascade,
+on update cascade on delete cascade,
 UNIQUE(game_no)
 );
 
@@ -63,7 +63,7 @@ foreign key(game_id) REFERENCES game(game_no)
 on update cascade,
 opponent varchar(10) not null,
 foreign key(opponent) REFERENCES users(username)
-on update cascade
+on update cascade on delete cascade
 );
 
 create table badges_shop(
@@ -73,5 +73,5 @@ badge_name varchar(30) not null,
 badge_cost int,
 description varchar(120),
 foreign key(owner_name) REFERENCES users(username)
-on update cascade
+on update cascade on delete cascade
 ); 
