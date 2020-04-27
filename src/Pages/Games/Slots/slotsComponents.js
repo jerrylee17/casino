@@ -49,7 +49,9 @@ export function UserDashboard(props) {
         onChange={(e) => {
           setWager(e.target.value)
         }}
-      />
+      /> <br />
+      Note: Winning slots gives you 50 times of your wager amount. Losing will subtract the wager.
+
     </div>
   )
 }
