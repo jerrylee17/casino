@@ -22,6 +22,9 @@ class Slots extends Component {
     this.finishHandler = this.finishHandler.bind(this)
     this.handleClick = this.handleClick.bind(this);
   }
+  componentDidMount() {
+    this.handleClick()
+  }
 
   handleClick() {
     this.setState({ winner: null });

@@ -15,7 +15,7 @@ import {
   Alert
 } from "reactstrap";
 import ShopUser from './UserShop';
-// import Logo from '../../Images/Shop/shop.svg';
+import Logo from '../../Images/Shop/shop.svg';
 import './shop.css';
 import { currentUser, getBadges, buyBadge } from '../../APIFunctions/user';
 

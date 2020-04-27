@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Container,
   Row,
@@ -15,12 +15,12 @@ export default function SlotsWrapper() {
   const [wager, setWager] = useState(0)
   const [start, setStart] = useState(false)
   const [winner, setWinner] = useState(null)
-  const [go, setGo] = useState(false)
   const startSlots = () => {
     setStart(true)
   }
   const endSlots = () => {
     setStart(false)
+    setWinner(null)
   }
 
   const SlotsProps = {
@@ -33,7 +33,8 @@ export default function SlotsWrapper() {
     dispComponents: (start !== false),
     setWager: setWager,
     startGame: startSlots,
-    endGame: endSlots
+    endGame: endSlots,
+    winner: winner
   }
   return (
     <div id='slots-page' >
@@ -44,9 +45,11 @@ export default function SlotsWrapper() {
             <UserDashboard {...userDashboardProps} />
           </Col>
           <Col>
-            {start ? <Slots {...SlotsProps} /> : (
-              <center><h1>Start game first!</h1></center>
-            )}
+            <div id='slots-component'>
+              {start ? <Slots {...SlotsProps} /> : (
+                <center><h1>Start game first!</h1></center>
+              )}
+            </div>
           </Col>
         </Row>
       </Container>
