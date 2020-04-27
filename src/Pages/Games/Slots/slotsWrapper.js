@@ -10,11 +10,16 @@ import {
   UserDashboard
 } from './slotsComponents'
 import './slotsWrapper.css'
+import {
+  currentUser,
+  playGame
+} from '../../../APIFunctions/user'
 
 export default function SlotsWrapper() {
   const [wager, setWager] = useState(0)
   const [start, setStart] = useState(false)
   const [winner, setWinner] = useState(null)
+  const user = currentUser()
   const startSlots = () => {
     setStart(true)
   }
@@ -23,10 +28,19 @@ export default function SlotsWrapper() {
     setWinner(null)
   }
 
+  const saveResult = (win) => {
+    let result = win ? 2 : 0
+    console.log(result)
+    playGame(user, wager, 'Slots', result, () => {
+      console.log('Logged')
+    })
+  }
+
   const SlotsProps = {
     result: (win) => {
       setWinner(win)
     },
+    saveResult: saveResult
   }
 
   const userDashboardProps = {

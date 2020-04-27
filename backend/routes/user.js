@@ -79,4 +79,16 @@ app.post("/api/buyBadge", function (req, res) {
     });
 })
 
+app.post("/api/playGame", function(req, res) {
+    const {
+        username, 
+        wager, 
+        game, 
+        winner
+    } = req.body
+    userQuery.playGame(username, wager, game, winner, result => {
+        res.json(result)
+    })
+})
+
 module.exports = app;

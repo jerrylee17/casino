@@ -278,3 +278,17 @@ export function buyBadge(username, badgeName, badgeCost, callback) {
     return callback(result);
   });
 }
+
+export function playGame(username, wager, game, winner, callback) {
+  $.post(
+    "http://localhost:5000/api/playGame", 
+    {
+      username,
+      wager,
+      game,
+      winner
+    }
+  ).then(result => {
+    return callback(result)
+  })
+}

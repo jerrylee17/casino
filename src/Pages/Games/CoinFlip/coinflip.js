@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Button,
-  Input,
   Row,
   Col,
-  Container,
-  Jumbotron
+  Container
 } from 'reactstrap'
 import './Coinflip.css'
 import {
   Title,
   UserDashboard
 } from './CoinflipComponents'
+import { 
+  currentUser, 
+  playGame 
+} from '../../../APIFunctions/user'
 
 
 export default function Coinflip() {
+  const user = currentUser()
   // false = tails, true = heads
   const [winloss, setWinLoss] = useState(false)
   const [start, setStart] = useState(false)
@@ -43,16 +45,20 @@ export default function Coinflip() {
     disableComponents: disableComponents
   }
 
-  const handleCoinFlip = () => {
+  const handleCoinFlip = async () => {
     if (start === false) return
     setCoinClass('')
     let flipResult = Math.random()
     let result = (flipResult <= 0.5) ? 'heads' : 'tails'
-    setTimeout(() => {
+    await setTimeout(() => {
       setCoinClass(result)
       setDisableComponents(true)
       handleResult(result)
     }, 100)
+    let winner = (prediction.toLowerCase() === result.toLowerCase()) ? 2 : 0
+    playGame(user, wager, 'Coin Flip', winner, () => {
+      console.log('Logged')
+    })
   }
 
   const handleResult = (result) => {
@@ -74,11 +80,11 @@ export default function Coinflip() {
           <Col>
             <center><h3>{
               start ? (
-              coinClass ? (
-              !disableComponents ? (`Your result was ${result}!`)
-              : 'Flipping...')
-              : 'Click the coin to flip')
-              : 'Enter wager and start game!'
+                coinClass ? (
+                  !disableComponents ? (`Your result was ${result}!`)
+                    : 'Flipping...')
+                  : 'Click the coin to flip')
+                : 'Enter wager and start game!'
             }</h3></center> <br />
             <div id='coin'
               className={coinClass}

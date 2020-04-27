@@ -39,7 +39,7 @@ on delete cascade
 -- );
 
 create table game(
-game_no int not null,
+game_no int not null auto_increment,
 game_status varchar(10)
 	constraint check_status check (game_status in ('Open', 'In Progress', 'Finished')) ENFORCED,
 wager_amt int not null,
