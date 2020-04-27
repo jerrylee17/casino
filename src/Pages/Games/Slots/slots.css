@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+
+#repeatButton {
+    appearance: none;
+    border: none;
+    background: url(https://andyhoffman.codes/random-assets/img/slots/repeat.png) transparent 0 0 no-repeat;
+    background-size: cover;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    display: inline-flexbox;
+    justify-content: center;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    animation: 6s linear infinite spin;
+}
+
+.icons {
+    display: inline-block;
+    width: 128px;
+    height: 564px;
+    overflow: hidden;
+    background: #fff url(https://andyhoffman.codes/random-assets/img/slots/sprite5.png) repeat-y;
+    will-change: backgroundPosition;
+    transition: 0.3s background-position ease-in-out;
+    padding: 0 80px;
+    transform: translateZ(0);
+}
+
+.icons:nth-child(2) {
+    margin: 0 10px;
+}
+
+.spinner-container {
+    overflow: hidden;
+    height: 80vh;
+    padding: 2em;
+    transform: scale(.62, .62);
+    position: absolute;
+    margin: 2px 10px 10px 10px;
+    top: 0px;
+    left: 10%;
+    display: flex;
+    transition: 0.3s transform;
+}
+
+.app-wrap.winner-false {
+    animation: linear 1s spin;
+}
+
+.spinner-container::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 180px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+    left: 30px;
+    background: rgba(255, 0, 0, .1);
+}
+
+.gradient-fade {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    bottom: 2em;
+    left: 2em;
+    height: 564px;
+    background: linear-gradient(
+        to bottom, 
+        rgba(64,64,64,1) 0%, 
+        rgba(64,64,64,0) 7%, 
+        rgba(64,64,64,0) 93%, 
+        rgba(64,64,64,1) 100%
+    );
+}
+
+@media screen and (max-width: 1000px) {
+    .spinner-container {
+        transform: scale(.55, .55);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .spinner-container {
+        transform: scale(.4, .4);
+    }
+}
