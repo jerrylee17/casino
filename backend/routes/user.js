@@ -79,7 +79,6 @@ app.post("/api/buyBadge", function (req, res) {
     });
 })
 
-<<<<<<< HEAD
 app.post("/api/getWinrate", function (req, res) {
     userQuery.getWinrate(req.body.username, result => {
         res.json(result);
@@ -109,7 +108,6 @@ app.post("/api/getWinner", function (req, res) {
         res.json(result);
     });
 })
-=======
 app.post("/api/playGame", function(req, res) {
     const {
         username, 
@@ -122,5 +120,4 @@ app.post("/api/playGame", function(req, res) {
     })
 })
 
->>>>>>> 1280373fe3a327819ff115054f31fc7e5ad407f7
 module.exports = app;
