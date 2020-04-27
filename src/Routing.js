@@ -13,6 +13,7 @@ import AuthenticatedRoute from "./Components/Routes/AuthenticatedRoute";
 import { isAuthenticated } from "./APIFunctions/user";
 import BlackJack from './Pages/Games/BlackJack/Blackjack.js'
 import SlotsWrapper from './Pages/Games/Slots/slotsWrapper.js'
+import Coinflip from './Pages/Games/CoinFlip/Coinflip.js'
 
 const browserHistory = createBrowserHistory();
 
@@ -66,7 +67,11 @@ export default function Routing() {
     {
       Component: SlotsWrapper,
       path: "/slots"
-    }
+    },
+    {
+      Component: Coinflip,
+      path: "/coinflip"
+    },
   ];
   return (
     !Authenticating && (
