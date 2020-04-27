@@ -16,8 +16,8 @@ class Profile extends Component {
   state = {
     user: "",
     badges: [],
+    game_type: [],
     winrate: 0,
-    winner: 0,
   };
   componentDidMount() {
     this.setState({
@@ -100,6 +100,12 @@ class Profile extends Component {
             </tr>
           </thead>
           <tbody>
+            <tr className={this.state.winner ? 'background-red' : 'background-green'}>
+              <th>{this.state.credit}</th>
+              <th>{this.state.wins}</th>
+              <th>{this.state.losses}</th>
+              <th>{this.state.game_type}</th>
+            </tr>
             <tr className={this.state.winner ? 'background-red' : 'background-green'}>
               <th>{this.state.credit}</th>
               <th>{this.state.wins}</th>

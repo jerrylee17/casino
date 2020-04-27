@@ -274,16 +274,18 @@ exports.getGameType = (username, callback) => {
     });
 }
 
-exports.getWinner = (username, callback) => {
-    let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT game_starter='" + username + "';";
-    connection.query(GET_WINNER_QUERY, (err, results) => {
-        if (err) {
-            logger.error(err);
-            throw err;
-        };
-        logger.request("get user credits - " + username);
-        return callback(results);
-    });
+// exports.getWinner = (username, callback) => {
+//     let GET_WINNER_QUERY = "SELECT winner FROM game WHERE SELECT game_starter='" + username + "';";
+//     connection.query(GET_WINNER_QUERY, (err, results) => {
+//         if (err) {
+//             logger.error(err);
+//             throw err;
+//         };
+//         logger.request("get user credits - " + username);
+//         return callback(results);
+//     });
+// }
+
 exports.playGame = (username, wager, game, winner, callback) => {
   let chipUpdate;
   let win = 0
