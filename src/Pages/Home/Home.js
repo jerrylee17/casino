@@ -127,7 +127,7 @@ class Home extends Component {
           <Container id='contact-us'>
             <Row className='rows-contact'>
               <Col className='col-contact'>
-                <center> <p><b>Made by:</b> Team 2 - CMPE 138</p></center>
+                <center> <p><b>Made by:</b> Team 4 - CMPE 138</p></center>
               </Col>
             </Row>
             <Row className='rows-contact'>

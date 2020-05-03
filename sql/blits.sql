@@ -30,13 +30,13 @@ foreign key(admin_id) REFERENCES users(username)
 on update cascade on delete cascade
 );
 
--- create table user_profile(
--- user_id varchar(15) not null,
--- loss_win_ratio int,
--- primary key(user_id),
--- foreign key(user_id) REFERENCES users(username),
--- on delete cascade
--- );
+create table user_profile(
+user_id varchar(15) not null,
+loss_win_ratio int,
+primary key(user_id),
+foreign key(user_id) REFERENCES users(username)
+on delete cascade
+);
 
 create table game(
 game_no int not null auto_increment,
