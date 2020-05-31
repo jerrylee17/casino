@@ -68,9 +68,9 @@ class Profile extends Component {
           <div className='text-center'>
             <h1 className='display-4'>{this.state.user}'s Profile</h1>
           </div>
-          <img src={ProfilePic} class="center" width="200" height="180"></img>
+          <img src={ProfilePic} class="center" width="200" height="180" alt=''></img>
       <p align="center"><b>Win Rate: { isNaN(this.state.winrate) ? "0%" : (this.state.winrate+"%")}</b></p>
-      <p align="center"><b>Number of chips: {this.state.credit} </b><img src="https://media.giphy.com/media/13I3peucbA8BfG/giphy.gif" width="30" height="30"></img></p>
+      <p align="center"><b>Number of chips: {this.state.credit} </b><img src="https://media.giphy.com/media/13I3peucbA8BfG/giphy.gif" width="30" height="30" alt=''></img></p>
       <p align="center"><b>Badges:</b></p>
       <section>
         <div class="gallery">
@@ -83,6 +83,7 @@ class Profile extends Component {
                   <img className="images" key={i} src={images[Badge.badge_name+".png"]} alt=""></img>
                 )
               }
+              return true
             })}
             {own ? "" : <p>You don't have any badges. Check out our shop</p>}
           </div>

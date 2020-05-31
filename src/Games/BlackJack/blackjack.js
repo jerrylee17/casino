@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')();
 
-class BlackJackGame {
+export class BlackJackGame {
   // 1-13: spades, 14-26: hearts, 27-39: clubs, 40-52: diamonds
   constructor() {
     this.cards = [...Array(52).keys()].map(x => x + 1);
@@ -127,20 +127,3 @@ class BlackJackGame {
     }
   }
 }
-
-module.exports = { BlackJackGame }
-
-// const game = new BlackJackGame()
-// game.shuffle()
-// game.initDeal()
-// console.log(game.playerHand)
-// game.play()
-
-// console.log('====================')
-// game.playDealer(game.dealerHand)
-// console.log(game.dealerHand)
-// const [hlow, hhigh] = game.getHandValue(game.dealerHand);
-// console.log(hlow, hhigh)
-// console.log('========WINNER========')
-// const val = game.determineWinner(dealer=game.dealerHand, player=game.playerHand)
-// console.log(val);
