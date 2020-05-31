@@ -1,6 +1,4 @@
-// const imagePath = '../../Images/Games/Cards/'
-
-class cardHandler {
+export class cardHandler {
     constructor(hand) {
         this.hand = hand;
     }
@@ -33,8 +31,3 @@ class cardHandler {
     }
 }
 
-module.exports = {cardHandler}
-
-// cards = new cardHandler([1,2,3,13])
-// allCards = cards.getCards(imagePath)
-// console.log(allCards)
